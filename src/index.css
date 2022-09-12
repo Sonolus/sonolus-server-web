@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    animation-name: bg-color;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes bg-color {
+    0% {
+        @apply bg-sonolus-main;
+    }
+
+    25% {
+        @apply bg-sonolus-alternative-0;
+    }
+
+    50% {
+        @apply bg-sonolus-main;
+    }
+
+    75% {
+        @apply bg-sonolus-alternative-1;
+    }
+
+    100% {
+        @apply bg-sonolus-main;
+    }
+}

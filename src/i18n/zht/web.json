@@ -1,0 +1,13 @@
+{
+  "openInSonolus": {
+    "title": "在Sonolus中打開",
+    "info": {
+      "title": "正在打開…",
+      "tryAgain": "如果沒有打開Sonolus，請按以下鏈接重試：",
+      "download": "如果你的設備還未有Sonolus，請在這裏下載："
+    }
+  },
+  "notFound": {
+    "description": "您想要的頁面並不在這裏 :("
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "openInSonolus": {
+    "title": "Sonolusで開く",
+    "info": {
+      "title": "移動中...",
+      "tryAgain": "Sonolusが開かなかった場合は、このリンクをタップしてみてください：",
+      "download": "Sonolusをまだインストールしていない場合は、ここからインストールしてください："
+    }
+  },
+  "notFound": {
+    "description": "おっと、このページは存在しませんね。(´･ω･`)"
+  }
+}

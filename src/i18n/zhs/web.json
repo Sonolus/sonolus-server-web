@@ -1,0 +1,13 @@
+{
+  "openInSonolus": {
+    "title": "在 Sonolus 中打开",
+    "info": {
+      "title": "正在打开…",
+      "tryAgain": "如果 Sonolus 没有打开，请点击以下链接重试：",
+      "download": "如果您还没有 Sonolus，请前往下载："
+    }
+  },
+  "notFound": {
+    "description": "您要访问的页面不在这里 :("
+  }
+}

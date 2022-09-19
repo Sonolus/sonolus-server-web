@@ -1,0 +1,13 @@
+{
+  "openInSonolus": {
+    "title": "Ouvrir sur Sonolus",
+    "info": {
+      "title": "Ouverture...",
+      "tryAgain": "Si Sonolus ne s'est pas ouvert, cliquez sur le lien suivant pour réessayer :",
+      "download": "Si vous n'avez pas encore Sonolus, téléchargez-le ici :"
+    }
+  },
+  "notFound": {
+    "description": "La page que vous recherchez n'est pas ici :("
+  }
+}

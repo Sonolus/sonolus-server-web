@@ -1,0 +1,13 @@
+{
+  "openInSonolus": {
+    "title": "Buka di Sonolus",
+    "info": {
+      "title": "Membuka...",
+      "tryAgain": "Jika Sonolus tidak terbuka, klik tautan berikut untuk mencoba lagi:",
+      "download": "Jika Anda belum memiliki Sonolus, unduh di sini:"
+    }
+  },
+  "notFound": {
+    "description": "Halaman yang Anda cari tidak ada di sini :("
+  }
+}

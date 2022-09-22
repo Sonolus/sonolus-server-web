@@ -156,8 +156,12 @@ for (const locale of locales) {
     writeFileSync(
         `./src/i18n/generated-${locale}.ts`,
         [
-            `const web = ${readFileSync(
-                `./src/i18n/${locale}/web.json`
+            `const web = ${JSON.stringify(
+                JSON.parse(
+                    readFileSync(`./src/i18n/${locale}/web.json`).toString()
+                ),
+                null,
+                4
             )} as const`,
             'const app = {',
             ...walk(localization),

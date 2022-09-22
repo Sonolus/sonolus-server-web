@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import type { ItemDetails } from 'sonolus-core'
+import type { ItemDetails, ResourceType, SRL } from 'sonolus-core'
+import { ref } from 'vue'
+import { toUrl } from '../../api'
 import OpenInSonolus from '../../components/OpenInSonolus.vue'
 import { useI18n } from '../../i18n'
 
@@ -10,9 +12,12 @@ defineProps<{
     title: string
     subtitle: string
     author: string
+    thumbnail: SRL<ResourceType>
 }>()
 
 const { i18n } = useI18n()
+
+const showBanner = ref(true)
 </script>
 
 <template>
@@ -62,5 +67,17 @@ const { i18n } = useI18n()
         <template v-for="(item, index) in data.recommended" :key="index">
             <slot name="recommended" :item="item" />
         </template>
+    </div>
+
+    <div
+        v-if="showBanner"
+        class="fixed top-2 left-0 -z-10 flex w-full justify-center sm:top-4"
+    >
+        <img
+            class="banner pointer-events-none w-full object-cover opacity-40 sm:h-60"
+            :src="toUrl(thumbnail)"
+            alt="Banner"
+            @error="showBanner = false"
+        />
     </div>
 </template>

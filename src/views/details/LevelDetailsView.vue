@@ -17,6 +17,7 @@ defineProps<{
         :title="data.item.title"
         :subtitle="data.item.artists"
         :author="data.item.author"
+        :thumbnail="data.item.cover"
     >
         <template #thumbnail>
             <LevelThumbnail :item="data.item" full-size />

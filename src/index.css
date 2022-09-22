@@ -29,3 +29,8 @@ body {
         @apply bg-sonolus-main;
     }
 }
+
+.banner {
+    mask-image: linear-gradient(white, white, transparent);
+    -webkit-mask-image: linear-gradient(white, white, transparent);
+}

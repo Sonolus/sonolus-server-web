@@ -29,7 +29,7 @@ const sections = {
     engines: ['engine-list', EngineCard],
 } as const
 
-const isError = ref(false)
+const showBanner = ref(true)
 </script>
 
 <template>
@@ -78,14 +78,14 @@ const isError = ref(false)
     </template>
 
     <div
-        v-if="!isError"
+        v-if="showBanner"
         class="fixed top-2 left-0 -z-10 flex w-full justify-center sm:top-4"
     >
         <img
             class="banner pointer-events-none h-[11.25rem] object-cover opacity-40 sm:h-60"
             :src="toUrl(data.banner)"
             alt="Banner"
-            @error="isError = true"
+            @error="showBanner = false"
         />
     </div>
 </template>

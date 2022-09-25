@@ -69,9 +69,11 @@ watchEffect(() => {
 <template>
     <div class="duration-150">
         <NavBar
-            class="sticky top-0 transition-transform v-transition:-translate-y-full"
+            class="fixed top-0 w-full transition-transform v-transition:-translate-y-full"
             :title="title === undefined ? appTitle : title"
         />
+
+        <div class="h-11 sm:h-16" />
 
         <Transition
             mode="out-in"

@@ -1,5 +1,5 @@
 import { useLocalStorage } from '@vueuse/core'
-import { computed } from 'vue'
+import { computed, watchEffect } from 'vue'
 import type { I18n } from './generated-en'
 
 const modules = import.meta.glob('./generated-*.ts', { eager: true }) as Record<
@@ -10,6 +10,8 @@ const locales = Object.keys(modules).map((key) => modules[key].i18n.meta)
 
 const locale = useLocalStorage('locale', getDefaultLocale())
 const i18n = computed(() => modules[`./generated-${locale.value}.ts`].i18n)
+
+watchEffect(() => (document.documentElement.lang = i18n.value.lang))
 
 export const useI18n = () => {
     return { i18n, locale, locales }

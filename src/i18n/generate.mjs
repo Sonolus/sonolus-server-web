@@ -17,9 +17,11 @@ const i18n = {
     },
     clients: {
         customServer: {
-            serverInfo: {
-                loading: '',
-                error: '',
+            server: {
+                info: {
+                    loading: '',
+                    error: '',
+                },
             },
             level: {
                 list: {

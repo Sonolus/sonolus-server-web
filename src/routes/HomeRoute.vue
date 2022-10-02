@@ -11,11 +11,11 @@ const appTitle = import.meta.env.VITE_TITLE
 <template>
     <BaseRoute url="/sonolus/info">
         <template #loading>
-            {{ i18n.clients.customServer.serverInfo.loading }}
+            {{ i18n.clients.customServer.server.info.loading }}
         </template>
 
         <template #error>
-            {{ i18n.clients.customServer.serverInfo.error(appTitle) }}
+            {{ i18n.clients.customServer.server.info.error(appTitle) }}
         </template>
 
         <template #loaded="{ data }">

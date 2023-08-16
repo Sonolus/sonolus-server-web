@@ -1,0 +1,14 @@
+{
+  "lang": "tr",
+  "openInSonolus": {
+    "title": "Sonolus' ta Aç",
+    "info": {
+      "title": "Açılıyor...",
+      "tryAgain": "Sonolus açılmadıysa, aşağıdaki bağlantıya tıklayın ve tekrar deneyin:",
+      "download": "Henüz Sonolus' a sahip değilseniz, buradan indirin:"
+    }
+  },
+  "notFound": {
+    "description": "Aradığınız sayfa bulunamadı :("
+  }
+}

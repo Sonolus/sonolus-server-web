@@ -9,6 +9,6 @@
     }
   },
   "notFound": {
-    "description": "찾으시는 페이지는 여기 없어요 :("
+    "description": "찾을 수 없는 페이지입니다 :("
   }
 }

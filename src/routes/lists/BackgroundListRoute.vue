@@ -9,7 +9,7 @@ const { i18n } = useI18n()
 <template>
     <ItemListRoute
         type="backgrounds"
-        :title="i18n.routes.server.backgroundList.title"
+        :title="i18n.routes.server.lists.background.title"
         :i18n-message="i18n.clients.customServer.background.list"
     >
         <template #loaded="{ data }">

@@ -88,8 +88,10 @@ const i18n = {
     routes: {
         jumpToPage: {
             title: '',
-            page: '',
-            pagePlaceholder: '',
+            page: {
+                title: '',
+                placeholder: '',
+            },
             jump: '',
         },
         server: {
@@ -104,7 +106,7 @@ const i18n = {
             search: {
                 title: '',
             },
-            itemDetails: {
+            details: {
                 description: {
                     title: '',
                 },
@@ -112,23 +114,25 @@ const i18n = {
                     title: '',
                 },
             },
-            levelList: {
-                title: '',
-            },
-            skinList: {
-                title: '',
-            },
-            backgroundList: {
-                title: '',
-            },
-            effectList: {
-                title: '',
-            },
-            particleList: {
-                title: '',
-            },
-            engineList: {
-                title: '',
+            lists: {
+                level: {
+                    title: '',
+                },
+                skin: {
+                    title: '',
+                },
+                background: {
+                    title: '',
+                },
+                effect: {
+                    title: '',
+                },
+                particle: {
+                    title: '',
+                },
+                engine: {
+                    title: '',
+                },
             },
         },
     },

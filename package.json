@@ -5,7 +5,7 @@
     "generate-i18n": "node ./src/i18n/generate.mjs",
     "dev": "vite",
     "dev-host": "vite --host",
-    "build": "run-p generate-i18n type-check build-only",
+    "build": "run-s generate-i18n && run-p type-check build-only",
     "preview": "vite preview --port 4173",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",

@@ -9,7 +9,7 @@ const { i18n } = useI18n()
 <template>
     <ItemListRoute
         type="particles"
-        :title="i18n.routes.server.particleList.title"
+        :title="i18n.routes.server.lists.particle.title"
         :i18n-message="i18n.clients.customServer.particle.list"
     >
         <template #loaded="{ data }">

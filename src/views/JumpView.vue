@@ -22,7 +22,7 @@ const { i18n } = useI18n()
 <template>
     <div>
         <div class="py-2 font-bold sm:py-3">
-            {{ i18n.routes.jumpToPage.page }}
+            {{ i18n.routes.jumpToPage.page.title }}
         </div>
         <div
             class="ml-9 flex flex-grow items-center space-x-2 sm:ml-12 sm:space-x-3"
@@ -30,7 +30,7 @@ const { i18n } = useI18n()
             <MyTextInput
                 class="relative flex-grow"
                 :icon="HashtagIcon"
-                :placeholder="i18n.routes.jumpToPage.pagePlaceholder"
+                :placeholder="i18n.routes.jumpToPage.page.placeholder"
                 v-model="page"
             />
             <MyButton

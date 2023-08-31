@@ -9,7 +9,7 @@ const { i18n } = useI18n()
 <template>
     <ItemListRoute
         type="skins"
-        :title="i18n.routes.server.skinList.title"
+        :title="i18n.routes.server.lists.skin.title"
         :i18n-message="i18n.clients.customServer.skin.list"
     >
         <template #loaded="{ data }">

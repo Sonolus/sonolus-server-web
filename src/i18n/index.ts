@@ -21,6 +21,7 @@ function getDefaultLocale() {
     const [main, ...rest] = navigator.language.toLowerCase().split('-')
 
     switch (main) {
+        case 'el':
         case 'es':
         case 'fr':
         case 'id':

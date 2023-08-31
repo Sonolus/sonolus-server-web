@@ -53,7 +53,7 @@ const showBanner = ref(true)
 
     <div class="flex flex-col space-y-2 sm:space-y-3">
         <h2 class="py-1 text-xl font-bold sm:py-1.5 sm:text-3xl">
-            {{ i18n.routes.server.itemDetails.description.title }}
+            {{ i18n.routes.server.details.description.title }}
         </h2>
         <p class="whitespace-pre-wrap">
             {{ data.description }}
@@ -62,7 +62,7 @@ const showBanner = ref(true)
 
     <div class="flex flex-col space-y-2 sm:space-y-3">
         <h2 class="py-1 text-xl font-bold sm:py-1.5 sm:text-3xl">
-            {{ i18n.routes.server.itemDetails.recommended.title }}
+            {{ i18n.routes.server.details.recommended.title }}
         </h2>
         <template v-for="(item, index) in data.recommended" :key="index">
             <slot name="recommended" :item="item" />

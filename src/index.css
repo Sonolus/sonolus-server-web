@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    animation-name: bg-color;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes bg-color {
+    0% {
+        @apply bg-main;
+    }
+
+    25% {
+        @apply bg-alternative-0;
+    }
+
+    50% {
+        @apply bg-main;
+    }
+
+    75% {
+        @apply bg-alternative-1;
+    }
+
+    100% {
+        @apply bg-main;
+    }
+}

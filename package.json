@@ -1,0 +1,41 @@
+{
+  "name": "sonolus-server-web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate-i18n": "node ./src/i18n/generate.mjs",
+    "dev": "vite",
+    "prebuild": "vue-tsc --build --force && eslint . && prettier . --check",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@sonolus/core": "~7.5.1",
+    "vue": "^3.4.26",
+    "vue-router": "^4.3.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^8.57.0",
+    "@rushstack/eslint-patch": "^1.10.2",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tsconfig/node20": "^20.1.4",
+    "@types/node": "^20.12.8",
+    "@typescript-eslint/eslint-plugin": "^7.8.0",
+    "@typescript-eslint/parser": "^7.8.0",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@volar/vue-typescript": "^1.6.5",
+    "@vue/eslint-config-prettier": "^9.0.0",
+    "@vue/eslint-config-typescript": "^13.0.0",
+    "@vue/tsconfig": "^0.5.1",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.25.0",
+    "prettier": "^3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "tailwindcss": "^3.4.3",
+    "typescript": "~5.4.5",
+    "vite": "^5.2.11",
+    "vue-tsc": "^2.0.16"
+  }
+}

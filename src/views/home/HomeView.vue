@@ -36,9 +36,7 @@ const infos = [
 </script>
 
 <template>
-    <h1
-        class="overflow-hidden text-ellipsis whitespace-nowrap text-center text-30 font-bold sm:text-36"
-    >
+    <h1 class="text-center text-30 font-bold sm:text-36">
         {{ data.title }}
     </h1>
     <div class="flex justify-center">

@@ -36,7 +36,10 @@ const normalized = computed(() => normalizes[props.type](props.item as never))
 </script>
 
 <template>
-    <div class="flex flex-col items-center" :class="{ 'sm:items-start': alignLeft }">
+    <div
+        class="flex flex-col items-center gap-2.5 sm:gap-3"
+        :class="{ 'sm:items-start': alignLeft }"
+    >
         <div
             class="flex w-full justify-between gap-15 text-15 text-text-soften sm:gap-18 sm:text-18"
             :class="{ 'sm:justify-start': alignLeft }"
@@ -45,7 +48,7 @@ const normalized = computed(() => normalizes[props.type](props.item as never))
             <span class="text-right">{{ normalized.author }}</span>
         </div>
         <slot />
-        <span class="mt-2.5 text-30 font-bold sm:mt-3 sm:text-36">{{ normalized.title }}</span>
-        <span class="mt-2.5 sm:mt-3">{{ normalized.subtitle }}</span>
+        <span class="text-center text-30 font-bold sm:text-36">{{ normalized.title }}</span>
+        <span class="text-center">{{ normalized.subtitle }}</span>
     </div>
 </template>

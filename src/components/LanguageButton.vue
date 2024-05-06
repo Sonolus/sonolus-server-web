@@ -8,7 +8,7 @@ import IconLanguage from '@/icons/IconLanguage.vue'
         type="button"
     >
         <IconLanguage class="size-20 flex-shrink-0 fill-current sm:size-24" />
-        <span class="flex-grow overflow-hidden text-ellipsis px-2.5 sm:px-3">
+        <span class="flex-grow px-2.5 sm:px-3">
             <slot />
         </span>
     </button>

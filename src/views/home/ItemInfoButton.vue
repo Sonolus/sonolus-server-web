@@ -15,10 +15,10 @@ const { i18n } = useI18n()
 
 <template>
     <AppLink
-        class="flex w-120 flex-col items-center bg-button-normal p-10 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:w-144 sm:p-12"
+        class="flex w-120 flex-col items-center gap-10 bg-button-normal p-10 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:w-144 sm:gap-12 sm:p-12"
         :to="{ name: `${type}-info` }"
     >
         <component :is="icon" class="size-60 fill-current sm:size-72" />
-        <span class="mt-10 sm:mt-12">{{ i18n.routes.server.home[title] }}</span>
+        <span>{{ i18n.routes.server.home[title] }}</span>
     </AppLink>
 </template>

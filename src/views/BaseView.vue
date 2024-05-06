@@ -101,19 +101,15 @@ const showSelectLocalization = ref(false)
                 <div
                     v-else
                     :key="`${state}`"
-                    class="flex min-h-[calc(100vh-110px)] flex-col items-center justify-center sm:min-h-[calc(100vh-132px)]"
+                    class="flex min-h-[calc(100vh-110px)] flex-col items-center justify-center gap-10 sm:min-h-[calc(100vh-132px)] sm:gap-12"
                 >
                     <template v-if="state === undefined">
                         <LoadingSpinner />
-                        <span class="mt-10 whitespace-break-spaces text-center sm:mt-12">{{
-                            loading
-                        }}</span>
+                        <span class="whitespace-break-spaces text-center">{{ loading }}</span>
                     </template>
                     <template v-else>
                         <IconError class="size-30 fill-current sm:size-36" />
-                        <span class="mt-10 whitespace-break-spaces text-center sm:mt-12">{{
-                            error
-                        }}</span>
+                        <span class="whitespace-break-spaces text-center">{{ error }}</span>
                     </template>
                 </div>
             </Transition>

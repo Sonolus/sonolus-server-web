@@ -5,17 +5,18 @@ import ViewSection from '@/components/ViewSection.vue'
 import MultiField from '@/components/fields/MultiField.vue'
 import SelectField from '@/components/fields/SelectField.vue'
 import SliderField from '@/components/fields/SliderField.vue'
+import TextAreaField from '@/components/fields/TextAreaField.vue'
 import TextField from '@/components/fields/TextField.vue'
 import ToggleField from '@/components/fields/ToggleField.vue'
 import { useI18n } from '@/i18n'
 import IconSearch from '@/icons/IconSearch.vue'
 import type { ItemType } from '@/utils/item'
-import type { ServerOptionsSection } from '@sonolus/core'
+import type { ServerForm } from '@sonolus/core'
 import { ref } from 'vue'
 
 const props = defineProps<{
     type: ItemType
-    search: ServerOptionsSection
+    search: ServerForm
     query: Record<string, string>
 }>()
 
@@ -29,6 +30,7 @@ const query = ref(
 
 const fields = {
     text: TextField,
+    textArea: TextAreaField,
     slider: SliderField,
     toggle: ToggleField,
     select: SelectField,

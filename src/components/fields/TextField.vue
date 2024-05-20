@@ -32,6 +32,7 @@ const { value, isModified } = useQuery(
                 class="flex-grow"
                 :icon="IconSearch"
                 :placeholder="i18nText(option.placeholder)"
+                :limit="option.limit"
             />
             <UndoButton class="ml-10 flex-shrink-0 sm:ml-12" :is-modified @click="value = ''" />
         </div>

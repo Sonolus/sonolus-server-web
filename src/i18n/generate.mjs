@@ -8,6 +8,7 @@ const i18n = {
     },
     common: {
         separator: '',
+        more: '',
         on: '',
         off: '',
         search: '',
@@ -91,7 +92,6 @@ const i18n = {
             },
             search: { title: '' },
             infos: {
-                more: '',
                 advanced: '',
                 room: { title: '' },
                 post: { title: '' },

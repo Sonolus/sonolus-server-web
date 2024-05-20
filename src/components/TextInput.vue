@@ -5,6 +5,7 @@ import type { Component } from 'vue'
 defineProps<{
     icon: Component
     placeholder: string
+    limit?: number
 }>()
 
 const value = defineModel<string>()
@@ -18,6 +19,7 @@ const value = defineModel<string>()
                 class="size-full border-none bg-button-normal p-5 pl-30 text-center transition-colors placeholder:text-20 placeholder:italic placeholder:text-text-disabled hover:bg-button-highlighted focus-visible:outline focus-visible:outline-offset-0 focus-visible:ring-0 active:bg-button-pressed sm:p-6 sm:pl-36 sm:placeholder:text-24"
                 type="text"
                 :placeholder
+                :maxlength="limit"
             />
             <component
                 :is="icon"

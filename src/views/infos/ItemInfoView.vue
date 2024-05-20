@@ -58,7 +58,7 @@ const keywords = computed(() => search.value.trim())
                 :icon="keywords ? IconSearch : IconMore"
                 data-submit
             >
-                {{ keywords ? i18n.common.search : i18n.routes.server.infos.more }}
+                {{ keywords ? i18n.common.search : i18n.common.more }}
             </AppButton>
         </div>
     </AppForm>

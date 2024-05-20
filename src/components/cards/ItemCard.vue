@@ -2,6 +2,7 @@
 import AppLink from '@/components/AppLink.vue'
 import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { thumbnails } from '@/components/thumbnails'
+import { dynamicIcons } from '@/dynamicIcons'
 import { useI18n } from '@/i18n'
 import type { Item, ItemType } from '@/utils/item'
 
@@ -28,13 +29,17 @@ const { i18nText } = useI18n()
                 </div>
             </ItemHeader>
             <div class="mt-10 flex flex-wrap justify-center gap-5 sm:mt-12 sm:gap-6">
-                <span
+                <div
                     v-for="(tag, key) in item.tags"
                     :key
-                    class="bg-button-disabled px-5 py-2.5 text-15 sm:px-6 sm:py-3 sm:text-18"
+                    class="flex gap-2.5 bg-button-disabled p-2.5 sm:gap-3 sm:p-3"
                 >
-                    {{ i18nText(tag.title) }}
-                </span>
+                    <component
+                        :is="dynamicIcons[tag.icon ?? '']"
+                        class="size-15 fill-current sm:size-18"
+                    />
+                    <span class="px-2.5 text-15 sm:px-3 sm:text-18">{{ i18nText(tag.title) }}</span>
+                </div>
             </div>
         </div>
     </AppLink>

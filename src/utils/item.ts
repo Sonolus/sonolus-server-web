@@ -24,6 +24,6 @@ export type ItemTypeMap = {
     engines: EngineItem
 }
 
-export type ItemType = keyof ItemTypeMap & string
+export type ItemType = keyof ItemTypeMap
 
 export type Item = ItemTypeMap[ItemType]

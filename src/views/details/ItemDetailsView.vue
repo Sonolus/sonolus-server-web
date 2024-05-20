@@ -12,6 +12,7 @@ import ViewSection from '@/components/ViewSection.vue'
 import ItemCard from '@/components/cards/ItemCard.vue'
 import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { thumbnails } from '@/components/thumbnails'
+import { dynamicIcons } from '@/dynamicIcons'
 import { useI18n } from '@/i18n'
 import type { ItemType, ItemTypeMap } from '@/utils/item'
 import { detailsViewOptions } from '@/views/details/detailsViewOptions'
@@ -40,13 +41,17 @@ const { i18n, i18nText } = useI18n()
 
     <ViewSection :title="i18n.routes.server.details.tags.title">
         <div class="flex flex-wrap gap-10 sm:gap-12">
-            <span
+            <div
                 v-for="(tag, key) in data.item.tags"
                 :key
-                class="bg-button-disabled px-7.5 py-5 sm:px-9 sm:py-6"
+                class="flex gap-5 bg-button-disabled p-5 sm:gap-6 sm:p-6"
             >
-                {{ i18nText(tag.title) }}
-            </span>
+                <component
+                    :is="dynamicIcons[tag.icon ?? '']"
+                    class="size-20 fill-current sm:size-24"
+                />
+                <span class="px-5 sm:px-6">{{ i18nText(tag.title) }}</span>
+            </div>
         </div>
     </ViewSection>
 

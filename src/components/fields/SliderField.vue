@@ -21,7 +21,7 @@ const { value, isModified } = useQuery(
 
 <template>
     <BaseField :option :display-value="`${value}`" :is-modified>
-        <div class="flex">
+        <div class="flex gap-10 sm:gap-12">
             <div
                 class="relative flex-grow bg-button-normal transition-colors focus-within:outline hover:bg-button-highlighted active:bg-button-pressed"
             >
@@ -44,11 +44,7 @@ const { value, isModified } = useQuery(
                     :step="option.step"
                 />
             </div>
-            <UndoButton
-                class="ml-10 flex-shrink-0 sm:ml-12"
-                :is-modified
-                @click="value = option.def"
-            />
+            <UndoButton class="flex-shrink-0" :is-modified @click="value = option.def" />
         </div>
     </BaseField>
 </template>

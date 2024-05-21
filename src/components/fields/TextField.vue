@@ -26,7 +26,7 @@ const { value, isModified } = useQuery(
 
 <template>
     <BaseField :option :display-value="value" :is-modified>
-        <div class="flex">
+        <div class="flex gap-10 sm:gap-12">
             <TextInput
                 v-model="value"
                 class="flex-grow"
@@ -34,7 +34,7 @@ const { value, isModified } = useQuery(
                 :placeholder="i18nText(option.placeholder)"
                 :limit="option.limit"
             />
-            <UndoButton class="ml-10 flex-shrink-0 sm:ml-12" :is-modified @click="value = ''" />
+            <UndoButton class="flex-shrink-0" :is-modified @click="value = ''" />
         </div>
     </BaseField>
 </template>

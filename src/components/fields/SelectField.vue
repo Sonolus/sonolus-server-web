@@ -27,11 +27,7 @@ const { value, isModified } = useQuery(
 <template>
     <BaseField :option :display-value="i18nText(option.values[value])" :is-modified>
         <div class="flex justify-end">
-            <UndoButton
-                class="ml-10 flex-shrink-0 sm:ml-12"
-                :is-modified
-                @click="value = option.def"
-            />
+            <UndoButton class="flex-shrink-0" :is-modified @click="value = option.def" />
         </div>
         <div class="mt-10 flex flex-wrap gap-10 sm:mt-12 sm:gap-12">
             <button

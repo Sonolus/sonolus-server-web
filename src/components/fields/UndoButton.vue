@@ -12,14 +12,11 @@ defineProps<{
         :class="
             isModified
                 ? 'bg-button-normal hover:bg-button-highlighted active:bg-button-pressed'
-                : 'bg-button-disabled'
+                : 'bg-button-disabled text-text-disabled'
         "
         type="button"
         :disabled="!isModified"
     >
-        <IconUndo
-            class="size-20 sm:size-24"
-            :class="isModified ? 'fill-text-normal' : 'fill-text-disabled'"
-        />
+        <IconUndo class="size-20 fill-current sm:size-24" />
     </button>
 </template>

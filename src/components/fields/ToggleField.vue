@@ -24,7 +24,7 @@ const { value, isModified } = useQuery(
 
 <template>
     <BaseField :option :display-value="value ? i18n.common.on : i18n.common.off" :is-modified>
-        <div class="flex justify-end">
+        <div class="flex justify-end gap-10 sm:gap-12">
             <button
                 class="w-60 bg-button-normal p-5 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:w-72 sm:p-6"
                 type="button"
@@ -35,11 +35,7 @@ const { value, isModified } = useQuery(
                     :class="value ? 'translate-x-full bg-success' : 'bg-warning'"
                 />
             </button>
-            <UndoButton
-                class="ml-10 flex-shrink-0 sm:ml-12"
-                :is-modified
-                @click="value = !!option.def"
-            />
+            <UndoButton class="flex-shrink-0" :is-modified @click="value = !!option.def" />
         </div>
     </BaseField>
 </template>

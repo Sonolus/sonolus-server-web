@@ -48,7 +48,7 @@ const toggle = () =>
 
 <template>
     <BaseField :option :display-value :is-modified>
-        <div class="flex justify-end">
+        <div class="flex justify-end gap-10 sm:gap-12">
             <button
                 class="min-w-120 bg-button-normal px-7.5 py-5 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:min-w-144 sm:px-9 sm:py-6"
                 type="button"
@@ -56,11 +56,7 @@ const toggle = () =>
             >
                 {{ toggleText }}
             </button>
-            <UndoButton
-                class="ml-10 flex-shrink-0 sm:ml-12"
-                :is-modified
-                @click="value = getDefault()"
-            />
+            <UndoButton class="flex-shrink-0" :is-modified @click="value = getDefault()" />
         </div>
         <div class="mt-10 flex flex-wrap gap-10 sm:mt-12 sm:gap-12">
             <button

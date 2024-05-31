@@ -8,6 +8,7 @@ const i18n = {
     },
     common: {
         separator: '',
+        more: '',
         on: '',
         off: '',
         search: '',
@@ -27,51 +28,111 @@ const i18n = {
                 info: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                community: {
+                    loading: '',
+                    comment: {
+                        list: { loading: '' },
+                    },
+                },
             },
             post: {
                 info: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                community: {
+                    loading: '',
+                    comment: {
+                        list: { loading: '' },
+                    },
+                },
             },
             playlist: {
                 info: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                community: {
+                    loading: '',
+                    comment: {
+                        list: { loading: '' },
+                    },
+                },
             },
             level: {
                 info: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                community: {
+                    loading: '',
+                    comment: {
+                        list: { loading: '' },
+                    },
+                },
             },
             replay: {
                 info: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                community: {
+                    loading: '',
+                    comment: {
+                        list: { loading: '' },
+                    },
+                },
             },
             skin: {
                 info: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                community: {
+                    loading: '',
+                    comment: {
+                        list: { loading: '' },
+                    },
+                },
             },
             background: {
                 info: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                community: {
+                    loading: '',
+                    comment: {
+                        list: { loading: '' },
+                    },
+                },
             },
             effect: {
                 info: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                community: {
+                    loading: '',
+                    comment: {
+                        list: { loading: '' },
+                    },
+                },
             },
             particle: {
                 info: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                community: {
+                    loading: '',
+                    comment: {
+                        list: { loading: '' },
+                    },
+                },
             },
             engine: {
                 info: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                community: {
+                    loading: '',
+                    comment: {
+                        list: { loading: '' },
+                    },
+                },
             },
         },
     },
@@ -91,7 +152,6 @@ const i18n = {
             },
             search: { title: '' },
             infos: {
-                more: '',
                 advanced: '',
                 room: { title: '' },
                 post: { title: '' },
@@ -120,6 +180,10 @@ const i18n = {
             details: {
                 tags: { title: '' },
                 description: { title: '' },
+                community: {
+                    title: '',
+                    noComments: '',
+                },
                 playlist: {
                     levels: { title: '' },
                 },

@@ -5,6 +5,7 @@ import ItemCard from '@/components/cards/ItemCard.vue'
 import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { thumbnails } from '@/components/thumbnails'
 import { useI18n } from '@/i18n'
+import ItemCommunitySection from '@/views/details/ItemCommunitySection.vue'
 import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView.vue'
 import { detailsViewOptions } from '@/views/details/detailsViewOptions'
 
@@ -41,6 +42,8 @@ const { i18nText } = useI18n()
     <div class="flex justify-center">
         <OpenInSonolus />
     </div>
+
+    <ItemCommunitySection v-if="data.hasCommunity" :type :name />
 
     <ViewSection v-for="(section, i) in data.sections" :key="i" :title="i18nText(section.title)">
         <ItemCard v-for="(item, j) in section.items" :key="j" :type :item />

@@ -3,7 +3,7 @@ import type { ItemType } from '@/utils/item'
 import { names } from '@/utils/name'
 import SearchSection from '@/views/search/SearchSection.vue'
 import { viewOptions } from '@/views/viewOptions'
-import { Text, type ServerOptionsSection } from '@sonolus/core'
+import { Text, type ServerForm } from '@sonolus/core'
 
 defineOptions(
     viewOptions<typeof props>({
@@ -20,7 +20,7 @@ const props = defineProps<{
     type: ItemType
     query: Record<string, string>
     data: {
-        searches?: ServerOptionsSection[]
+        searches?: ServerForm[]
     }
 }>()
 </script>

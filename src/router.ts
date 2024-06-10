@@ -56,7 +56,7 @@ export const router = createRouter({
         ).flatMap((type) => [
             {
                 name: `${type}-info`,
-                path: `/${type}`,
+                path: `/${type}/info`,
                 component: ItemInfoView,
                 props: { type },
             },

@@ -15,7 +15,7 @@ import { names } from '@/utils/name'
 import ItemCommunityComment from '@/views/details/ItemCommunityComment.vue'
 import ItemCommunityCommentPaginationButton from '@/views/details/ItemCommunityCommentPaginationButton.vue'
 import ItemCommunityCommentPaginationInput from '@/views/details/ItemCommunityCommentPaginationInput.vue'
-import type { ItemCommunity, ItemCommunityCommentList } from '@sonolus/core'
+import type { ItemCommunityCommentList, ItemCommunityInfo } from '@sonolus/core'
 import { ref, watchEffect } from 'vue'
 
 const props = defineProps<{
@@ -26,7 +26,7 @@ const props = defineProps<{
 const { locale, i18n, i18nText } = useI18n()
 
 const isCommunityLoading = ref(true)
-const community = ref<ItemCommunity>()
+const community = ref<ItemCommunityInfo>()
 
 ;(async () => {
     try {
@@ -34,7 +34,7 @@ const community = ref<ItemCommunity>()
         searchParams.append('localization', locale.value)
 
         const response = await fetch(
-            `${import.meta.env.BASE_URL}sonolus/${props.type}/${props.name}/community?${searchParams}`,
+            `${import.meta.env.BASE_URL}sonolus/${props.type}/${props.name}/community/info?${searchParams}`,
         )
         community.value = await response.json()
     } finally {

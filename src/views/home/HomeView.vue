@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import OpenInSonolus from '@/components/OpenInSonolus.vue'
-import { icons } from '@/icons'
-import IconMultiplayer from '@/icons/IconMultiplayer.vue'
-import ItemInfoButton from '@/views/home/ItemInfoButton.vue'
+import ServerInfoButton from '@/views/home/ServerInfoButton.vue'
 import { viewOptions } from '@/views/viewOptions'
 import type { ServerInfo } from '@sonolus/core'
 
@@ -20,19 +18,6 @@ defineOptions(
 const props = defineProps<{
     data: ServerInfo
 }>()
-
-const infos = [
-    ['rooms', 'multiplayer', IconMultiplayer],
-    ['posts', 'post'],
-    ['playlists', 'playlist'],
-    ['levels', 'level'],
-    ['replays', 'replay'],
-    ['skins', 'skin'],
-    ['backgrounds', 'background'],
-    ['effects', 'effect'],
-    ['particles', 'particle'],
-    ['engines', 'engine'],
-] as const
 </script>
 
 <template>
@@ -47,12 +32,8 @@ const infos = [
     </p>
 
     <div class="mt-30 flex flex-wrap justify-center gap-10 sm:mt-36 sm:gap-12">
-        <template v-for="[type, title, icon] in infos" :key="type">
-            <ItemInfoButton
-                v-if="type !== 'rooms' || data.hasMultiplayer"
-                v-bind="{ type, title }"
-                :icon="icon ?? icons[type]"
-            />
+        <template v-for="button in data.buttons" :key="button.type">
+            <ServerInfoButton v-bind="button" />
         </template>
     </div>
 </template>

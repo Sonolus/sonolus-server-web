@@ -139,6 +139,7 @@ const i18n = {
     routes: {
         server: {
             home: {
+                login: '',
                 multiplayer: '',
                 post: '',
                 playlist: '',

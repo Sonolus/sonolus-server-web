@@ -11,7 +11,7 @@ import type {
     SkinItem,
 } from '@sonolus/core'
 
-export type ItemTypeMap = {
+export type ItemPathTypeMap = {
     rooms: RoomItem
     posts: PostItem
     playlists: PlaylistItem
@@ -24,6 +24,6 @@ export type ItemTypeMap = {
     engines: EngineItem
 }
 
-export type ItemType = keyof ItemTypeMap
+export type ItemPathType = keyof ItemPathTypeMap
 
-export type Item = ItemTypeMap[ItemType]
+export type Item = ItemPathTypeMap[ItemPathType]

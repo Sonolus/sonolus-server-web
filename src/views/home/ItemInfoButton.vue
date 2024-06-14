@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import AppLink from '@/components/AppLink.vue'
 import { useI18n, type I18n } from '@/i18n'
-import type { ItemType } from '@/utils/item'
+import type { ItemPathType } from '@/utils/item'
 import type { Component } from 'vue'
 
 defineProps<{
-    type: ItemType
+    type: ItemPathType
     icon: Component
     title: keyof I18n['routes']['server']['home']
 }>()

@@ -8,7 +8,7 @@ import { useI18n } from '@/i18n'
 import IconAdvanced from '@/icons/IconAdvanced.vue'
 import IconMore from '@/icons/IconMore.vue'
 import IconSearch from '@/icons/IconSearch.vue'
-import type { Item, ItemType } from '@/utils/item'
+import type { Item, ItemPathType } from '@/utils/item'
 import { names } from '@/utils/name'
 import { viewOptions } from '@/views/viewOptions'
 import type { ItemInfo } from '@sonolus/core'
@@ -27,7 +27,7 @@ defineOptions(
 )
 
 const props = defineProps<{
-    type: ItemType
+    type: ItemPathType
     data: ItemInfo<Item>
 }>()
 

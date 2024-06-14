@@ -10,7 +10,7 @@ import IconAnglesRight from '@/icons/IconAnglesRight.vue'
 import IconCommunity from '@/icons/IconCommunity.vue'
 import IconMore from '@/icons/IconMore.vue'
 import IconXMark from '@/icons/IconXMark.vue'
-import type { ItemType } from '@/utils/item'
+import type { ItemPathType } from '@/utils/item'
 import { names } from '@/utils/name'
 import ItemCommunityComment from '@/views/details/ItemCommunityComment.vue'
 import ItemCommunityCommentPaginationButton from '@/views/details/ItemCommunityCommentPaginationButton.vue'
@@ -19,7 +19,7 @@ import type { ItemCommunity, ItemCommunityCommentList } from '@sonolus/core'
 import { ref, watchEffect } from 'vue'
 
 const props = defineProps<{
-    type: ItemType
+    type: ItemPathType
     name: string
 }>()
 

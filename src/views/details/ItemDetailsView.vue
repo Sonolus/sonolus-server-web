@@ -1,8 +1,8 @@
 <script lang="ts">
-export type ItemDetailsViewProps<T extends ItemType = ItemType> = {
+export type ItemDetailsViewProps<T extends ItemPathType = ItemPathType> = {
     type: T
     name: string
-    data: ItemDetails<ItemTypeMap[T]>
+    data: ItemDetails<ItemPathTypeMap[T]>
 }
 </script>
 
@@ -14,7 +14,7 @@ import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { thumbnails } from '@/components/thumbnails'
 import { dynamicIcons } from '@/dynamicIcons'
 import { useI18n } from '@/i18n'
-import type { ItemType, ItemTypeMap } from '@/utils/item'
+import type { ItemPathType, ItemPathTypeMap } from '@/utils/item'
 import ItemCommunitySection from '@/views/details/ItemCommunitySection.vue'
 import { detailsViewOptions } from '@/views/details/detailsViewOptions'
 import type { ItemDetails } from '@sonolus/core'

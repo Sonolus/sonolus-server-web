@@ -1,13 +1,13 @@
 <script lang="ts">
 export type ItemThumbnailProps<T> = {
-    type: ItemType
+    type: ItemPathType
     item: T
 }
 </script>
 
 <script setup lang="ts">
 import { icons } from '@/icons'
-import type { Item, ItemType } from '@/utils/item'
+import type { Item, ItemPathType } from '@/utils/item'
 import { thumbnailUrls } from '@/utils/thumbnailUrl'
 import { computed, ref } from 'vue'
 

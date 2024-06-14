@@ -1,7 +1,7 @@
-import type { ItemType, ItemTypeMap } from '@/utils/item'
+import type { ItemPathType, ItemPathTypeMap } from '@/utils/item'
 
 export const thumbnailUrls: {
-    [K in ItemType]: (item: ItemTypeMap[K]) => string | undefined
+    [K in ItemPathType]: (item: ItemPathTypeMap[K]) => string | undefined
 } = {
     rooms: (item) => item.cover?.url,
     posts: (item) => item.thumbnail?.url,

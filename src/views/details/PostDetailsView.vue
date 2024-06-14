@@ -13,7 +13,7 @@ defineOptions(detailsViewOptions)
 
 defineProps<ItemDetailsViewProps<'posts'>>()
 
-const { i18nText } = useI18n()
+const { i18n, i18nText } = useI18n()
 </script>
 
 <template>
@@ -21,6 +21,7 @@ const { i18nText } = useI18n()
         <div class="w-full flex-grow">
             <ItemHeader :type :item="data.item" align-left />
             <div
+                v-if="data.item.tags.length"
                 class="mt-10 flex flex-wrap justify-center gap-5 sm:mt-12 sm:justify-start sm:gap-6"
             >
                 <span
@@ -31,13 +32,25 @@ const { i18nText } = useI18n()
                     {{ i18nText(tag.title) }}
                 </span>
             </div>
+            <div
+                v-else
+                class="flex h-20 items-center text-20 text-text-disabled sm:h-24 sm:text-24"
+            >
+                {{ i18n.routes.server.details.tags.noTags }}
+            </div>
         </div>
         <div class="relative size-100 flex-shrink-0 sm:size-120">
             <component :is="thumbnails[type]" :type :item="data.item" />
         </div>
     </div>
 
-    <p class="whitespace-break-spaces">{{ data.description }}</p>
+    <p v-if="data.description" class="whitespace-break-spaces">{{ data.description }}</p>
+    <div
+        v-else
+        class="flex h-30 items-center justify-center text-center text-text-disabled sm:h-36"
+    >
+        {{ i18n.routes.server.details.description.noDescription }}
+    </div>
 
     <div class="flex justify-center">
         <OpenInSonolus />

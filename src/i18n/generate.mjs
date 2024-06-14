@@ -180,8 +180,14 @@ const i18n = {
                 engine: { title: '' },
             },
             details: {
-                tags: { title: '' },
-                description: { title: '' },
+                tags: {
+                    title: '',
+                    noTags: '',
+                },
+                description: {
+                    title: '',
+                    noDescription: '',
+                },
                 community: {
                     title: '',
                     noComments: '',

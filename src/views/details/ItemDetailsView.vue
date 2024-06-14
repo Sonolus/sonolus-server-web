@@ -37,11 +37,17 @@ const { i18n, i18nText } = useI18n()
     </div>
 
     <ViewSection :title="i18n.routes.server.details.description.title">
-        <p class="whitespace-break-spaces">{{ data.description }}</p>
+        <p v-if="data.description" class="whitespace-break-spaces">{{ data.description }}</p>
+        <div
+            v-else
+            class="flex h-30 items-center justify-center text-center text-text-disabled sm:h-36"
+        >
+            {{ i18n.routes.server.details.description.noDescription }}
+        </div>
     </ViewSection>
 
     <ViewSection :title="i18n.routes.server.details.tags.title">
-        <div class="flex flex-wrap gap-10 sm:gap-12">
+        <div v-if="data.item.tags.length" class="flex flex-wrap gap-10 sm:gap-12">
             <div
                 v-for="(tag, key) in data.item.tags"
                 :key
@@ -53,6 +59,12 @@ const { i18n, i18nText } = useI18n()
                 />
                 <span class="px-5 sm:px-6">{{ i18nText(tag.title) }}</span>
             </div>
+        </div>
+        <div
+            v-else
+            class="flex h-30 items-center justify-center text-center text-text-disabled sm:h-36"
+        >
+            {{ i18n.routes.server.details.tags.noTags }}
         </div>
     </ViewSection>
 

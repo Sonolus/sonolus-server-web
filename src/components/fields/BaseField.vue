@@ -42,7 +42,12 @@ const isExpanded = ref(false)
         >
             <div class="overflow-hidden">
                 <div class="p-30 sm:p-36">
-                    <slot />
+                    <div>
+                        <slot />
+                    </div>
+                    <div v-if="option.description" class="mt-30 whitespace-break-spaces sm:mt-36">
+                        <span>{{ option.description }}</span>
+                    </div>
                 </div>
             </div>
         </div>

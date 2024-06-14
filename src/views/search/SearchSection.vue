@@ -8,6 +8,7 @@ import SliderField from '@/components/fields/SliderField.vue'
 import TextAreaField from '@/components/fields/TextAreaField.vue'
 import TextField from '@/components/fields/TextField.vue'
 import ToggleField from '@/components/fields/ToggleField.vue'
+import UnsupportedField from '@/components/fields/UnsupportedField.vue'
 import { useI18n } from '@/i18n'
 import IconSearch from '@/icons/IconSearch.vue'
 import type { ItemPathType } from '@/utils/item'
@@ -35,6 +36,9 @@ const fields = {
     toggle: ToggleField,
     select: SelectField,
     multi: MultiField,
+    serverItem: UnsupportedField,
+    collectionItem: UnsupportedField,
+    file: UnsupportedField,
 } as const
 </script>
 

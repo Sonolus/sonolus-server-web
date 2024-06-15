@@ -19,20 +19,20 @@ const isExpanded = ref(false)
 <template>
     <div>
         <button
-            class="flex w-full p-5 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:p-6"
+            class="flex w-full gap-10 p-5 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:gap-12 sm:p-6"
             :class="isExpanded || isModified ? 'bg-button-normal' : 'bg-button-soften'"
             type="button"
             @click="isExpanded = !isExpanded"
         >
-            <div class="flex-shrink-0">{{ i18nText(option.name) }}</div>
+            <div class="ml-2.5 flex-shrink-0 sm:ml-3">{{ i18nText(option.name) }}</div>
             <div
-                class="ml-20 flex-grow overflow-hidden text-ellipsis whitespace-nowrap text-right sm:ml-24"
+                class="ml-10 flex-grow overflow-hidden text-ellipsis whitespace-nowrap text-right sm:ml-12"
             >
                 {{ displayValue }}
             </div>
             <component
                 :is="isExpanded ? IconAngleUp : IconAngleDown"
-                class="ml-10 size-20 flex-shrink-0 fill-current sm:ml-12 sm:size-24"
+                class="size-20 flex-shrink-0 fill-current sm:size-24"
             />
         </button>
         <div

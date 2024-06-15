@@ -5,9 +5,10 @@ import ItemCard from '@/components/cards/ItemCard.vue'
 import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { thumbnails } from '@/components/thumbnails'
 import { useI18n } from '@/i18n'
-import ItemCommunitySection from '@/views/details/ItemCommunitySection.vue'
 import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView.vue'
+import CommunitySection from '@/views/details/community/CommunitySection.vue'
 import { detailsViewOptions } from '@/views/details/detailsViewOptions'
+import LeaderboardSection from '@/views/details/leaderboard/LeaderboardSection.vue'
 
 defineOptions(detailsViewOptions)
 
@@ -56,7 +57,14 @@ const { i18n, i18nText } = useI18n()
         <OpenInSonolus />
     </div>
 
-    <ItemCommunitySection v-if="data.hasCommunity" :type :name />
+    <CommunitySection v-if="data.hasCommunity" :type :name />
+
+    <LeaderboardSection
+        v-if="data.leaderboards.length"
+        :type
+        :name
+        :leaderboards="data.leaderboards"
+    />
 
     <ViewSection v-for="(section, i) in data.sections" :key="i" :title="i18nText(section.title)">
         <ItemCard v-for="(item, j) in section.items" :key="j" :type :item />

@@ -15,8 +15,9 @@ import { thumbnails } from '@/components/thumbnails'
 import { dynamicIcons } from '@/dynamicIcons'
 import { useI18n } from '@/i18n'
 import type { ItemPathType, ItemPathTypeMap } from '@/utils/item'
-import ItemCommunitySection from '@/views/details/ItemCommunitySection.vue'
+import CommunitySection from '@/views/details/community/CommunitySection.vue'
 import { detailsViewOptions } from '@/views/details/detailsViewOptions'
+import LeaderboardSection from '@/views/details/leaderboard/LeaderboardSection.vue'
 import type { ItemDetails } from '@sonolus/core'
 
 defineOptions(detailsViewOptions)
@@ -70,7 +71,14 @@ const { i18n, i18nText } = useI18n()
 
     <slot />
 
-    <ItemCommunitySection v-if="data.hasCommunity" :type :name />
+    <CommunitySection v-if="data.hasCommunity" :type :name />
+
+    <LeaderboardSection
+        v-if="data.leaderboards.length"
+        :type
+        :name
+        :leaderboards="data.leaderboards"
+    />
 
     <ViewSection v-for="(section, i) in data.sections" :key="i" :title="i18nText(section.title)">
         <ItemCard v-for="(item, j) in section.items" :key="j" :type :item />

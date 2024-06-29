@@ -4,10 +4,10 @@ import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { thumbnails } from '@/components/thumbnails'
 import { dynamicIcons } from '@/dynamicIcons'
 import { useI18n } from '@/i18n'
-import type { Item, ItemType } from '@/utils/item'
+import type { Item, ItemPathType } from '@/utils/item'
 
 defineProps<{
-    type: ItemType
+    type: ItemPathType
     item: Item
 }>()
 

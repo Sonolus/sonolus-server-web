@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 
 const items = ref<
     {
-        id: number
+        key: number
         x: number
         y: number
         duration: number
@@ -35,7 +35,7 @@ setInterval(() => {
     const value = Math.random() * 0.25
 
     items.value.push({
-        id: nonce++,
+        key: nonce++,
         x,
         y,
         duration,
@@ -48,8 +48,8 @@ setInterval(() => {
 <template>
     <div class="-z-20" inert>
         <div
-            v-for="{ id, x, y, duration, value } in items"
-            :key="id"
+            v-for="{ key, x, y, duration, value } in items"
+            :key
             class="glow fixed bg-glow"
             :style="{
                 left: `${width / 2 + (x - 0.5) * size}px`,

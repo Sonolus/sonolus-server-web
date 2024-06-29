@@ -5,15 +5,16 @@ import ItemCard from '@/components/cards/ItemCard.vue'
 import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { thumbnails } from '@/components/thumbnails'
 import { useI18n } from '@/i18n'
-import ItemCommunitySection from '@/views/details/ItemCommunitySection.vue'
 import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView.vue'
+import CommunitySection from '@/views/details/community/CommunitySection.vue'
 import { detailsViewOptions } from '@/views/details/detailsViewOptions'
+import LeaderboardSection from '@/views/details/leaderboard/LeaderboardSection.vue'
 
 defineOptions(detailsViewOptions)
 
 defineProps<ItemDetailsViewProps<'posts'>>()
 
-const { i18nText } = useI18n()
+const { i18n, i18nText } = useI18n()
 </script>
 
 <template>
@@ -21,6 +22,7 @@ const { i18nText } = useI18n()
         <div class="w-full flex-grow">
             <ItemHeader :type :item="data.item" align-left />
             <div
+                v-if="data.item.tags.length"
                 class="mt-10 flex flex-wrap justify-center gap-5 sm:mt-12 sm:justify-start sm:gap-6"
             >
                 <span
@@ -31,19 +33,38 @@ const { i18nText } = useI18n()
                     {{ i18nText(tag.title) }}
                 </span>
             </div>
+            <div
+                v-else
+                class="flex h-20 items-center text-20 text-text-disabled sm:h-24 sm:text-24"
+            >
+                {{ i18n.routes.server.details.tags.noTags }}
+            </div>
         </div>
         <div class="relative size-100 flex-shrink-0 sm:size-120">
             <component :is="thumbnails[type]" :type :item="data.item" />
         </div>
     </div>
 
-    <p class="whitespace-break-spaces">{{ data.description }}</p>
+    <p v-if="data.description" class="whitespace-break-spaces">{{ data.description }}</p>
+    <div
+        v-else
+        class="flex h-30 items-center justify-center text-center text-text-disabled sm:h-36"
+    >
+        {{ i18n.routes.server.details.description.noDescription }}
+    </div>
 
     <div class="flex justify-center">
         <OpenInSonolus />
     </div>
 
-    <ItemCommunitySection v-if="data.hasCommunity" :type :name />
+    <CommunitySection v-if="data.hasCommunity" :type :name />
+
+    <LeaderboardSection
+        v-if="data.leaderboards.length"
+        :type
+        :name
+        :leaderboards="data.leaderboards"
+    />
 
     <ViewSection v-for="(section, i) in data.sections" :key="i" :title="i18nText(section.title)">
         <ItemCard v-for="(item, j) in section.items" :key="j" :type :item />

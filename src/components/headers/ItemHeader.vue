@@ -7,7 +7,7 @@ type Normalized = {
 }
 
 const normalizes: {
-    [K in ItemType]: (item: ItemTypeMap[K]) => Normalized
+    [K in ItemPathType]: (item: ItemPathTypeMap[K]) => Normalized
 } = {
     rooms: (item) => ({ ...item, author: item.master }),
     posts: (item) => ({ ...item, subtitle: new Date(item.time).toLocaleString() }),
@@ -23,11 +23,11 @@ const normalizes: {
 </script>
 
 <script setup lang="ts">
-import type { Item, ItemType, ItemTypeMap } from '@/utils/item'
+import type { Item, ItemPathType, ItemPathTypeMap } from '@/utils/item'
 import { computed } from 'vue'
 
 const props = defineProps<{
-    type: ItemType
+    type: ItemPathType
     item: Item
     alignLeft?: boolean
 }>()

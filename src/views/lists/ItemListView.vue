@@ -9,7 +9,7 @@ import IconAnglesLeft from '@/icons/IconAnglesLeft.vue'
 import IconAnglesRight from '@/icons/IconAnglesRight.vue'
 import IconSearch from '@/icons/IconSearch.vue'
 import IconXMark from '@/icons/IconXMark.vue'
-import type { Item, ItemType } from '@/utils/item'
+import type { Item, ItemPathType } from '@/utils/item'
 import { names } from '@/utils/name'
 import { viewOptions } from '@/views/viewOptions'
 import type { ItemList } from '@sonolus/core'
@@ -27,7 +27,7 @@ defineOptions(
 )
 
 const props = defineProps<{
-    type: ItemType
+    type: ItemPathType
     query: Record<string, string>
     data: ItemList<Item>
 }>()

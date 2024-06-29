@@ -5,7 +5,7 @@ import TextInput from '@/components/TextInput.vue'
 import { useI18n } from '@/i18n'
 import IconArrowsTurnRight from '@/icons/IconArrowsTurnRight.vue'
 import IconHashtag from '@/icons/IconHashtag.vue'
-import type { ItemType } from '@/utils/item'
+import type { ItemPathType } from '@/utils/item'
 import { names } from '@/utils/name'
 import { viewOptions } from '@/views/viewOptions'
 import { computed, ref } from 'vue'
@@ -22,7 +22,7 @@ defineOptions(
 )
 
 const props = defineProps<{
-    type: ItemType
+    type: ItemPathType
     query: Record<string, string>
     data: {
         pageCount: number

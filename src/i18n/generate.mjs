@@ -11,6 +11,7 @@ const i18n = {
         more: '',
         on: '',
         off: '',
+        create: '',
         search: '',
         multiField: {
             selected: '',
@@ -34,6 +35,13 @@ const i18n = {
                         list: { loading: '' },
                     },
                 },
+                leaderboard: {
+                    loading: '',
+                    record: {
+                        list: { loading: '' },
+                        details: { loading: '' },
+                    },
+                },
             },
             post: {
                 info: { loading: '', error: '' },
@@ -43,6 +51,13 @@ const i18n = {
                     loading: '',
                     comment: {
                         list: { loading: '' },
+                    },
+                },
+                leaderboard: {
+                    loading: '',
+                    record: {
+                        list: { loading: '' },
+                        details: { loading: '' },
                     },
                 },
             },
@@ -56,6 +71,13 @@ const i18n = {
                         list: { loading: '' },
                     },
                 },
+                leaderboard: {
+                    loading: '',
+                    record: {
+                        list: { loading: '' },
+                        details: { loading: '' },
+                    },
+                },
             },
             level: {
                 info: { loading: '', error: '' },
@@ -65,6 +87,13 @@ const i18n = {
                     loading: '',
                     comment: {
                         list: { loading: '' },
+                    },
+                },
+                leaderboard: {
+                    loading: '',
+                    record: {
+                        list: { loading: '' },
+                        details: { loading: '' },
                     },
                 },
             },
@@ -78,6 +107,13 @@ const i18n = {
                         list: { loading: '' },
                     },
                 },
+                leaderboard: {
+                    loading: '',
+                    record: {
+                        list: { loading: '' },
+                        details: { loading: '' },
+                    },
+                },
             },
             skin: {
                 info: { loading: '', error: '' },
@@ -87,6 +123,13 @@ const i18n = {
                     loading: '',
                     comment: {
                         list: { loading: '' },
+                    },
+                },
+                leaderboard: {
+                    loading: '',
+                    record: {
+                        list: { loading: '' },
+                        details: { loading: '' },
                     },
                 },
             },
@@ -100,6 +143,13 @@ const i18n = {
                         list: { loading: '' },
                     },
                 },
+                leaderboard: {
+                    loading: '',
+                    record: {
+                        list: { loading: '' },
+                        details: { loading: '' },
+                    },
+                },
             },
             effect: {
                 info: { loading: '', error: '' },
@@ -109,6 +159,13 @@ const i18n = {
                     loading: '',
                     comment: {
                         list: { loading: '' },
+                    },
+                },
+                leaderboard: {
+                    loading: '',
+                    record: {
+                        list: { loading: '' },
+                        details: { loading: '' },
                     },
                 },
             },
@@ -122,6 +179,13 @@ const i18n = {
                         list: { loading: '' },
                     },
                 },
+                leaderboard: {
+                    loading: '',
+                    record: {
+                        list: { loading: '' },
+                        details: { loading: '' },
+                    },
+                },
             },
             engine: {
                 info: { loading: '', error: '' },
@@ -133,12 +197,20 @@ const i18n = {
                         list: { loading: '' },
                     },
                 },
+                leaderboard: {
+                    loading: '',
+                    record: {
+                        list: { loading: '' },
+                        details: { loading: '' },
+                    },
+                },
             },
         },
     },
     routes: {
         server: {
             home: {
+                login: '',
                 multiplayer: '',
                 post: '',
                 playlist: '',
@@ -178,11 +250,22 @@ const i18n = {
                 engine: { title: '' },
             },
             details: {
-                tags: { title: '' },
-                description: { title: '' },
+                tags: {
+                    title: '',
+                    noTags: '',
+                },
+                description: {
+                    title: '',
+                    noDescription: '',
+                },
                 community: {
                     title: '',
                     noComments: '',
+                },
+                leaderboard: {
+                    title: '',
+                    noRecords: '',
+                    noReplays: '',
                 },
                 playlist: {
                     levels: { title: '' },

@@ -8,14 +8,15 @@ import SliderField from '@/components/fields/SliderField.vue'
 import TextAreaField from '@/components/fields/TextAreaField.vue'
 import TextField from '@/components/fields/TextField.vue'
 import ToggleField from '@/components/fields/ToggleField.vue'
+import UnsupportedField from '@/components/fields/UnsupportedField.vue'
 import { useI18n } from '@/i18n'
 import IconSearch from '@/icons/IconSearch.vue'
-import type { ItemType } from '@/utils/item'
+import type { ItemPathType } from '@/utils/item'
 import type { ServerForm } from '@sonolus/core'
 import { ref } from 'vue'
 
 const props = defineProps<{
-    type: ItemType
+    type: ItemPathType
     search: ServerForm
     query: Record<string, string>
 }>()
@@ -35,6 +36,9 @@ const fields = {
     toggle: ToggleField,
     select: SelectField,
     multi: MultiField,
+    serverItem: UnsupportedField,
+    collectionItem: UnsupportedField,
+    file: UnsupportedField,
 } as const
 </script>
 

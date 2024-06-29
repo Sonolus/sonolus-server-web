@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ItemType } from '@/utils/item'
+import type { ItemPathType } from '@/utils/item'
 import { names } from '@/utils/name'
 import SearchSection from '@/views/search/SearchSection.vue'
 import { viewOptions } from '@/views/viewOptions'
@@ -17,7 +17,7 @@ defineOptions(
 )
 
 const props = defineProps<{
-    type: ItemType
+    type: ItemPathType
     query: Record<string, string>
     data: {
         searches?: ServerForm[]

@@ -2,24 +2,21 @@
 import { computed, ref } from 'vue'
 
 const props = defineProps<{
-    page: number
     count: number
 }>()
 
-const emit = defineEmits<{
-    submit: [page: number]
-}>()
+const value = defineModel<number>({ required: true })
 
 const enabled = computed(() => props.count === -1 || props.count > 1)
 
-const value = ref(props.page + 1)
+const inputValue = ref(value.value + 1)
 
 const onSubmit = () => {
-    const page = value.value - 1
+    const page = inputValue.value - 1
     if (page < 0) return
     if (props.count !== -1 && page > props.count - 1) return
 
-    emit('submit', page)
+    value.value = page
 }
 </script>
 
@@ -34,7 +31,7 @@ const onSubmit = () => {
         :inert="!enabled"
     >
         <input
-            v-model="value"
+            v-model="inputValue"
             type="number"
             class="size-full flex-grow border-none bg-[transparent] p-5 text-right focus-visible:ring-0 sm:p-6"
             :min="1"

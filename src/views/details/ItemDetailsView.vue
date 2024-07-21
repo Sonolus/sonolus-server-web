@@ -2,7 +2,7 @@
 export type ItemDetailsViewProps<T extends ItemPathType = ItemPathType> = {
     type: T
     name: string
-    data: ItemDetails<ItemPathTypeMap[T]>
+    data: ServerItemDetails<ItemPathTypeMap[T]>
 }
 </script>
 
@@ -18,7 +18,7 @@ import type { ItemPathType, ItemPathTypeMap } from '@/utils/item'
 import CommunitySection from '@/views/details/community/CommunitySection.vue'
 import { detailsViewOptions } from '@/views/details/detailsViewOptions'
 import LeaderboardSection from '@/views/details/leaderboard/LeaderboardSection.vue'
-import type { ItemDetails } from '@sonolus/core'
+import type { ServerItemDetails } from '@sonolus/core'
 
 defineOptions(detailsViewOptions)
 

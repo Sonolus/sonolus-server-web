@@ -9,10 +9,10 @@ import IconAdvanced from '@/icons/IconAdvanced.vue'
 import IconMore from '@/icons/IconMore.vue'
 import IconPlus from '@/icons/IconPlus.vue'
 import IconSearch from '@/icons/IconSearch.vue'
-import type { Item, ItemPathType } from '@/utils/item'
+import type { ItemPathType } from '@/utils/item'
 import { names } from '@/utils/name'
 import { viewOptions } from '@/views/viewOptions'
-import type { ItemInfo } from '@sonolus/core'
+import type { ServerItemInfo } from '@sonolus/core'
 import { computed, ref } from 'vue'
 
 defineOptions(
@@ -23,13 +23,13 @@ defineOptions(
             i18n.clients.customServer[names[type]].info.error(import.meta.env.VITE_TITLE),
 
         title: ({ i18n, props: { type } }) => i18n.routes.server.infos[names[type]].title,
-        banner: ({ data }) => data?.banner?.url,
+        banner: ({ data }) => data?.banner?.url ?? undefined,
     }),
 )
 
 const props = defineProps<{
     type: ItemPathType
-    data: ItemInfo<Item>
+    data: ServerItemInfo
 }>()
 
 const { i18n, i18nText } = useI18n()

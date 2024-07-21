@@ -37,6 +37,7 @@ const fields = {
     select: SelectField,
     multi: MultiField,
     serverItem: UnsupportedField,
+    serverItems: UnsupportedField,
     collectionItem: UnsupportedField,
     file: UnsupportedField,
 } as const

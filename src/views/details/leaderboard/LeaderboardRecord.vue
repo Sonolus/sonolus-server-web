@@ -7,14 +7,14 @@ import IconAngleUp from '@/icons/IconAngleUp.vue'
 import IconXMark from '@/icons/IconXMark.vue'
 import type { ItemPathType } from '@/utils/item'
 import { names } from '@/utils/name'
-import type { ItemLeaderboardRecord, ItemLeaderboardRecordDetails } from '@sonolus/core'
+import type { ServerItemLeaderboardRecord, ServerItemLeaderboardRecordDetails } from '@sonolus/core'
 import { ref, watchEffect } from 'vue'
 
 const props = defineProps<{
     type: ItemPathType
     name: string
     leaderboardName: string
-    record: ItemLeaderboardRecord
+    record: ServerItemLeaderboardRecord
 }>()
 
 const { locale, i18n, i18nText } = useI18n()
@@ -22,7 +22,7 @@ const { locale, i18n, i18nText } = useI18n()
 const isExpanded = ref(false)
 
 const isLoading = ref(true)
-const details = ref<ItemLeaderboardRecordDetails>()
+const details = ref<ServerItemLeaderboardRecordDetails>()
 
 watchEffect(async () => {
     if (!isExpanded.value) return

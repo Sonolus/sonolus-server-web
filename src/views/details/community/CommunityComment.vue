@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { dynamicIcons } from '@/dynamicIcons'
 import IconCommunity from '@/icons/IconCommunity.vue'
-import type { ItemCommunityComment } from '@sonolus/core'
+import type { ServerItemCommunityComment } from '@sonolus/core'
 
 defineProps<{
-    comment: ItemCommunityComment
+    comment: ServerItemCommunityComment
 }>()
 </script>
 

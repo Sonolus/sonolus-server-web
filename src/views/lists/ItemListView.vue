@@ -12,7 +12,7 @@ import IconXMark from '@/icons/IconXMark.vue'
 import type { Item, ItemPathType } from '@/utils/item'
 import { names } from '@/utils/name'
 import { viewOptions } from '@/views/viewOptions'
-import type { ItemList } from '@sonolus/core'
+import type { ServerItemList } from '@sonolus/core'
 import { computed } from 'vue'
 
 defineOptions(
@@ -29,7 +29,7 @@ defineOptions(
 const props = defineProps<{
     type: ItemPathType
     query: Record<string, string>
-    data: ItemList<Item>
+    data: ServerItemList<Item>
 }>()
 
 const { i18n, i18nText } = useI18n()
@@ -96,8 +96,8 @@ const text = computed(() => {
             case 'multi': {
                 const val = [...value].map((value) => !!+value)
                 if (
-                    val.length === option.defs.length &&
-                    val.every((value, index) => value === option.defs[index])
+                    val.length === option.def.length &&
+                    val.every((value, index) => value === option.def[index])
                 )
                     continue
 

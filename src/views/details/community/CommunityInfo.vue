@@ -9,13 +9,13 @@ import IconXMark from '@/icons/IconXMark.vue'
 import type { ItemPathType } from '@/utils/item'
 import { names } from '@/utils/name'
 import CommunityComment from '@/views/details/community/CommunityComment.vue'
-import type { ItemCommunityCommentList, ItemCommunityInfo } from '@sonolus/core'
+import type { ServerItemCommunityCommentList, ServerItemCommunityInfo } from '@sonolus/core'
 import { ref, watchEffect } from 'vue'
 
 const props = defineProps<{
     type: ItemPathType
     name: string
-    info: ItemCommunityInfo
+    info: ServerItemCommunityInfo
 }>()
 
 const { locale, i18n, i18nText } = useI18n()
@@ -24,7 +24,7 @@ const show = ref(false)
 const page = ref(0)
 
 const isLoading = ref(true)
-const list = ref<ItemCommunityCommentList>()
+const list = ref<ServerItemCommunityCommentList>()
 
 watchEffect(async () => {
     if (!show.value) return

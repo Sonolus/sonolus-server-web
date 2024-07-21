@@ -6,7 +6,7 @@ import IconXMark from '@/icons/IconXMark.vue'
 import type { ItemPathType } from '@/utils/item'
 import { names } from '@/utils/name'
 import CommunityInfo from '@/views/details/community/CommunityInfo.vue'
-import type { ItemCommunityInfo } from '@sonolus/core'
+import type { ServerItemCommunityInfo } from '@sonolus/core'
 import { ref } from 'vue'
 
 const props = defineProps<{
@@ -17,7 +17,7 @@ const props = defineProps<{
 const { locale, i18n } = useI18n()
 
 const isLoading = ref(true)
-const info = ref<ItemCommunityInfo>()
+const info = ref<ServerItemCommunityInfo>()
 
 ;(async () => {
     try {

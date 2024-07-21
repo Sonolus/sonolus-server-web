@@ -16,7 +16,7 @@ const query = defineModel<Record<string, string>>({ required: true })
 
 const { i18n, i18nText } = useI18n()
 
-const getDefault = () => props.option.defs.map((value) => +value).join('')
+const getDefault = () => props.option.def.map((value) => +value).join('')
 
 const { value, isModified } = useQuery(
     query,
@@ -29,13 +29,13 @@ const { value, isModified } = useQuery(
 const count = computed(() => [...value.value].reduce((sum, value) => sum + +!!+value, 0))
 
 const displayValue = computed(() =>
-    props.option.defs.length && count.value === props.option.values.length
+    props.option.def.length && count.value === props.option.values.length
         ? i18n.value.common.multiField.allSelected
         : i18n.value.common.multiField.selected(`${count.value}`),
 )
 
 const toggleText = computed(() =>
-    props.option.defs.length === 0 || count.value < props.option.values.length
+    props.option.def.length === 0 || count.value < props.option.values.length
         ? i18n.value.common.multiField.selectAll
         : i18n.value.common.multiField.selectNone,
 )

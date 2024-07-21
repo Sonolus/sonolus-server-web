@@ -32,12 +32,17 @@ const props = defineProps<{
         :search="{
             type: 'quick',
             title: Text.Search,
+            requireConfirmation: false,
             options: [
                 {
                     query: 'keywords',
+                    required: false,
                     type: 'text',
                     name: Text.Keywords,
                     placeholder: Text.KeywordsPlaceholder,
+                    def: '',
+                    limit: 0,
+                    shortcuts: [],
                 },
             ],
         }"

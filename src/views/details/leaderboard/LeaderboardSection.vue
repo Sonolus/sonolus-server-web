@@ -10,13 +10,13 @@ import IconXMark from '@/icons/IconXMark.vue'
 import type { ItemPathType } from '@/utils/item'
 import { names } from '@/utils/name'
 import LeaderboardDetails from '@/views/details/leaderboard/LeaderboardDetails.vue'
-import type { ItemLeaderboard, ItemLeaderboardDetails } from '@sonolus/core'
+import type { ServerItemLeaderboard, ServerItemLeaderboardDetails } from '@sonolus/core'
 import { computed, ref, watchEffect } from 'vue'
 
 const props = defineProps<{
     type: ItemPathType
     name: string
-    leaderboards: ItemLeaderboard[]
+    leaderboards: ServerItemLeaderboard[]
 }>()
 
 const { locale, i18n, i18nText } = useI18n()
@@ -26,7 +26,7 @@ const index = ref(0)
 const leaderboardName = computed(() => props.leaderboards[index.value].name)
 
 const isLoading = ref(true)
-const details = ref<ItemLeaderboardDetails>()
+const details = ref<ServerItemLeaderboardDetails>()
 
 watchEffect(async () => {
     try {

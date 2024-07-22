@@ -6,7 +6,7 @@ import IconAngleDown from '@/icons/IconAngleDown.vue'
 import IconAngleUp from '@/icons/IconAngleUp.vue'
 import IconXMark from '@/icons/IconXMark.vue'
 import type { ItemPathType } from '@/utils/item'
-import { names } from '@/utils/name'
+import { pathToTypes } from '@/utils/type'
 import type { ServerItemLeaderboardRecord, ServerItemLeaderboardRecordDetails } from '@sonolus/core'
 import { ref, watchEffect } from 'vue'
 
@@ -77,7 +77,7 @@ watchEffect(async () => {
                             <LoadingSpinner />
                             <span class="whitespace-break-spaces text-center">
                                 {{
-                                    i18n.clients.customServer[names[type]].leaderboard.record
+                                    i18n.clients.customServer[pathToTypes[type]].leaderboard.record
                                         .details.loading
                                 }}
                             </span>

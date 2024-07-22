@@ -5,7 +5,7 @@ import PaginationMoreButton from '@/components/pagination/PaginationMoreButton.v
 import { useI18n } from '@/i18n'
 import IconXMark from '@/icons/IconXMark.vue'
 import type { ItemPathType } from '@/utils/item'
-import { names } from '@/utils/name'
+import { pathToTypes } from '@/utils/type'
 import LeaderboardRecord from '@/views/details/leaderboard/LeaderboardRecord.vue'
 import type { ServerItemLeaderboardDetails, ServerItemLeaderboardRecordList } from '@sonolus/core'
 import { ref, watchEffect } from 'vue'
@@ -57,7 +57,7 @@ watchEffect(async () => {
         <div v-if="show && isLoading" class="flex flex-col items-center gap-10 sm:gap-12">
             <LoadingSpinner />
             <span class="whitespace-break-spaces text-center">
-                {{ i18n.clients.customServer[names[type]].leaderboard.record.list.loading }}
+                {{ i18n.clients.customServer[pathToTypes[type]].leaderboard.record.list.loading }}
             </span>
         </div>
 

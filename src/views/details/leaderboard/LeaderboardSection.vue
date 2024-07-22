@@ -8,7 +8,7 @@ import IconRadioOff from '@/icons/IconRadioOff.vue'
 import IconRadioOn from '@/icons/IconRadioOn.vue'
 import IconXMark from '@/icons/IconXMark.vue'
 import type { ItemPathType } from '@/utils/item'
-import { names } from '@/utils/name'
+import { pathToTypes } from '@/utils/type'
 import LeaderboardDetails from '@/views/details/leaderboard/LeaderboardDetails.vue'
 import type { ServerItemLeaderboard, ServerItemLeaderboardDetails } from '@sonolus/core'
 import { computed, ref, watchEffect } from 'vue'
@@ -98,7 +98,7 @@ watchEffect(async () => {
                 <div v-if="isLoading" class="flex flex-col items-center gap-10 sm:gap-12">
                     <LoadingSpinner />
                     <span class="whitespace-break-spaces text-center">
-                        {{ i18n.clients.customServer[names[type]].leaderboard.loading }}
+                        {{ i18n.clients.customServer[pathToTypes[type]].leaderboard.loading }}
                     </span>
                 </div>
 

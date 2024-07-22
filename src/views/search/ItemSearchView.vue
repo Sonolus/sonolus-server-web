@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ItemPathType } from '@/utils/item'
-import { names } from '@/utils/name'
+import { pathToTypes } from '@/utils/type'
 import SearchSection from '@/views/search/SearchSection.vue'
 import { viewOptions } from '@/views/viewOptions'
 import { Text, type ServerForm } from '@sonolus/core'
@@ -8,9 +8,10 @@ import { Text, type ServerForm } from '@sonolus/core'
 defineOptions(
     viewOptions<typeof props>({
         url: ({ type }) => `/${type}/info`,
-        loading: ({ i18n, props: { type } }) => i18n.clients.customServer[names[type]].info.loading,
+        loading: ({ i18n, props: { type } }) =>
+            i18n.clients.customServer[pathToTypes[type]].info.loading,
         error: ({ i18n, props: { type } }) =>
-            i18n.clients.customServer[names[type]].info.error(import.meta.env.VITE_TITLE),
+            i18n.clients.customServer[pathToTypes[type]].info.error(import.meta.env.VITE_TITLE),
 
         title: ({ i18n }) => i18n.routes.server.search.title,
     }),

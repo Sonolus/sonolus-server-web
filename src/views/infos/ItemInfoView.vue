@@ -10,7 +10,7 @@ import IconMore from '@/icons/IconMore.vue'
 import IconPlus from '@/icons/IconPlus.vue'
 import IconSearch from '@/icons/IconSearch.vue'
 import type { ItemPathType } from '@/utils/item'
-import { names } from '@/utils/name'
+import { pathToTypes, typeToPaths } from '@/utils/type'
 import { viewOptions } from '@/views/viewOptions'
 import type { ServerItemInfo } from '@sonolus/core'
 import { computed, ref } from 'vue'
@@ -18,11 +18,12 @@ import { computed, ref } from 'vue'
 defineOptions(
     viewOptions<typeof props>({
         url: ({ type }) => `/${type}/info`,
-        loading: ({ i18n, props: { type } }) => i18n.clients.customServer[names[type]].info.loading,
+        loading: ({ i18n, props: { type } }) =>
+            i18n.clients.customServer[pathToTypes[type]].info.loading,
         error: ({ i18n, props: { type } }) =>
-            i18n.clients.customServer[names[type]].info.error(import.meta.env.VITE_TITLE),
+            i18n.clients.customServer[pathToTypes[type]].info.error(import.meta.env.VITE_TITLE),
 
-        title: ({ i18n, props: { type } }) => i18n.routes.server.infos[names[type]].title,
+        title: ({ i18n, props: { type } }) => i18n.routes.server.infos[pathToTypes[type]].title,
         banner: ({ data }) => data?.banner?.url ?? undefined,
     }),
 )
@@ -75,6 +76,11 @@ const keywords = computed(() => search.value.trim())
     </AppForm>
 
     <ViewSection v-for="(section, i) in data.sections" :key="i" :title="i18nText(section.title)">
-        <ItemCard v-for="(item, j) in section.items" :key="j" :type :item />
+        <ItemCard
+            v-for="(item, j) in section.items"
+            :key="j"
+            :type="typeToPaths[section.itemType]"
+            :item
+        />
     </ViewSection>
 </template>

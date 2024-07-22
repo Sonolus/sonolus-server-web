@@ -6,16 +6,17 @@ import { useI18n } from '@/i18n'
 import IconArrowsTurnRight from '@/icons/IconArrowsTurnRight.vue'
 import IconHashtag from '@/icons/IconHashtag.vue'
 import type { ItemPathType } from '@/utils/item'
-import { names } from '@/utils/name'
+import { pathToTypes } from '@/utils/type'
 import { viewOptions } from '@/views/viewOptions'
 import { computed, ref } from 'vue'
 
 defineOptions(
     viewOptions<typeof props>({
         url: ({ type }) => `/${type}/list`,
-        loading: ({ i18n, props: { type } }) => i18n.clients.customServer[names[type]].list.loading,
+        loading: ({ i18n, props: { type } }) =>
+            i18n.clients.customServer[pathToTypes[type]].list.loading,
         error: ({ i18n, props: { type } }) =>
-            i18n.clients.customServer[names[type]].list.error(import.meta.env.VITE_TITLE),
+            i18n.clients.customServer[pathToTypes[type]].list.error(import.meta.env.VITE_TITLE),
 
         title: ({ i18n }) => i18n.routes.jumpToPage.title,
     }),

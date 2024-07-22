@@ -5,6 +5,7 @@ import ItemCard from '@/components/cards/ItemCard.vue'
 import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { thumbnails } from '@/components/thumbnails'
 import { useI18n } from '@/i18n'
+import { typeToPaths } from '@/utils/type'
 import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView.vue'
 import CommunitySection from '@/views/details/community/CommunitySection.vue'
 import { detailsViewOptions } from '@/views/details/detailsViewOptions'
@@ -67,6 +68,11 @@ const { i18n, i18nText } = useI18n()
     />
 
     <ViewSection v-for="(section, i) in data.sections" :key="i" :title="i18nText(section.title)">
-        <ItemCard v-for="(item, j) in section.items" :key="j" :type :item />
+        <ItemCard
+            v-for="(item, j) in section.items"
+            :key="j"
+            :type="typeToPaths[section.itemType]"
+            :item
+        />
     </ViewSection>
 </template>

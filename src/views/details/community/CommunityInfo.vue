@@ -7,7 +7,7 @@ import { useI18n } from '@/i18n'
 import IconCommunity from '@/icons/IconCommunity.vue'
 import IconXMark from '@/icons/IconXMark.vue'
 import type { ItemPathType } from '@/utils/item'
-import { names } from '@/utils/name'
+import { pathToTypes } from '@/utils/type'
 import CommunityComment from '@/views/details/community/CommunityComment.vue'
 import type { ServerItemCommunityCommentList, ServerItemCommunityInfo } from '@sonolus/core'
 import { ref, watchEffect } from 'vue'
@@ -79,7 +79,9 @@ watchEffect(async () => {
             >
                 <LoadingSpinner />
                 <span class="whitespace-break-spaces text-center">
-                    {{ i18n.clients.customServer[names[type]].community.comment.list.loading }}
+                    {{
+                        i18n.clients.customServer[pathToTypes[type]].community.comment.list.loading
+                    }}
                 </span>
             </div>
 

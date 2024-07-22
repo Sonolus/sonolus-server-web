@@ -10,7 +10,7 @@ import IconAnglesRight from '@/icons/IconAnglesRight.vue'
 import IconSearch from '@/icons/IconSearch.vue'
 import IconXMark from '@/icons/IconXMark.vue'
 import type { Item, ItemPathType } from '@/utils/item'
-import { names } from '@/utils/name'
+import { pathToTypes } from '@/utils/type'
 import { viewOptions } from '@/views/viewOptions'
 import type { ServerItemList } from '@sonolus/core'
 import { computed } from 'vue'
@@ -18,11 +18,12 @@ import { computed } from 'vue'
 defineOptions(
     viewOptions<typeof props>({
         url: ({ type }) => `/${type}/list`,
-        loading: ({ i18n, props: { type } }) => i18n.clients.customServer[names[type]].list.loading,
+        loading: ({ i18n, props: { type } }) =>
+            i18n.clients.customServer[pathToTypes[type]].list.loading,
         error: ({ i18n, props: { type } }) =>
-            i18n.clients.customServer[names[type]].list.error(import.meta.env.VITE_TITLE),
+            i18n.clients.customServer[pathToTypes[type]].list.error(import.meta.env.VITE_TITLE),
 
-        title: ({ i18n, props: { type } }) => i18n.routes.server.lists[names[type]].title,
+        title: ({ i18n, props: { type } }) => i18n.routes.server.lists[pathToTypes[type]].title,
     }),
 )
 

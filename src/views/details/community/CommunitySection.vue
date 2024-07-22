@@ -4,7 +4,7 @@ import ViewSection from '@/components/ViewSection.vue'
 import { useI18n } from '@/i18n'
 import IconXMark from '@/icons/IconXMark.vue'
 import type { ItemPathType } from '@/utils/item'
-import { names } from '@/utils/name'
+import { pathToTypes } from '@/utils/type'
 import CommunityInfo from '@/views/details/community/CommunityInfo.vue'
 import type { ServerItemCommunityInfo } from '@sonolus/core'
 import { ref } from 'vue'
@@ -46,7 +46,7 @@ const info = ref<ServerItemCommunityInfo>()
             <div v-if="isLoading" class="flex flex-col items-center gap-10 sm:gap-12">
                 <LoadingSpinner />
                 <span class="whitespace-break-spaces text-center">
-                    {{ i18n.clients.customServer[names[type]].community.loading }}
+                    {{ i18n.clients.customServer[pathToTypes[type]].community.loading }}
                 </span>
             </div>
 

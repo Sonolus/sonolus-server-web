@@ -45,7 +45,7 @@ const keywords = computed(() => search.value.trim())
             :icon="IconSearch"
             :placeholder="i18n.texts['#KEYWORDS_PLACEHOLDER']"
         />
-        <div class="mt-10 flex justify-center gap-10 sm:mt-12 sm:gap-12">
+        <div class="mt-10 flex flex-wrap justify-center gap-10 sm:mt-12 sm:gap-12">
             <div
                 v-if="data.creates"
                 class="flex min-w-120 gap-5 bg-button-disabled p-5 text-text-disabled sm:min-w-144 sm:gap-6 sm:p-6"

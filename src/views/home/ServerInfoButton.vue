@@ -40,7 +40,7 @@ const paths = {
         inert
     >
         <IconConfiguration class="size-60 fill-current sm:size-72" />
-        <span>{{ i18n.routes.server.home.login }}</span>
+        <span>{{ i18n.routes.server.home.configuration }}</span>
     </div>
     <AppLink
         v-else

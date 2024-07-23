@@ -45,7 +45,7 @@ const info = ref<ServerItemCommunityInfo>()
             <div v-if="isLoading" class="flex flex-col items-center gap-10 sm:gap-12">
                 <LoadingSpinner />
                 <span class="whitespace-break-spaces text-center">
-                    {{ i18n.clients.customServer[type].community.loading }}
+                    {{ i18n.clients.customServer[type].community.info.loading }}
                 </span>
             </div>
 

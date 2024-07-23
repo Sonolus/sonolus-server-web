@@ -97,7 +97,7 @@ watchEffect(async () => {
                 <div v-if="isLoading" class="flex flex-col items-center gap-10 sm:gap-12">
                     <LoadingSpinner />
                     <span class="whitespace-break-spaces text-center">
-                        {{ i18n.clients.customServer[type].leaderboard.loading }}
+                        {{ i18n.clients.customServer[type].leaderboard.details.loading }}
                     </span>
                 </div>
 

@@ -2,9 +2,7 @@
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import PaginationControls from '@/components/pagination/PaginationControls.vue'
 import PaginationMoreButton from '@/components/pagination/PaginationMoreButton.vue'
-import { dynamicIcons } from '@/dynamicIcons'
 import { useI18n } from '@/i18n'
-import IconCommunity from '@/icons/IconCommunity.vue'
 import IconXMark from '@/icons/IconXMark.vue'
 import { paths } from '@/utils/item'
 import CommunityComment from '@/views/details/community/CommunityComment.vue'
@@ -21,7 +19,7 @@ const props = defineProps<{
     info: ServerItemCommunityInfo
 }>()
 
-const { locale, i18n, i18nText } = useI18n()
+const { locale, i18n } = useI18n()
 
 const show = ref(false)
 const page = ref(0)
@@ -51,66 +49,47 @@ watchEffect(async () => {
 </script>
 
 <template>
-    <div class="flex flex-col gap-30 sm:gap-36">
-        <div v-if="info.actions.length" class="flex flex-wrap justify-center gap-10 sm:gap-12">
-            <div
-                v-for="(action, i) in info.actions"
-                :key="i"
-                class="flex min-w-120 gap-5 bg-button-disabled p-5 text-text-disabled sm:min-w-144 sm:gap-6 sm:p-6"
-                inert
-            >
-                <component
-                    :is="dynamicIcons[action.icon ?? ''] ?? IconCommunity"
-                    class="size-20 flex-shrink-0 fill-current sm:size-24"
-                />
-                <span class="flex-grow px-2.5 text-center sm:px-3">
-                    {{ i18nText(action.title) }}
-                </span>
+    <Transition
+        mode="out-in"
+        enter-from-class="opacity-0"
+        enter-active-class="transition-opacity"
+        leave-to-class="opacity-0"
+        leave-active-class="transition-opacity"
+    >
+        <div
+            v-if="info.topComments.length && show && isLoading"
+            class="flex flex-col items-center gap-10 sm:gap-12"
+        >
+            <LoadingSpinner />
+            <span class="whitespace-break-spaces text-center">
+                {{ i18n.clients.customServer[type].community.comment.list.loading }}
+            </span>
+        </div>
+
+        <div
+            v-else-if="info.topComments.length && show && list"
+            class="flex flex-col gap-10 sm:gap-12"
+        >
+            <CommunityComment v-for="(comment, j) in list.comments" :key="j" :comment />
+            <PaginationControls v-model="page" :count="list.pageCount" />
+        </div>
+
+        <div v-else-if="info.topComments.length && show" class="flex justify-center">
+            <IconXMark class="size-50 fill-text-disabled sm:size-60" />
+        </div>
+
+        <div v-else-if="info.topComments.length" class="flex flex-col gap-10 sm:gap-12">
+            <CommunityComment v-for="(comment, j) in info.topComments" :key="j" :comment />
+            <div class="flex justify-center">
+                <PaginationMoreButton @click="show = true" />
             </div>
         </div>
 
-        <Transition
-            mode="out-in"
-            enter-from-class="opacity-0"
-            enter-active-class="transition-opacity"
-            leave-to-class="opacity-0"
-            leave-active-class="transition-opacity"
+        <div
+            v-else
+            class="flex h-30 items-center justify-center text-center text-text-disabled sm:h-36"
         >
-            <div
-                v-if="info.topComments.length && show && isLoading"
-                class="flex flex-col items-center gap-10 sm:gap-12"
-            >
-                <LoadingSpinner />
-                <span class="whitespace-break-spaces text-center">
-                    {{ i18n.clients.customServer[type].community.comment.list.loading }}
-                </span>
-            </div>
-
-            <div
-                v-else-if="info.topComments.length && show && list"
-                class="flex flex-col gap-10 sm:gap-12"
-            >
-                <CommunityComment v-for="(comment, j) in list.comments" :key="j" :comment />
-                <PaginationControls v-model="page" :count="list.pageCount" />
-            </div>
-
-            <div v-else-if="info.topComments.length && show" class="flex justify-center">
-                <IconXMark class="size-50 fill-text-disabled sm:size-60" />
-            </div>
-
-            <div v-else-if="info.topComments.length" class="flex flex-col gap-10 sm:gap-12">
-                <CommunityComment v-for="(comment, j) in info.topComments" :key="j" :comment />
-                <div class="flex justify-center">
-                    <PaginationMoreButton @click="show = true" />
-                </div>
-            </div>
-
-            <div
-                v-else
-                class="flex h-30 items-center justify-center text-center text-text-disabled sm:h-36"
-            >
-                {{ i18n.routes.server.details.community.noComments }}
-            </div>
-        </Transition>
-    </div>
+            {{ i18n.routes.server.details.community.noComments }}
+        </div>
+    </Transition>
 </template>

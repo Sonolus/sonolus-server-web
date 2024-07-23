@@ -7,7 +7,6 @@ import ItemCard from '@/components/cards/ItemCard.vue'
 import { useI18n } from '@/i18n'
 import IconAdvanced from '@/icons/IconAdvanced.vue'
 import IconMore from '@/icons/IconMore.vue'
-import IconPlus from '@/icons/IconPlus.vue'
 import IconSearch from '@/icons/IconSearch.vue'
 import { paths } from '@/utils/item'
 import { viewOptions } from '@/views/viewOptions'
@@ -46,16 +45,6 @@ const keywords = computed(() => search.value.trim())
             :placeholder="i18n.texts['#KEYWORDS_PLACEHOLDER']"
         />
         <div class="mt-10 flex flex-wrap justify-center gap-10 sm:mt-12 sm:gap-12">
-            <div
-                v-if="data.creates"
-                class="flex min-w-120 gap-5 bg-button-disabled p-5 text-text-disabled sm:min-w-144 sm:gap-6 sm:p-6"
-                inert
-            >
-                <IconPlus class="size-20 flex-shrink-0 fill-current sm:size-24" />
-                <span class="flex-grow px-2.5 text-center sm:px-3">
-                    {{ i18n.common.create }}
-                </span>
-            </div>
             <AppButton
                 v-if="data.searches?.length"
                 :to="{ name: `${type}-search`, data }"

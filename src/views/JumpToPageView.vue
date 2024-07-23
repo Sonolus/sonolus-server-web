@@ -5,25 +5,24 @@ import TextInput from '@/components/TextInput.vue'
 import { useI18n } from '@/i18n'
 import IconArrowsTurnRight from '@/icons/IconArrowsTurnRight.vue'
 import IconHashtag from '@/icons/IconHashtag.vue'
-import type { ItemPathType } from '@/utils/item'
-import { pathToTypes } from '@/utils/type'
+import { paths } from '@/utils/item'
 import { viewOptions } from '@/views/viewOptions'
+import type { ItemType } from '@sonolus/core'
 import { computed, ref } from 'vue'
 
 defineOptions(
     viewOptions<typeof props>({
-        url: ({ type }) => `/${type}/list`,
-        loading: ({ i18n, props: { type } }) =>
-            i18n.clients.customServer[pathToTypes[type]].list.loading,
+        url: ({ type }) => `/${paths[type]}/list`,
+        loading: ({ i18n, props: { type } }) => i18n.clients.customServer[type].list.loading,
         error: ({ i18n, props: { type } }) =>
-            i18n.clients.customServer[pathToTypes[type]].list.error(import.meta.env.VITE_TITLE),
+            i18n.clients.customServer[type].list.error(import.meta.env.VITE_TITLE),
 
         title: ({ i18n }) => i18n.routes.jumpToPage.title,
     }),
 )
 
 const props = defineProps<{
-    type: ItemPathType
+    type: ItemType
     query: Record<string, string>
     data: {
         pageCount: number

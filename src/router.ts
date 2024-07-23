@@ -1,4 +1,5 @@
 import { getOpenInSonolusUrl } from '@/components/OpenInSonolus.vue'
+import { paths } from '@/utils/item'
 import BaseView from '@/views/BaseView.vue'
 import JumpToPageView from '@/views/JumpToPageView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
@@ -42,45 +43,45 @@ export const router = createRouter({
 
         ...(
             [
-                'rooms',
-                'posts',
-                'playlists',
-                'levels',
-                'replays',
-                'skins',
-                'backgrounds',
-                'effects',
-                'particles',
-                'engines',
+                'room',
+                'post',
+                'playlist',
+                'level',
+                'replay',
+                'skin',
+                'background',
+                'effect',
+                'particle',
+                'engine',
             ] as const
         ).flatMap((type) => [
             {
                 name: `${type}-info`,
-                path: `/${type}/info`,
+                path: `/${paths[type]}/info`,
                 component: ItemInfoView,
                 props: { type },
             },
             {
                 name: `${type}-list`,
-                path: `/${type}/list`,
+                path: `/${paths[type]}/list`,
                 component: ItemListView,
                 props: { type },
             },
             {
                 name: `${type}-search`,
-                path: `/${type}/search`,
+                path: `/${paths[type]}/search`,
                 component: ItemSearchView,
                 props: { type },
             },
             {
                 name: `${type}-jump`,
-                path: `/${type}/jump`,
+                path: `/${paths[type]}/jump`,
                 component: JumpToPageView,
                 props: { type },
             },
             {
                 name: `${type}-details`,
-                path: `/${type}/:name`,
+                path: `/${paths[type]}/:name`,
                 component: detailsViews[type],
                 props: { type },
             },
@@ -91,7 +92,7 @@ export const router = createRouter({
 })
 
 router.beforeEach((to, from) => {
-    if (to.name !== 'rooms-details') return true
+    if (to.name !== 'room-details') return true
 
     const url = getOpenInSonolusUrl(to.fullPath)
     if (from.name) {

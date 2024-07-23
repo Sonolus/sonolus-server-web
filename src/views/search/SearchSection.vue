@@ -11,12 +11,11 @@ import ToggleField from '@/components/fields/ToggleField.vue'
 import UnsupportedField from '@/components/fields/UnsupportedField.vue'
 import { useI18n } from '@/i18n'
 import IconSearch from '@/icons/IconSearch.vue'
-import type { ItemPathType } from '@/utils/item'
-import type { ServerForm } from '@sonolus/core'
+import type { ItemType, ServerForm } from '@sonolus/core'
 import { ref } from 'vue'
 
 const props = defineProps<{
-    type: ItemPathType
+    type: ItemType
     search: ServerForm
     query: Record<string, string>
 }>()

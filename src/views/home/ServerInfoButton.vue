@@ -12,16 +12,16 @@ defineProps<ServerInfoButton>()
 const { i18n } = useI18n()
 
 const paths = {
-    multiplayer: 'rooms',
-    post: 'posts',
-    playlist: 'playlists',
-    level: 'levels',
-    replay: 'replays',
-    skin: 'skins',
-    background: 'backgrounds',
-    effect: 'effects',
-    particle: 'particles',
-    engine: 'engines',
+    multiplayer: 'room',
+    post: 'post',
+    playlist: 'playlist',
+    level: 'level',
+    replay: 'replay',
+    skin: 'skin',
+    background: 'background',
+    effect: 'effect',
+    particle: 'particle',
+    engine: 'engine',
 } as const
 </script>
 

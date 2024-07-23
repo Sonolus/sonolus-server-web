@@ -3,14 +3,14 @@ import PlaylistDetailsView from '@/views/details/PlaylistDetailsView.vue'
 import PostDetailsView from '@/views/details/PostDetailsView.vue'
 
 export const detailsViews = {
-    rooms: ItemDetailsView,
-    posts: PostDetailsView,
-    playlists: PlaylistDetailsView,
-    levels: ItemDetailsView,
-    replays: ItemDetailsView,
-    skins: ItemDetailsView,
-    backgrounds: ItemDetailsView,
-    effects: ItemDetailsView,
-    particles: ItemDetailsView,
-    engines: ItemDetailsView,
+    room: ItemDetailsView,
+    post: PostDetailsView,
+    playlist: PlaylistDetailsView,
+    level: ItemDetailsView,
+    replay: ItemDetailsView,
+    skin: ItemDetailsView,
+    background: ItemDetailsView,
+    effect: ItemDetailsView,
+    particle: ItemDetailsView,
+    engine: ItemDetailsView,
 } as const

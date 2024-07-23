@@ -6,14 +6,17 @@ import { dynamicIcons } from '@/dynamicIcons'
 import { useI18n } from '@/i18n'
 import IconCommunity from '@/icons/IconCommunity.vue'
 import IconXMark from '@/icons/IconXMark.vue'
-import type { ItemPathType } from '@/utils/item'
-import { pathToTypes } from '@/utils/type'
+import { paths } from '@/utils/item'
 import CommunityComment from '@/views/details/community/CommunityComment.vue'
-import type { ServerItemCommunityCommentList, ServerItemCommunityInfo } from '@sonolus/core'
+import type {
+    ItemType,
+    ServerItemCommunityCommentList,
+    ServerItemCommunityInfo,
+} from '@sonolus/core'
 import { ref, watchEffect } from 'vue'
 
 const props = defineProps<{
-    type: ItemPathType
+    type: ItemType
     name: string
     info: ServerItemCommunityInfo
 }>()
@@ -38,7 +41,7 @@ watchEffect(async () => {
         searchParams.append('localization', locale.value)
 
         const response = await fetch(
-            `${import.meta.env.BASE_URL}sonolus/${props.type}/${props.name}/community/comments/list?${searchParams}`,
+            `${import.meta.env.BASE_URL}sonolus/${paths[props.type]}/${props.name}/community/comments/list?${searchParams}`,
         )
         list.value = await response.json()
     } finally {
@@ -79,9 +82,7 @@ watchEffect(async () => {
             >
                 <LoadingSpinner />
                 <span class="whitespace-break-spaces text-center">
-                    {{
-                        i18n.clients.customServer[pathToTypes[type]].community.comment.list.loading
-                    }}
+                    {{ i18n.clients.customServer[type].community.comment.list.loading }}
                 </span>
             </div>
 

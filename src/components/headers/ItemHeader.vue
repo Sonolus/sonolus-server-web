@@ -7,27 +7,28 @@ type Normalized = {
 }
 
 const normalizes: {
-    [K in ItemPathType]: (item: ItemPathTypeMap[K]) => Normalized
+    [K in ItemType]: (item: ItemMap[K]) => Normalized
 } = {
-    rooms: (item) => ({ ...item, author: item.master }),
-    posts: (item) => ({ ...item, subtitle: new Date(item.time).toLocaleString() }),
-    playlists: (item) => item,
-    levels: (item) => ({ ...item, subtitle: item.artists }),
-    replays: (item) => item,
-    skins: (item) => item,
-    backgrounds: (item) => item,
-    effects: (item) => item,
-    particles: (item) => item,
-    engines: (item) => item,
+    room: (item) => ({ ...item, author: item.master }),
+    post: (item) => ({ ...item, subtitle: new Date(item.time).toLocaleString() }),
+    playlist: (item) => item,
+    level: (item) => ({ ...item, subtitle: item.artists }),
+    replay: (item) => item,
+    skin: (item) => item,
+    background: (item) => item,
+    effect: (item) => item,
+    particle: (item) => item,
+    engine: (item) => item,
 }
 </script>
 
 <script setup lang="ts">
-import type { Item, ItemPathType, ItemPathTypeMap } from '@/utils/item'
+import type { Item, ItemMap } from '@/utils/item'
+import type { ItemType } from '@sonolus/core'
 import { computed } from 'vue'
 
 const props = defineProps<{
-    type: ItemPathType
+    type: ItemType
     item: Item
     alignLeft?: boolean
 }>()

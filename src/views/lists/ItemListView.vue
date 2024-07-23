@@ -9,26 +9,24 @@ import IconAnglesLeft from '@/icons/IconAnglesLeft.vue'
 import IconAnglesRight from '@/icons/IconAnglesRight.vue'
 import IconSearch from '@/icons/IconSearch.vue'
 import IconXMark from '@/icons/IconXMark.vue'
-import type { Item, ItemPathType } from '@/utils/item'
-import { pathToTypes } from '@/utils/type'
+import { paths, type Item } from '@/utils/item'
 import { viewOptions } from '@/views/viewOptions'
-import type { ServerItemList } from '@sonolus/core'
+import type { ItemType, ServerItemList } from '@sonolus/core'
 import { computed } from 'vue'
 
 defineOptions(
     viewOptions<typeof props>({
-        url: ({ type }) => `/${type}/list`,
-        loading: ({ i18n, props: { type } }) =>
-            i18n.clients.customServer[pathToTypes[type]].list.loading,
+        url: ({ type }) => `/${paths[type]}/list`,
+        loading: ({ i18n, props: { type } }) => i18n.clients.customServer[type].list.loading,
         error: ({ i18n, props: { type } }) =>
-            i18n.clients.customServer[pathToTypes[type]].list.error(import.meta.env.VITE_TITLE),
+            i18n.clients.customServer[type].list.error(import.meta.env.VITE_TITLE),
 
-        title: ({ i18n, props: { type } }) => i18n.routes.server.lists[pathToTypes[type]].title,
+        title: ({ i18n, props: { type } }) => i18n.routes.server.lists[type].title,
     }),
 )
 
 const props = defineProps<{
-    type: ItemPathType
+    type: ItemType
     query: Record<string, string>
     data: ServerItemList<Item>
 }>()

@@ -8,7 +8,7 @@ import { detailsViewOptions } from '@/views/details/detailsViewOptions'
 
 defineOptions(detailsViewOptions)
 
-defineProps<ItemDetailsViewProps<'playlists'>>()
+defineProps<ItemDetailsViewProps<'playlist'>>()
 
 const { i18n } = useI18n()
 </script>
@@ -16,7 +16,7 @@ const { i18n } = useI18n()
 <template>
     <ItemDetailsView v-bind="$props">
         <ViewSection :title="i18n.routes.server.details.playlist.levels.title">
-            <ItemCard v-for="(item, key) in data.item.levels" :key type="levels" :item />
+            <ItemCard v-for="(item, key) in data.item.levels" :key type="level" :item />
         </ViewSection>
     </ItemDetailsView>
 </template>

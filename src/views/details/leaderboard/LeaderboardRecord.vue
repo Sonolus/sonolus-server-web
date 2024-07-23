@@ -5,13 +5,16 @@ import { useI18n } from '@/i18n'
 import IconAngleDown from '@/icons/IconAngleDown.vue'
 import IconAngleUp from '@/icons/IconAngleUp.vue'
 import IconXMark from '@/icons/IconXMark.vue'
-import type { ItemPathType } from '@/utils/item'
-import { pathToTypes } from '@/utils/type'
-import type { ServerItemLeaderboardRecord, ServerItemLeaderboardRecordDetails } from '@sonolus/core'
+import { paths } from '@/utils/item'
+import type {
+    ItemType,
+    ServerItemLeaderboardRecord,
+    ServerItemLeaderboardRecordDetails,
+} from '@sonolus/core'
 import { ref, watchEffect } from 'vue'
 
 const props = defineProps<{
-    type: ItemPathType
+    type: ItemType
     name: string
     leaderboardName: string
     record: ServerItemLeaderboardRecord
@@ -33,7 +36,7 @@ watchEffect(async () => {
         searchParams.append('localization', locale.value)
 
         const response = await fetch(
-            `${import.meta.env.BASE_URL}sonolus/${props.type}/${props.name}/leaderboards/${props.leaderboardName}/records/${props.record.name}?${searchParams}`,
+            `${import.meta.env.BASE_URL}sonolus/${paths[props.type]}/${props.name}/leaderboards/${props.leaderboardName}/records/${props.record.name}?${searchParams}`,
         )
         details.value = await response.json()
     } finally {
@@ -77,8 +80,8 @@ watchEffect(async () => {
                             <LoadingSpinner />
                             <span class="whitespace-break-spaces text-center">
                                 {{
-                                    i18n.clients.customServer[pathToTypes[type]].leaderboard.record
-                                        .details.loading
+                                    i18n.clients.customServer[type].leaderboard.record.details
+                                        .loading
                                 }}
                             </span>
                         </div>
@@ -87,7 +90,7 @@ watchEffect(async () => {
                             <ItemCard
                                 v-for="replay in details.replays"
                                 :key="replay.name"
-                                type="replays"
+                                type="replay"
                                 :item="replay"
                             />
                         </div>

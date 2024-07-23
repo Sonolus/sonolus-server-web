@@ -7,14 +7,13 @@ import IconAngleUp from '@/icons/IconAngleUp.vue'
 import IconRadioOff from '@/icons/IconRadioOff.vue'
 import IconRadioOn from '@/icons/IconRadioOn.vue'
 import IconXMark from '@/icons/IconXMark.vue'
-import type { ItemPathType } from '@/utils/item'
-import { pathToTypes } from '@/utils/type'
+import { paths } from '@/utils/item'
 import LeaderboardDetails from '@/views/details/leaderboard/LeaderboardDetails.vue'
-import type { ServerItemLeaderboard, ServerItemLeaderboardDetails } from '@sonolus/core'
+import type { ItemType, ServerItemLeaderboard, ServerItemLeaderboardDetails } from '@sonolus/core'
 import { computed, ref, watchEffect } from 'vue'
 
 const props = defineProps<{
-    type: ItemPathType
+    type: ItemType
     name: string
     leaderboards: ServerItemLeaderboard[]
 }>()
@@ -37,7 +36,7 @@ watchEffect(async () => {
         searchParams.append('localization', locale.value)
 
         const response = await fetch(
-            `${import.meta.env.BASE_URL}sonolus/${props.type}/${props.name}/leaderboards/${leaderboardName.value}?${searchParams}`,
+            `${import.meta.env.BASE_URL}sonolus/${paths[props.type]}/${props.name}/leaderboards/${leaderboardName.value}?${searchParams}`,
         )
         details.value = await response.json()
     } finally {
@@ -98,7 +97,7 @@ watchEffect(async () => {
                 <div v-if="isLoading" class="flex flex-col items-center gap-10 sm:gap-12">
                     <LoadingSpinner />
                     <span class="whitespace-break-spaces text-center">
-                        {{ i18n.clients.customServer[pathToTypes[type]].leaderboard.loading }}
+                        {{ i18n.clients.customServer[type].leaderboard.loading }}
                     </span>
                 </div>
 

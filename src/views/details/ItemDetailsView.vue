@@ -1,8 +1,8 @@
 <script lang="ts">
-export type ItemDetailsViewProps<T extends ItemPathType = ItemPathType> = {
+export type ItemDetailsViewProps<T extends ItemType = ItemType> = {
     type: T
     name: string
-    data: ServerItemDetails<ItemPathTypeMap[T]>
+    data: ServerItemDetails<ItemMap[T]>
 }
 </script>
 
@@ -14,12 +14,11 @@ import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { thumbnails } from '@/components/thumbnails'
 import { dynamicIcons } from '@/dynamicIcons'
 import { useI18n } from '@/i18n'
-import type { ItemPathType, ItemPathTypeMap } from '@/utils/item'
-import { typeToPaths } from '@/utils/type'
+import type { ItemMap } from '@/utils/item'
 import CommunitySection from '@/views/details/community/CommunitySection.vue'
 import { detailsViewOptions } from '@/views/details/detailsViewOptions'
 import LeaderboardSection from '@/views/details/leaderboard/LeaderboardSection.vue'
-import type { ServerItemDetails } from '@sonolus/core'
+import type { ItemType, ServerItemDetails } from '@sonolus/core'
 
 defineOptions(detailsViewOptions)
 
@@ -82,11 +81,6 @@ const { i18n, i18nText } = useI18n()
     />
 
     <ViewSection v-for="(section, i) in data.sections" :key="i" :title="i18nText(section.title)">
-        <ItemCard
-            v-for="(item, j) in section.items"
-            :key="j"
-            :type="typeToPaths[section.itemType]"
-            :item
-        />
+        <ItemCard v-for="(item, j) in section.items" :key="j" :type="section.itemType" :item />
     </ViewSection>
 </template>

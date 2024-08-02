@@ -2,6 +2,7 @@ import type {
     BackgroundItem,
     EffectItem,
     EngineItem,
+    ItemType,
     LevelItem,
     ParticleItem,
     PlaylistItem,
@@ -11,19 +12,30 @@ import type {
     SkinItem,
 } from '@sonolus/core'
 
-export type ItemPathTypeMap = {
-    rooms: RoomItem
-    posts: PostItem
-    playlists: PlaylistItem
-    levels: LevelItem
-    replays: ReplayItem
-    skins: SkinItem
-    backgrounds: BackgroundItem
-    effects: EffectItem
-    particles: ParticleItem
-    engines: EngineItem
+export type ItemMap = {
+    room: RoomItem
+    post: PostItem
+    playlist: PlaylistItem
+    level: LevelItem
+    replay: ReplayItem
+    skin: SkinItem
+    background: BackgroundItem
+    effect: EffectItem
+    particle: ParticleItem
+    engine: EngineItem
 }
 
-export type ItemPathType = keyof ItemPathTypeMap
+export type Item = ItemMap[ItemType]
 
-export type Item = ItemPathTypeMap[ItemPathType]
+export const paths = {
+    room: 'rooms',
+    post: 'posts',
+    playlist: 'playlists',
+    level: 'levels',
+    replay: 'replays',
+    skin: 'skins',
+    background: 'backgrounds',
+    effect: 'effects',
+    particle: 'particles',
+    engine: 'engines',
+} as const

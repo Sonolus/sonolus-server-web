@@ -11,7 +11,6 @@ const i18n = {
         more: '',
         on: '',
         off: '',
-        create: '',
         search: '',
         multiField: {
             selected: '',
@@ -30,13 +29,13 @@ const i18n = {
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
-                    loading: '',
+                    info: { loading: '' },
                     comment: {
                         list: { loading: '' },
                     },
                 },
                 leaderboard: {
-                    loading: '',
+                    details: { loading: '' },
                     record: {
                         list: { loading: '' },
                         details: { loading: '' },
@@ -48,13 +47,13 @@ const i18n = {
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
-                    loading: '',
+                    info: { loading: '' },
                     comment: {
                         list: { loading: '' },
                     },
                 },
                 leaderboard: {
-                    loading: '',
+                    details: { loading: '' },
                     record: {
                         list: { loading: '' },
                         details: { loading: '' },
@@ -66,13 +65,13 @@ const i18n = {
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
-                    loading: '',
+                    info: { loading: '' },
                     comment: {
                         list: { loading: '' },
                     },
                 },
                 leaderboard: {
-                    loading: '',
+                    details: { loading: '' },
                     record: {
                         list: { loading: '' },
                         details: { loading: '' },
@@ -84,13 +83,13 @@ const i18n = {
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
-                    loading: '',
+                    info: { loading: '' },
                     comment: {
                         list: { loading: '' },
                     },
                 },
                 leaderboard: {
-                    loading: '',
+                    details: { loading: '' },
                     record: {
                         list: { loading: '' },
                         details: { loading: '' },
@@ -102,13 +101,13 @@ const i18n = {
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
-                    loading: '',
+                    info: { loading: '' },
                     comment: {
                         list: { loading: '' },
                     },
                 },
                 leaderboard: {
-                    loading: '',
+                    details: { loading: '' },
                     record: {
                         list: { loading: '' },
                         details: { loading: '' },
@@ -120,13 +119,13 @@ const i18n = {
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
-                    loading: '',
+                    info: { loading: '' },
                     comment: {
                         list: { loading: '' },
                     },
                 },
                 leaderboard: {
-                    loading: '',
+                    details: { loading: '' },
                     record: {
                         list: { loading: '' },
                         details: { loading: '' },
@@ -138,13 +137,13 @@ const i18n = {
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
-                    loading: '',
+                    info: { loading: '' },
                     comment: {
                         list: { loading: '' },
                     },
                 },
                 leaderboard: {
-                    loading: '',
+                    details: { loading: '' },
                     record: {
                         list: { loading: '' },
                         details: { loading: '' },
@@ -156,13 +155,13 @@ const i18n = {
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
-                    loading: '',
+                    info: { loading: '' },
                     comment: {
                         list: { loading: '' },
                     },
                 },
                 leaderboard: {
-                    loading: '',
+                    details: { loading: '' },
                     record: {
                         list: { loading: '' },
                         details: { loading: '' },
@@ -174,13 +173,13 @@ const i18n = {
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
-                    loading: '',
+                    info: { loading: '' },
                     comment: {
                         list: { loading: '' },
                     },
                 },
                 leaderboard: {
-                    loading: '',
+                    details: { loading: '' },
                     record: {
                         list: { loading: '' },
                         details: { loading: '' },
@@ -192,13 +191,13 @@ const i18n = {
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
-                    loading: '',
+                    info: { loading: '' },
                     comment: {
                         list: { loading: '' },
                     },
                 },
                 leaderboard: {
-                    loading: '',
+                    details: { loading: '' },
                     record: {
                         list: { loading: '' },
                         details: { loading: '' },
@@ -221,6 +220,7 @@ const i18n = {
                 effect: '',
                 particle: '',
                 engine: '',
+                configuration: '',
             },
             search: { title: '' },
             infos: {

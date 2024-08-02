@@ -7,16 +7,15 @@ import IconAngleUp from '@/icons/IconAngleUp.vue'
 import IconRadioOff from '@/icons/IconRadioOff.vue'
 import IconRadioOn from '@/icons/IconRadioOn.vue'
 import IconXMark from '@/icons/IconXMark.vue'
-import type { ItemPathType } from '@/utils/item'
-import { names } from '@/utils/name'
+import { paths } from '@/utils/item'
 import LeaderboardDetails from '@/views/details/leaderboard/LeaderboardDetails.vue'
-import type { ItemLeaderboard, ItemLeaderboardDetails } from '@sonolus/core'
+import type { ItemType, ServerItemLeaderboard, ServerItemLeaderboardDetails } from '@sonolus/core'
 import { computed, ref, watchEffect } from 'vue'
 
 const props = defineProps<{
-    type: ItemPathType
+    type: ItemType
     name: string
-    leaderboards: ItemLeaderboard[]
+    leaderboards: ServerItemLeaderboard[]
 }>()
 
 const { locale, i18n, i18nText } = useI18n()
@@ -26,7 +25,7 @@ const index = ref(0)
 const leaderboardName = computed(() => props.leaderboards[index.value].name)
 
 const isLoading = ref(true)
-const details = ref<ItemLeaderboardDetails>()
+const details = ref<ServerItemLeaderboardDetails>()
 
 watchEffect(async () => {
     try {
@@ -37,7 +36,7 @@ watchEffect(async () => {
         searchParams.append('localization', locale.value)
 
         const response = await fetch(
-            `${import.meta.env.BASE_URL}sonolus/${props.type}/${props.name}/leaderboards/${leaderboardName.value}?${searchParams}`,
+            `${import.meta.env.BASE_URL}sonolus/${paths[props.type]}/${props.name}/leaderboards/${leaderboardName.value}?${searchParams}`,
         )
         details.value = await response.json()
     } finally {
@@ -98,7 +97,7 @@ watchEffect(async () => {
                 <div v-if="isLoading" class="flex flex-col items-center gap-10 sm:gap-12">
                     <LoadingSpinner />
                     <span class="whitespace-break-spaces text-center">
-                        {{ i18n.clients.customServer[names[type]].leaderboard.loading }}
+                        {{ i18n.clients.customServer[type].leaderboard.details.loading }}
                     </span>
                 </div>
 

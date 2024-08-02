@@ -10,14 +10,14 @@ import IconRoom from '@/icons/IconRoom.vue'
 import IconSkin from '@/icons/IconSkin.vue'
 
 export const icons = {
-    rooms: IconRoom,
-    posts: IconPost,
-    playlists: IconPlaylist,
-    levels: IconLevel,
-    replays: IconReplay,
-    skins: IconSkin,
-    backgrounds: IconBackground,
-    effects: IconEffect,
-    particles: IconParticle,
-    engines: IconEngine,
+    room: IconRoom,
+    post: IconPost,
+    playlist: IconPlaylist,
+    level: IconLevel,
+    replay: IconReplay,
+    skin: IconSkin,
+    background: IconBackground,
+    effect: IconEffect,
+    particle: IconParticle,
+    engine: IconEngine,
 } as const

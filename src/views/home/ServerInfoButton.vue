@@ -2,6 +2,7 @@
 import AppLink from '@/components/AppLink.vue'
 import { useI18n } from '@/i18n'
 import { icons } from '@/icons'
+import IconConfiguration from '@/icons/IconConfiguration.vue'
 import IconLogin from '@/icons/IconLogin.vue'
 import IconMultiplayer from '@/icons/IconMultiplayer.vue'
 import type { ServerInfoButton } from '@sonolus/core'
@@ -11,16 +12,16 @@ defineProps<ServerInfoButton>()
 const { i18n } = useI18n()
 
 const paths = {
-    multiplayer: 'rooms',
-    post: 'posts',
-    playlist: 'playlists',
-    level: 'levels',
-    replay: 'replays',
-    skin: 'skins',
-    background: 'backgrounds',
-    effect: 'effects',
-    particle: 'particles',
-    engine: 'engines',
+    multiplayer: 'room',
+    post: 'post',
+    playlist: 'playlist',
+    level: 'level',
+    replay: 'replay',
+    skin: 'skin',
+    background: 'background',
+    effect: 'effect',
+    particle: 'particle',
+    engine: 'engine',
 } as const
 </script>
 
@@ -32,6 +33,14 @@ const paths = {
     >
         <IconLogin class="size-60 fill-current sm:size-72" />
         <span>{{ i18n.routes.server.home.login }}</span>
+    </div>
+    <div
+        v-else-if="type === 'configuration'"
+        class="flex w-120 flex-col items-center gap-10 bg-button-disabled p-10 text-text-disabled sm:w-144 sm:gap-12 sm:p-12"
+        inert
+    >
+        <IconConfiguration class="size-60 fill-current sm:size-72" />
+        <span>{{ i18n.routes.server.home.configuration }}</span>
     </div>
     <AppLink
         v-else

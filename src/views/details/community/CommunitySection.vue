@@ -3,21 +3,20 @@ import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import ViewSection from '@/components/ViewSection.vue'
 import { useI18n } from '@/i18n'
 import IconXMark from '@/icons/IconXMark.vue'
-import type { ItemPathType } from '@/utils/item'
-import { names } from '@/utils/name'
+import { paths } from '@/utils/item'
 import CommunityInfo from '@/views/details/community/CommunityInfo.vue'
-import type { ItemCommunityInfo } from '@sonolus/core'
+import type { ItemType, ServerItemCommunityInfo } from '@sonolus/core'
 import { ref } from 'vue'
 
 const props = defineProps<{
-    type: ItemPathType
+    type: ItemType
     name: string
 }>()
 
 const { locale, i18n } = useI18n()
 
 const isLoading = ref(true)
-const info = ref<ItemCommunityInfo>()
+const info = ref<ServerItemCommunityInfo>()
 
 ;(async () => {
     try {
@@ -25,7 +24,7 @@ const info = ref<ItemCommunityInfo>()
         searchParams.append('localization', locale.value)
 
         const response = await fetch(
-            `${import.meta.env.BASE_URL}sonolus/${props.type}/${props.name}/community/info?${searchParams}`,
+            `${import.meta.env.BASE_URL}sonolus/${paths[props.type]}/${props.name}/community/info?${searchParams}`,
         )
         info.value = await response.json()
     } finally {
@@ -46,7 +45,7 @@ const info = ref<ItemCommunityInfo>()
             <div v-if="isLoading" class="flex flex-col items-center gap-10 sm:gap-12">
                 <LoadingSpinner />
                 <span class="whitespace-break-spaces text-center">
-                    {{ i18n.clients.customServer[names[type]].community.loading }}
+                    {{ i18n.clients.customServer[type].community.info.loading }}
                 </span>
             </div>
 

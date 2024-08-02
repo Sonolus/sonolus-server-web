@@ -4,17 +4,20 @@ import PaginationControls from '@/components/pagination/PaginationControls.vue'
 import PaginationMoreButton from '@/components/pagination/PaginationMoreButton.vue'
 import { useI18n } from '@/i18n'
 import IconXMark from '@/icons/IconXMark.vue'
-import type { ItemPathType } from '@/utils/item'
-import { names } from '@/utils/name'
+import { paths } from '@/utils/item'
 import LeaderboardRecord from '@/views/details/leaderboard/LeaderboardRecord.vue'
-import type { ItemLeaderboardDetails, ItemLeaderboardRecordList } from '@sonolus/core'
+import type {
+    ItemType,
+    ServerItemLeaderboardDetails,
+    ServerItemLeaderboardRecordList,
+} from '@sonolus/core'
 import { ref, watchEffect } from 'vue'
 
 const props = defineProps<{
-    type: ItemPathType
+    type: ItemType
     name: string
     leaderboardName: string
-    details: ItemLeaderboardDetails
+    details: ServerItemLeaderboardDetails
 }>()
 
 const { locale, i18n } = useI18n()
@@ -23,7 +26,7 @@ const show = ref(false)
 const page = ref(0)
 
 const isLoading = ref(true)
-const list = ref<ItemLeaderboardRecordList>()
+const list = ref<ServerItemLeaderboardRecordList>()
 
 watchEffect(async () => {
     if (!show.value) return
@@ -37,7 +40,7 @@ watchEffect(async () => {
         searchParams.append('localization', locale.value)
 
         const response = await fetch(
-            `${import.meta.env.BASE_URL}sonolus/${props.type}/${props.name}/leaderboards/${props.leaderboardName}/records/list?${searchParams}`,
+            `${import.meta.env.BASE_URL}sonolus/${paths[props.type]}/${props.name}/leaderboards/${props.leaderboardName}/records/list?${searchParams}`,
         )
         list.value = await response.json()
     } finally {
@@ -57,7 +60,7 @@ watchEffect(async () => {
         <div v-if="show && isLoading" class="flex flex-col items-center gap-10 sm:gap-12">
             <LoadingSpinner />
             <span class="whitespace-break-spaces text-center">
-                {{ i18n.clients.customServer[names[type]].leaderboard.record.list.loading }}
+                {{ i18n.clients.customServer[type].leaderboard.record.list.loading }}
             </span>
         </div>
 

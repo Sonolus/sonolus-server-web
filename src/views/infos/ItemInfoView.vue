@@ -7,29 +7,27 @@ import ItemCard from '@/components/cards/ItemCard.vue'
 import { useI18n } from '@/i18n'
 import IconAdvanced from '@/icons/IconAdvanced.vue'
 import IconMore from '@/icons/IconMore.vue'
-import IconPlus from '@/icons/IconPlus.vue'
 import IconSearch from '@/icons/IconSearch.vue'
-import type { Item, ItemPathType } from '@/utils/item'
-import { names } from '@/utils/name'
+import { paths } from '@/utils/item'
 import { viewOptions } from '@/views/viewOptions'
-import type { ItemInfo } from '@sonolus/core'
+import type { ItemType, ServerItemInfo } from '@sonolus/core'
 import { computed, ref } from 'vue'
 
 defineOptions(
     viewOptions<typeof props>({
-        url: ({ type }) => `/${type}/info`,
-        loading: ({ i18n, props: { type } }) => i18n.clients.customServer[names[type]].info.loading,
+        url: ({ type }) => `/${paths[type]}/info`,
+        loading: ({ i18n, props: { type } }) => i18n.clients.customServer[type].info.loading,
         error: ({ i18n, props: { type } }) =>
-            i18n.clients.customServer[names[type]].info.error(import.meta.env.VITE_TITLE),
+            i18n.clients.customServer[type].info.error(import.meta.env.VITE_TITLE),
 
-        title: ({ i18n, props: { type } }) => i18n.routes.server.infos[names[type]].title,
-        banner: ({ data }) => data?.banner?.url,
+        title: ({ i18n, props: { type } }) => i18n.routes.server.infos[type].title,
+        banner: ({ data }) => data?.banner?.url ?? undefined,
     }),
 )
 
 const props = defineProps<{
-    type: ItemPathType
-    data: ItemInfo<Item>
+    type: ItemType
+    data: ServerItemInfo
 }>()
 
 const { i18n, i18nText } = useI18n()
@@ -46,17 +44,7 @@ const keywords = computed(() => search.value.trim())
             :icon="IconSearch"
             :placeholder="i18n.texts['#KEYWORDS_PLACEHOLDER']"
         />
-        <div class="mt-10 flex justify-center gap-10 sm:mt-12 sm:gap-12">
-            <div
-                v-if="data.creates"
-                class="flex min-w-120 gap-5 bg-button-disabled p-5 text-text-disabled sm:min-w-144 sm:gap-6 sm:p-6"
-                inert
-            >
-                <IconPlus class="size-20 flex-shrink-0 fill-current sm:size-24" />
-                <span class="flex-grow px-2.5 text-center sm:px-3">
-                    {{ i18n.common.create }}
-                </span>
-            </div>
+        <div class="mt-10 flex flex-wrap justify-center gap-10 sm:mt-12 sm:gap-12">
             <AppButton
                 v-if="data.searches?.length"
                 :to="{ name: `${type}-search`, data }"
@@ -75,6 +63,6 @@ const keywords = computed(() => search.value.trim())
     </AppForm>
 
     <ViewSection v-for="(section, i) in data.sections" :key="i" :title="i18nText(section.title)">
-        <ItemCard v-for="(item, j) in section.items" :key="j" :type :item />
+        <ItemCard v-for="(item, j) in section.items" :key="j" :type="section.itemType" :item />
     </ViewSection>
 </template>

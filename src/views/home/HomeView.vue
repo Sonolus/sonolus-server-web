@@ -11,7 +11,7 @@ defineOptions(
         error: ({ i18n }) =>
             i18n.clients.customServer.server.info.error(import.meta.env.VITE_TITLE),
 
-        banner: ({ data }) => data?.banner?.url,
+        banner: ({ data }) => data?.banner?.url ?? undefined,
     }),
 )
 

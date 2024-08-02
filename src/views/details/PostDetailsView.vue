@@ -12,7 +12,7 @@ import LeaderboardSection from '@/views/details/leaderboard/LeaderboardSection.v
 
 defineOptions(detailsViewOptions)
 
-defineProps<ItemDetailsViewProps<'posts'>>()
+defineProps<ItemDetailsViewProps<'post'>>()
 
 const { i18n, i18nText } = useI18n()
 </script>
@@ -67,6 +67,6 @@ const { i18n, i18nText } = useI18n()
     />
 
     <ViewSection v-for="(section, i) in data.sections" :key="i" :title="i18nText(section.title)">
-        <ItemCard v-for="(item, j) in section.items" :key="j" :type :item />
+        <ItemCard v-for="(item, j) in section.items" :key="j" :type="section.itemType" :item />
     </ViewSection>
 </template>

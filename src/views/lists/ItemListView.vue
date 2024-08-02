@@ -9,27 +9,26 @@ import IconAnglesLeft from '@/icons/IconAnglesLeft.vue'
 import IconAnglesRight from '@/icons/IconAnglesRight.vue'
 import IconSearch from '@/icons/IconSearch.vue'
 import IconXMark from '@/icons/IconXMark.vue'
-import type { Item, ItemPathType } from '@/utils/item'
-import { names } from '@/utils/name'
+import { paths, type Item } from '@/utils/item'
 import { viewOptions } from '@/views/viewOptions'
-import type { ItemList } from '@sonolus/core'
+import type { ItemType, ServerItemList } from '@sonolus/core'
 import { computed } from 'vue'
 
 defineOptions(
     viewOptions<typeof props>({
-        url: ({ type }) => `/${type}/list`,
-        loading: ({ i18n, props: { type } }) => i18n.clients.customServer[names[type]].list.loading,
+        url: ({ type }) => `/${paths[type]}/list`,
+        loading: ({ i18n, props: { type } }) => i18n.clients.customServer[type].list.loading,
         error: ({ i18n, props: { type } }) =>
-            i18n.clients.customServer[names[type]].list.error(import.meta.env.VITE_TITLE),
+            i18n.clients.customServer[type].list.error(import.meta.env.VITE_TITLE),
 
-        title: ({ i18n, props: { type } }) => i18n.routes.server.lists[names[type]].title,
+        title: ({ i18n, props: { type } }) => i18n.routes.server.lists[type].title,
     }),
 )
 
 const props = defineProps<{
-    type: ItemPathType
+    type: ItemType
     query: Record<string, string>
-    data: ItemList<Item>
+    data: ServerItemList<Item>
 }>()
 
 const { i18n, i18nText } = useI18n()
@@ -96,8 +95,8 @@ const text = computed(() => {
             case 'multi': {
                 const val = [...value].map((value) => !!+value)
                 if (
-                    val.length === option.defs.length &&
-                    val.every((value, index) => value === option.defs[index])
+                    val.length === option.def.length &&
+                    val.every((value, index) => value === option.def[index])
                 )
                     continue
 

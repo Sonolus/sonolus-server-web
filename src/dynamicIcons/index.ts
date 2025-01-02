@@ -31,6 +31,7 @@ import DynamicIconGlobe from '@/dynamicIcons/DynamicIconGlobe.vue'
 import DynamicIconHeart from '@/dynamicIcons/DynamicIconHeart.vue'
 import DynamicIconHeartHollow from '@/dynamicIcons/DynamicIconHeartHollow.vue'
 import DynamicIconHide from '@/dynamicIcons/DynamicIconHide.vue'
+import DynamicIconInformation from '@/dynamicIcons/DynamicIconInformation.vue'
 import DynamicIconLevel from '@/dynamicIcons/DynamicIconLevel.vue'
 import DynamicIconLock from '@/dynamicIcons/DynamicIconLock.vue'
 import DynamicIconMedal from '@/dynamicIcons/DynamicIconMedal.vue'
@@ -43,6 +44,7 @@ import DynamicIconPlayer from '@/dynamicIcons/DynamicIconPlayer.vue'
 import DynamicIconPlaylist from '@/dynamicIcons/DynamicIconPlaylist.vue'
 import DynamicIconPlus from '@/dynamicIcons/DynamicIconPlus.vue'
 import DynamicIconPost from '@/dynamicIcons/DynamicIconPost.vue'
+import DynamicIconQuestion from '@/dynamicIcons/DynamicIconQuestion.vue'
 import DynamicIconRanking from '@/dynamicIcons/DynamicIconRanking.vue'
 import DynamicIconReplay from '@/dynamicIcons/DynamicIconReplay.vue'
 import DynamicIconReply from '@/dynamicIcons/DynamicIconReply.vue'
@@ -102,6 +104,7 @@ export const dynamicIcons: Record<string, Component> = {
     heart: DynamicIconHeart,
     heartHollow: DynamicIconHeartHollow,
     hide: DynamicIconHide,
+    information: DynamicIconInformation,
     level: DynamicIconLevel,
     lock: DynamicIconLock,
     medal: DynamicIconMedal,
@@ -114,6 +117,7 @@ export const dynamicIcons: Record<string, Component> = {
     playlist: DynamicIconPlaylist,
     plus: DynamicIconPlus,
     post: DynamicIconPost,
+    question: DynamicIconQuestion,
     ranking: DynamicIconRanking,
     replay: DynamicIconReplay,
     reply: DynamicIconReply,

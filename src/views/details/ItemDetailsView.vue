@@ -1,11 +1,3 @@
-<script lang="ts">
-export type ItemDetailsViewProps<T extends ItemType = ItemType> = {
-    type: T
-    name: string
-    data: ServerItemDetails<ItemMap[T]>
-}
-</script>
-
 <script setup lang="ts">
 import OpenInSonolus from '@/components/OpenInSonolus.vue'
 import ViewSection from '@/components/ViewSection.vue'
@@ -14,11 +6,10 @@ import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { thumbnails } from '@/components/thumbnails'
 import { dynamicIcons } from '@/dynamicIcons'
 import { useI18n } from '@/i18n'
-import type { ItemMap } from '@/utils/item'
+import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
 import CommunitySection from '@/views/details/community/CommunitySection.vue'
 import { detailsViewOptions } from '@/views/details/detailsViewOptions'
 import LeaderboardSection from '@/views/details/leaderboard/LeaderboardSection.vue'
-import type { ItemType, ServerItemDetails } from '@sonolus/core'
 
 defineOptions(detailsViewOptions)
 

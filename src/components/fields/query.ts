@@ -9,10 +9,10 @@ export const useQuery = <T>(
     serialize: (value: T) => string,
 ) => {
     const value = computed({
-        get: () =>
-            query.value[option.query] !== undefined
-                ? deserialize(query.value[option.query])
-                : getDefault(),
+        get: () => {
+            const value = query.value[option.query]
+            return value !== undefined ? deserialize(value) : getDefault()
+        },
 
         set: (value) =>
             (query.value = {

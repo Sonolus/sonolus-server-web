@@ -15,6 +15,7 @@ defineOptions(
     }),
 )
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<{
     data: ServerInfo
 }>()

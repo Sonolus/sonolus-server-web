@@ -25,7 +25,7 @@ const { value, isModified } = useQuery(
 </script>
 
 <template>
-    <BaseField :option :display-value="i18nText(option.values[value])" :is-modified>
+    <BaseField :option :display-value="i18nText(option.values[value] ?? '')" :is-modified>
         <div class="flex justify-end">
             <UndoButton class="flex-shrink-0" :is-modified @click="value = option.def" />
         </div>

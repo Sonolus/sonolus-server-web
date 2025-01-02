@@ -8,6 +8,7 @@ const props = defineProps<{
     title: string | undefined
 }>()
 
+// eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
 const navBarTitle = computed(() => props.title || import.meta.env.VITE_TITLE)
 
 const documentTitle = computed(() =>

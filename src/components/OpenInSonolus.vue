@@ -1,9 +1,5 @@
-<script lang="ts">
-export const getOpenInSonolusUrl = (fullPath: string) =>
-    `https://open.sonolus.com/${window.location.host}${import.meta.env.BASE_URL}${fullPath.slice(1)}`
-</script>
-
 <script setup lang="ts">
+import { getOpenInSonolusUrl } from '@/components/OpenInSonolus'
 import { useI18n } from '@/i18n'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'

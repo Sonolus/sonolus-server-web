@@ -10,12 +10,11 @@ defineProps<{
 <template>
     <button
         class="p-5 transition-colors focus-visible:outline sm:p-6"
-        :class="[
-            { 'min-w-120 sm:min-w-144': $slots.default },
+        :class="
             disabled
                 ? 'bg-button-disabled text-text-disabled'
-                : 'bg-button-normal hover:bg-button-highlighted active:bg-button-pressed',
-        ]"
+                : 'bg-button-normal hover:bg-button-highlighted active:bg-button-pressed'
+        "
         :inert="disabled"
     >
         <component :is="icon" class="size-20 fill-current sm:size-24" />

@@ -1,6 +1,6 @@
 import { paths } from '@/utils/item'
 import { thumbnailUrls } from '@/utils/thumbnailUrl'
-import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView.vue'
+import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
 import { viewOptions } from '@/views/viewOptions'
 
 export const detailsViewOptions = viewOptions<ItemDetailsViewProps>({

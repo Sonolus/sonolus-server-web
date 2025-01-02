@@ -18,7 +18,7 @@ const { locale, i18n } = useI18n()
 const isLoading = ref(true)
 const info = ref<ServerItemCommunityInfo>()
 
-;(async () => {
+void (async () => {
     try {
         const searchParams = new URLSearchParams()
         searchParams.append('localization', locale.value)
@@ -26,7 +26,7 @@ const info = ref<ServerItemCommunityInfo>()
         const response = await fetch(
             `${import.meta.env.BASE_URL}sonolus/${paths[props.type]}/${props.name}/community/info?${searchParams}`,
         )
-        info.value = await response.json()
+        info.value = (await response.json()) as never
     } finally {
         isLoading.value = false
     }

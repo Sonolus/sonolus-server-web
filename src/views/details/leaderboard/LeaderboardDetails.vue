@@ -28,6 +28,7 @@ const page = ref(0)
 const isLoading = ref(true)
 const list = ref<ServerItemLeaderboardRecordList>()
 
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 watchEffect(async () => {
     if (!show.value) return
 
@@ -42,7 +43,7 @@ watchEffect(async () => {
         const response = await fetch(
             `${import.meta.env.BASE_URL}sonolus/${paths[props.type]}/${props.name}/leaderboards/${props.leaderboardName}/records/list?${searchParams}`,
         )
-        list.value = await response.json()
+        list.value = (await response.json()) as never
     } finally {
         isLoading.value = false
     }

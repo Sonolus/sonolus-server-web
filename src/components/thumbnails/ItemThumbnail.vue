@@ -1,15 +1,8 @@
-<script lang="ts">
-export type ItemThumbnailProps<T> = {
-    type: ItemType
-    item: T
-}
-</script>
-
 <script setup lang="ts">
+import type { ItemThumbnailProps } from '@/components/thumbnails/ItemThumbnail'
 import { icons } from '@/icons'
 import type { Item } from '@/utils/item'
 import { thumbnailUrls } from '@/utils/thumbnailUrl'
-import type { ItemType } from '@sonolus/core'
 import { computed, ref } from 'vue'
 
 const props = defineProps<ItemThumbnailProps<Item>>()

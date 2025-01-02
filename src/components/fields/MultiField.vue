@@ -64,10 +64,10 @@ const toggle = () =>
                 :key
                 class="flex items-center gap-5 bg-button-normal p-5 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:gap-6 sm:p-6"
                 type="button"
-                @click="value = value.slice(0, key) + +!+value[key] + value.slice(key + 1)"
+                @click="value = value.slice(0, key) + +!+(value[key] ?? '') + value.slice(key + 1)"
             >
                 <component
-                    :is="+value[key] ? IconCheckboxOn : IconCheckboxOff"
+                    :is="+(value[key] ?? '') ? IconCheckboxOn : IconCheckboxOff"
                     class="size-20 fill-current sm:size-24"
                 />
                 <span class="px-2.5 text-center sm:px-3">

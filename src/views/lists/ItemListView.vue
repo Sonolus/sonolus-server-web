@@ -65,6 +65,9 @@ const text = computed(() => {
 
         switch (option.type) {
             case 'text':
+            case 'textArea':
+                if (value === option.def) continue
+
                 add(value)
                 break
 
@@ -109,11 +112,11 @@ const text = computed(() => {
                 break
             }
 
-            case 'textArea':
             case 'serverItem':
             case 'serverItems':
             case 'collectionItem':
             case 'file':
+                add('')
                 break
         }
     }

@@ -16,17 +16,26 @@ const query = defineModel<Record<string, string>>({ required: true })
 
 const { i18n, i18nText } = useI18n()
 
-const getDefault = () => props.option.def.map((value) => +value).join('')
+const getDefault = () =>
+    new Set(
+        props.option.values.filter((_, index) => props.option.def[index]).map(({ name }) => name),
+    )
 
 const { value, isModified } = useQuery(
     query,
     props.option,
     getDefault,
-    (value) => value,
-    (value) => value,
+    (value) =>
+        new Set(
+            value
+                .split(',')
+                .filter((name) => props.option.values.some((value) => value.name === name)),
+        ),
+    (value) => [...value].join(','),
+    (a, b) => a.size === b.size && [...a].every((value) => b.has(value)),
 )
 
-const count = computed(() => [...value.value].reduce((sum, value) => sum + +!!+value, 0))
+const count = computed(() => value.value.size)
 
 const displayValue = computed(() =>
     props.option.def.length && count.value === props.option.values.length
@@ -40,10 +49,23 @@ const toggleText = computed(() =>
         : i18n.value.common.multiField.selectNone,
 )
 
-const toggle = () =>
-    (value.value = Array(props.option.values.length)
-        .fill(+(count.value < props.option.values.length))
-        .join(''))
+const toggleOne = (name: string) => {
+    const newValue = new Set(value.value)
+    if (value.value.has(name)) {
+        newValue.delete(name)
+    } else {
+        newValue.add(name)
+    }
+    value.value = newValue
+}
+
+const toggleAll = () => {
+    if (count.value < props.option.values.length) {
+        value.value = new Set(props.option.values.map(({ name }) => name))
+    } else {
+        value.value = new Set()
+    }
+}
 </script>
 
 <template>
@@ -52,7 +74,7 @@ const toggle = () =>
             <button
                 class="min-w-120 bg-button-normal px-7.5 py-5 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:min-w-144 sm:px-9 sm:py-6"
                 type="button"
-                @click="toggle"
+                @click="toggleAll"
             >
                 {{ toggleText }}
             </button>
@@ -60,14 +82,14 @@ const toggle = () =>
         </div>
         <div class="mt-10 flex flex-wrap gap-10 sm:mt-12 sm:gap-12">
             <button
-                v-for="(title, key) in option.values"
-                :key
+                v-for="{ name, title } in option.values"
+                :key="name"
                 class="flex items-center gap-5 bg-button-normal p-5 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:gap-6 sm:p-6"
                 type="button"
-                @click="value = value.slice(0, key) + +!+(value[key] ?? '') + value.slice(key + 1)"
+                @click="toggleOne(name)"
             >
                 <component
-                    :is="+(value[key] ?? '') ? IconCheckboxOn : IconCheckboxOff"
+                    :is="value.has(name) ? IconCheckboxOn : IconCheckboxOff"
                     class="size-20 fill-current sm:size-24"
                 />
                 <span class="px-2.5 text-center sm:px-3">

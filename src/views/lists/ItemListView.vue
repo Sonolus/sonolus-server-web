@@ -88,26 +88,30 @@ const text = computed(() => {
             }
 
             case 'select': {
-                const val = +value
-                if (val === option.def) continue
+                if (value === option.def) continue
 
-                add(i18nText(option.values[val] ?? ''))
+                add(i18nText(option.values.find(({ name }) => name === value)?.title ?? ''))
                 break
             }
 
             case 'multi': {
-                const val = [...value].map((value) => !!+value)
+                const val = new Set(
+                    value
+                        .split(',')
+                        .filter((name) => option.values.some((value) => value.name === name)),
+                )
                 if (
-                    val.length === option.def.length &&
-                    val.every((value, index) => value === option.def[index])
+                    val.size === option.def.length &&
+                    option.def.every(
+                        (value, index) => !value || val.has(option.values[index]?.name ?? ''),
+                    )
                 )
                     continue
 
-                const count = val.reduce((sum, value) => sum + +value, 0)
                 add(
-                    val.length && count === option.values.length
+                    option.values.length && val.size === option.values.length
                         ? i18n.value.common.multiField.allSelected
-                        : i18n.value.common.multiField.selected(`${count}`),
+                        : i18n.value.common.multiField.selected(`${val.size}`),
                 )
                 break
             }

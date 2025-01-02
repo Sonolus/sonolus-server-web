@@ -7,6 +7,7 @@ export const useQuery = <T>(
     getDefault: () => T,
     deserialize: (value: string) => T,
     serialize: (value: T) => string,
+    comparer: (a: T, b: T) => boolean = (a, b) => a === b,
 ) => {
     const value = computed({
         get: () => {
@@ -17,11 +18,13 @@ export const useQuery = <T>(
         set: (value) =>
             (query.value = {
                 ...query.value,
-                [option.query]: value !== getDefault() ? serialize(value) : (undefined as never),
+                [option.query]: !comparer(value, getDefault())
+                    ? serialize(value)
+                    : (undefined as never),
             }),
     })
 
-    const isModified = computed(() => value.value !== getDefault())
+    const isModified = computed(() => !comparer(value.value, getDefault()))
 
     return { value, isModified }
 }

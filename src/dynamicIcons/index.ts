@@ -21,6 +21,7 @@ import DynamicIconCheck from '@/dynamicIcons/DynamicIconCheck.vue'
 import DynamicIconClock from '@/dynamicIcons/DynamicIconClock.vue'
 import DynamicIconComment from '@/dynamicIcons/DynamicIconComment.vue'
 import DynamicIconCrown from '@/dynamicIcons/DynamicIconCrown.vue'
+import DynamicIconCustomServer from '@/dynamicIcons/DynamicIconCustomServer.vue'
 import DynamicIconDelete from '@/dynamicIcons/DynamicIconDelete.vue'
 import DynamicIconEdit from '@/dynamicIcons/DynamicIconEdit.vue'
 import DynamicIconEffect from '@/dynamicIcons/DynamicIconEffect.vue'
@@ -94,6 +95,7 @@ export const dynamicIcons: Record<string, Component> = {
     clock: DynamicIconClock,
     comment: DynamicIconComment,
     crown: DynamicIconCrown,
+    customServer: DynamicIconCustomServer,
     delete: DynamicIconDelete,
     edit: DynamicIconEdit,
     effect: DynamicIconEffect,

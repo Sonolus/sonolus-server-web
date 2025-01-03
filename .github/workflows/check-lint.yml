@@ -17,4 +17,5 @@ jobs:
                   node-version: 'lts/*'
                   cache: 'npm'
             - run: npm ci
+            - run: npm run generate-i18n
             - run: npm run check-lint

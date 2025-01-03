@@ -4,7 +4,7 @@ import { useI18n } from '@/i18n'
 
 const { locale } = useI18n()
 
-const getRouteId = () => history.state.routeId
+const getRouteId = () => (history.state as { routeId: string }).routeId
 </script>
 
 <template>

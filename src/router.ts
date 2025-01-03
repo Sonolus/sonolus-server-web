@@ -1,4 +1,4 @@
-import { getOpenInSonolusUrl } from '@/components/OpenInSonolus.vue'
+import { getOpenInSonolusUrl } from '@/components/OpenInSonolus'
 import { paths } from '@/utils/item'
 import BaseView from '@/views/BaseView.vue'
 import JumpToPageView from '@/views/JumpToPageView.vue'
@@ -25,11 +25,11 @@ const defineRoutes = (
             path,
             component: BaseView,
             props: ({ params, query }) => ({
-                url: (component as never)['url'],
-                loading: (component as never)['loading'],
-                error: (component as never)['error'],
-                title: (component as never)['title'],
-                banner: (component as never)['banner'],
+                url: (component as { url: never }).url,
+                loading: (component as { loading: never }).loading,
+                error: (component as { error: never }).error,
+                title: (component as { title: never }).title,
+                banner: (component as { banner: never }).banner,
                 component,
                 componentProps: { ...params, query, ...props },
             }),

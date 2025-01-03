@@ -15,6 +15,7 @@ defineOptions(
     }),
 )
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<{
     type: ItemType
     query: Record<string, string>
@@ -22,30 +23,28 @@ const props = defineProps<{
         searches?: ServerForm[]
     }
 }>()
+
+const quickSearch: ServerForm = {
+    type: 'quick',
+    title: Text.Search,
+    requireConfirmation: false,
+    options: [
+        {
+            query: 'keywords',
+            required: false,
+            type: 'text',
+            name: Text.Keywords,
+            placeholder: Text.KeywordsPlaceholder,
+            def: '',
+            limit: 0,
+            shortcuts: [],
+        },
+    ],
+}
 </script>
 
 <template>
-    <SearchSection
-        :type
-        :query
-        :search="{
-            type: 'quick',
-            title: Text.Search,
-            requireConfirmation: false,
-            options: [
-                {
-                    query: 'keywords',
-                    required: false,
-                    type: 'text',
-                    name: Text.Keywords,
-                    placeholder: Text.KeywordsPlaceholder,
-                    def: '',
-                    limit: 0,
-                    shortcuts: [],
-                },
-            ],
-        }"
-    />
+    <SearchSection :type :query :search="quickSearch" />
 
     <SearchSection v-for="(search, key) in data.searches" :key :type :query :search />
 </template>

@@ -4,8 +4,8 @@ A lean and beautiful web SPA client for Sonolus servers, with multiple languages
 
 ## Links
 
--   [Sonolus Website](https://sonolus.com)
--   [Sonolus Wiki](https://wiki.sonolus.com)
+- [Sonolus Website](https://sonolus.com)
+- [Sonolus Wiki](https://wiki.sonolus.com)
 
 ## Building
 
@@ -23,9 +23,9 @@ npm generate-i18n
 
 ### Customize
 
--   Edit `.env`
--   Edit `public/favicon.ico`
--   Edit `public/thumbnail.png`
+- Edit `.env`
+- Edit `public/favicon.ico`
+- Edit `public/thumbnail.png`
 
 ### Build for Production
 

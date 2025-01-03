@@ -1,9 +1,3 @@
-<script lang="ts">
-let viewData: { routeId: unknown; data: unknown } | undefined
-
-export const setViewData = (routeId: unknown, data: unknown) => (viewData = { routeId, data })
-</script>
-
 <script setup lang="ts">
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import NavBar from '@/components/NavBar.vue'
@@ -11,6 +5,7 @@ import SelectLocalization from '@/components/SelectLocalization.vue'
 import ViewBanner from '@/components/ViewBanner.vue'
 import { useI18n, type I18n } from '@/i18n'
 import IconError from '@/icons/IconError.vue'
+import { viewData } from '@/views/BaseView'
 import { computed, ref, type Component } from 'vue'
 
 const props = defineProps<{
@@ -29,7 +24,7 @@ const props = defineProps<{
 const { locale, i18n } = useI18n()
 
 const state = ref<boolean>()
-const data = ref()
+const data = ref<unknown>()
 
 if (viewData && viewData.routeId === props.routeId) {
     state.value = true
@@ -48,7 +43,7 @@ const title = computed(() =>
 
 const banner = computed(() => props.banner?.({ ...props.componentProps, data: data.value }))
 
-;(async () => {
+void (async () => {
     if (!props.url) {
         state.value = false
         return

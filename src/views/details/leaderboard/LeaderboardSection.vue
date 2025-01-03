@@ -22,11 +22,13 @@ const { locale, i18n, i18nText } = useI18n()
 
 const isExpanded = ref(false)
 const index = ref(0)
-const leaderboardName = computed(() => props.leaderboards[index.value].name)
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const leaderboardName = computed(() => props.leaderboards[index.value]!.name)
 
 const isLoading = ref(true)
 const details = ref<ServerItemLeaderboardDetails>()
 
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 watchEffect(async () => {
     try {
         isLoading.value = true
@@ -38,7 +40,7 @@ watchEffect(async () => {
         const response = await fetch(
             `${import.meta.env.BASE_URL}sonolus/${paths[props.type]}/${props.name}/leaderboards/${leaderboardName.value}?${searchParams}`,
         )
-        details.value = await response.json()
+        details.value = (await response.json()) as never
     } finally {
         isLoading.value = false
     }
@@ -54,7 +56,9 @@ watchEffect(async () => {
                     type="button"
                     @click="isExpanded = !isExpanded"
                 >
-                    <div class="ml-2.5 sm:ml-3">{{ i18nText(leaderboards[index].title) }}</div>
+                    <div class="ml-2.5 sm:ml-3">
+                        {{ i18nText(leaderboards[index]?.title ?? '') }}
+                    </div>
                     <component
                         :is="isExpanded ? IconAngleUp : IconAngleDown"
                         class="size-20 fill-current sm:size-24"

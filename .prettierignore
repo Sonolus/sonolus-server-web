@@ -1,7 +1,6 @@
 **/*.*
 
-!.eslintrc.cjs
-!env.d.ts
+!eslint.config.js
 !index.html
 !README.md
 !tailwind.config.js

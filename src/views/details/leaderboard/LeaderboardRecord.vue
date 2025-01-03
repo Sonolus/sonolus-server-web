@@ -27,6 +27,7 @@ const isExpanded = ref(false)
 const isLoading = ref(true)
 const details = ref<ServerItemLeaderboardRecordDetails>()
 
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 watchEffect(async () => {
     if (!isExpanded.value) return
     if (!isLoading.value) return
@@ -38,7 +39,7 @@ watchEffect(async () => {
         const response = await fetch(
             `${import.meta.env.BASE_URL}sonolus/${paths[props.type]}/${props.name}/leaderboards/${props.leaderboardName}/records/${props.record.name}?${searchParams}`,
         )
-        details.value = await response.json()
+        details.value = (await response.json()) as never
     } finally {
         isLoading.value = false
     }

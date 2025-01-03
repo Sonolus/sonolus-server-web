@@ -31,7 +31,7 @@ const props = defineProps<{
 
 const { i18n } = useI18n()
 
-const value = ref(`${(+props.query.page || 0) + 1}`)
+const value = ref(`${(+(props.query.page ?? '') || 0) + 1}`)
 const page = computed(() => +value.value - 1)
 const disabled = computed(
     () => page.value < 0 || (props.data.pageCount !== -1 && page.value > props.data.pageCount - 1),

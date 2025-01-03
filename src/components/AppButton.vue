@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AppLinkProps } from '@/components/AppLink.vue'
+import type { AppLinkProps } from '@/components/AppLink'
 import AppLink from '@/components/AppLink.vue'
 import type { Component } from 'vue'
 

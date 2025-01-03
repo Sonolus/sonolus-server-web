@@ -1,14 +1,11 @@
 <script lang="ts">
-export type AppLinkProps = {
-    to: RouteLocationNamedRaw & { data?: unknown }
-}
-
 let id = 0
 </script>
 
 <script setup lang="ts">
-import { setViewData } from '@/views/BaseView.vue'
-import { useLink, useRouter, type RouteLocationNamedRaw } from 'vue-router'
+import type { AppLinkProps } from '@/components/AppLink'
+import { setViewData } from '@/views/BaseView'
+import { useLink, useRouter } from 'vue-router'
 
 const props = defineProps<AppLinkProps>()
 
@@ -22,7 +19,7 @@ const onClick = () => {
         setViewData(routeId, props.to.data)
     }
 
-    router.push({
+    void router.push({
         ...props.to,
         force: true,
         state: {

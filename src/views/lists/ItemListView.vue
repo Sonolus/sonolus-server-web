@@ -88,7 +88,7 @@ const text = computed(() => {
                 const val = +value
                 if (val === option.def) continue
 
-                add(i18nText(option.values[val]))
+                add(i18nText(option.values[val] ?? ''))
                 break
             }
 
@@ -108,13 +108,20 @@ const text = computed(() => {
                 )
                 break
             }
+
+            case 'textArea':
+            case 'serverItem':
+            case 'serverItems':
+            case 'collectionItem':
+            case 'file':
+                break
         }
     }
 
     return Object.values(texts).join(i18n.value.common.separator)
 })
 
-const page = computed(() => +props.query.page || 0)
+const page = computed(() => +(props.query.page ?? '') || 0)
 </script>
 
 <template>

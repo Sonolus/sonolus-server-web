@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import ItemThumbnail, { type ItemThumbnailProps } from '@/components/thumbnails/ItemThumbnail.vue'
+import type { ItemThumbnailProps } from '@/components/thumbnails/ItemThumbnail'
+import ItemThumbnail from '@/components/thumbnails/ItemThumbnail.vue'
 import LevelThumbnailOverlay from '@/components/thumbnails/LevelThumbnailOverlay.vue'
 import type { ReplayItem } from '@sonolus/core'
 

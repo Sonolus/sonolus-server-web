@@ -148,30 +148,41 @@ const page = computed(() => +(props.query.page ?? '') || 0)
     <div class="fixed bottom-0 left-0 z-10 flex w-full justify-center">
         <OpenInSonolus class="mr-30 sm:mr-36" no-text />
 
-        <AppButton
-            :to="{ name: `${type}-list`, query: { ...query, page: 0 } }"
-            :icon="IconAnglesLeft"
-            :disabled="page <= 0"
-        />
-        <AppButton
-            :to="{ name: `${type}-list`, query: { ...query, page: page - 1 } }"
-            :icon="IconAngleLeft"
-            :disabled="page <= 0"
-        />
-        <AppButton :to="{ name: `${type}-jump`, query, data }">
-            {{ page + 1 }}
-            <template v-if="data.pageCount !== -1"> / {{ Math.max(1, data.pageCount) }} </template>
-        </AppButton>
-        <AppButton
-            :to="{ name: `${type}-list`, query: { ...query, page: page + 1 } }"
-            :icon="IconAngleRight"
-            :disabled="data.pageCount !== -1 && page >= data.pageCount - 1"
-        />
-        <AppButton
-            :to="{ name: `${type}-list`, query: { ...query, page: data.pageCount - 1 } }"
-            :icon="IconAnglesRight"
-            :disabled="data.pageCount === -1 || page >= data.pageCount - 1"
-        />
+        <template v-if="data.pageCount < 0">
+            <AppButton
+                :to="{
+                    name: `${type}-list`,
+                    query: { ...query, page: undefined, cursor: data.cursor },
+                }"
+                :icon="IconAngleRight"
+                :disabled="data.cursor === undefined"
+            />
+        </template>
+        <template v-else>
+            <AppButton
+                :to="{ name: `${type}-list`, query: { ...query, page: 0 } }"
+                :icon="IconAnglesLeft"
+                :disabled="page <= 0"
+            />
+            <AppButton
+                :to="{ name: `${type}-list`, query: { ...query, page: page - 1 } }"
+                :icon="IconAngleLeft"
+                :disabled="page <= 0"
+            />
+            <AppButton :to="{ name: `${type}-jump`, query, data }">
+                {{ page + 1 }} / {{ Math.max(1, data.pageCount) }}
+            </AppButton>
+            <AppButton
+                :to="{ name: `${type}-list`, query: { ...query, page: page + 1 } }"
+                :icon="IconAngleRight"
+                :disabled="page >= data.pageCount - 1"
+            />
+            <AppButton
+                :to="{ name: `${type}-list`, query: { ...query, page: data.pageCount - 1 } }"
+                :icon="IconAnglesRight"
+                :disabled="page >= data.pageCount - 1"
+            />
+        </template>
 
         <AppButton
             class="ml-30 sm:ml-36"

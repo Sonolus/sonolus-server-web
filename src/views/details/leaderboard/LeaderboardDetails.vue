@@ -23,7 +23,7 @@ const props = defineProps<{
 const { locale, i18n } = useI18n()
 
 const show = ref(false)
-const page = ref(0)
+const param = ref<string | number>(0)
 
 const isLoading = ref(true)
 const list = ref<ServerItemLeaderboardRecordList>()
@@ -37,7 +37,11 @@ watchEffect(async () => {
         list.value = undefined
 
         const searchParams = new URLSearchParams()
-        searchParams.append('page', `${page.value}`)
+        if (typeof param.value === 'string') {
+            searchParams.append('cursor', param.value)
+        } else {
+            searchParams.append('page', `${param.value}`)
+        }
         searchParams.append('localization', locale.value)
 
         const response = await fetch(
@@ -74,7 +78,7 @@ watchEffect(async () => {
                 :leaderboard-name
                 :record
             />
-            <PaginationControls v-model="page" :count="list.pageCount" />
+            <PaginationControls v-model="param" :count="list.pageCount" :cursor="list.cursor" />
         </div>
 
         <div v-else-if="show" class="flex justify-center">

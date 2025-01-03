@@ -65,6 +65,9 @@ const text = computed(() => {
 
         switch (option.type) {
             case 'text':
+            case 'textArea':
+                if (value === option.def) continue
+
                 add(value)
                 break
 
@@ -85,35 +88,39 @@ const text = computed(() => {
             }
 
             case 'select': {
-                const val = +value
-                if (val === option.def) continue
+                if (value === option.def) continue
 
-                add(i18nText(option.values[val] ?? ''))
+                add(i18nText(option.values.find(({ name }) => name === value)?.title ?? ''))
                 break
             }
 
             case 'multi': {
-                const val = [...value].map((value) => !!+value)
+                const val = new Set(
+                    value
+                        .split(',')
+                        .filter((name) => option.values.some((value) => value.name === name)),
+                )
                 if (
-                    val.length === option.def.length &&
-                    val.every((value, index) => value === option.def[index])
+                    val.size === option.def.length &&
+                    option.def.every(
+                        (value, index) => !value || val.has(option.values[index]?.name ?? ''),
+                    )
                 )
                     continue
 
-                const count = val.reduce((sum, value) => sum + +value, 0)
                 add(
-                    val.length && count === option.values.length
+                    option.values.length && val.size === option.values.length
                         ? i18n.value.common.multiField.allSelected
-                        : i18n.value.common.multiField.selected(`${count}`),
+                        : i18n.value.common.multiField.selected(`${val.size}`),
                 )
                 break
             }
 
-            case 'textArea':
             case 'serverItem':
             case 'serverItems':
             case 'collectionItem':
             case 'file':
+                add('')
                 break
         }
     }
@@ -141,30 +148,41 @@ const page = computed(() => +(props.query.page ?? '') || 0)
     <div class="fixed bottom-0 left-0 z-10 flex w-full justify-center">
         <OpenInSonolus class="mr-30 sm:mr-36" no-text />
 
-        <AppButton
-            :to="{ name: `${type}-list`, query: { ...query, page: 0 } }"
-            :icon="IconAnglesLeft"
-            :disabled="page <= 0"
-        />
-        <AppButton
-            :to="{ name: `${type}-list`, query: { ...query, page: page - 1 } }"
-            :icon="IconAngleLeft"
-            :disabled="page <= 0"
-        />
-        <AppButton :to="{ name: `${type}-jump`, query, data }">
-            {{ page + 1 }}
-            <template v-if="data.pageCount !== -1"> / {{ Math.max(1, data.pageCount) }} </template>
-        </AppButton>
-        <AppButton
-            :to="{ name: `${type}-list`, query: { ...query, page: page + 1 } }"
-            :icon="IconAngleRight"
-            :disabled="data.pageCount !== -1 && page >= data.pageCount - 1"
-        />
-        <AppButton
-            :to="{ name: `${type}-list`, query: { ...query, page: data.pageCount - 1 } }"
-            :icon="IconAnglesRight"
-            :disabled="data.pageCount === -1 || page >= data.pageCount - 1"
-        />
+        <template v-if="data.pageCount < 0">
+            <AppButton
+                :to="{
+                    name: `${type}-list`,
+                    query: { ...query, page: undefined, cursor: data.cursor },
+                }"
+                :icon="IconAngleRight"
+                :disabled="data.cursor === undefined"
+            />
+        </template>
+        <template v-else>
+            <AppButton
+                :to="{ name: `${type}-list`, query: { ...query, page: 0 } }"
+                :icon="IconAnglesLeft"
+                :disabled="page <= 0"
+            />
+            <AppButton
+                :to="{ name: `${type}-list`, query: { ...query, page: page - 1 } }"
+                :icon="IconAngleLeft"
+                :disabled="page <= 0"
+            />
+            <AppButton :to="{ name: `${type}-jump`, query, data }">
+                {{ page + 1 }} / {{ Math.max(1, data.pageCount) }}
+            </AppButton>
+            <AppButton
+                :to="{ name: `${type}-list`, query: { ...query, page: page + 1 } }"
+                :icon="IconAngleRight"
+                :disabled="page >= data.pageCount - 1"
+            />
+            <AppButton
+                :to="{ name: `${type}-list`, query: { ...query, page: data.pageCount - 1 } }"
+                :icon="IconAnglesRight"
+                :disabled="page >= data.pageCount - 1"
+            />
+        </template>
 
         <AppButton
             class="ml-30 sm:ml-36"

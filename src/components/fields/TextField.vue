@@ -18,7 +18,7 @@ const { i18nText } = useI18n()
 const { value, isModified } = useQuery(
     query,
     props.option,
-    () => '',
+    () => props.option.def,
     (value) => value,
     (value) => value,
 )
@@ -32,7 +32,7 @@ const { value, isModified } = useQuery(
                 class="flex-grow"
                 :icon="IconSearch"
                 :placeholder="i18nText(option.placeholder)"
-                :limit="option.limit"
+                :limit="option.limit || undefined"
             />
             <UndoButton class="flex-shrink-0" :is-modified @click="value = ''" />
         </div>

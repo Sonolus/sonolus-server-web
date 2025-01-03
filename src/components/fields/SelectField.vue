@@ -19,26 +19,30 @@ const { value, isModified } = useQuery(
     query,
     props.option,
     () => props.option.def,
-    (value) => +value,
-    (value) => `${value}`,
+    (value) => value,
+    (value) => value,
 )
 </script>
 
 <template>
-    <BaseField :option :display-value="i18nText(option.values[value] ?? '')" :is-modified>
+    <BaseField
+        :option
+        :display-value="i18nText(option.values.find(({ name }) => name === value)?.title ?? '')"
+        :is-modified
+    >
         <div class="flex justify-end">
             <UndoButton class="flex-shrink-0" :is-modified @click="value = option.def" />
         </div>
         <div class="mt-10 flex flex-wrap gap-10 sm:mt-12 sm:gap-12">
             <button
-                v-for="(title, key) in option.values"
-                :key
+                v-for="{ name, title } in option.values"
+                :key="name"
                 class="flex items-center gap-5 bg-button-normal p-5 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:gap-6 sm:p-6"
                 type="button"
-                @click="value = key"
+                @click="value = name"
             >
                 <component
-                    :is="value === key ? IconRadioOn : IconRadioOff"
+                    :is="value === name ? IconRadioOn : IconRadioOff"
                     class="size-20 fill-current sm:size-24"
                 />
                 <span class="px-2.5 text-center sm:px-3">

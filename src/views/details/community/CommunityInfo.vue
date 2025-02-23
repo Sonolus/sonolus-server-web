@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { sonolusGet } from '@/client'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import PaginationControls from '@/components/pagination/PaginationControls.vue'
 import PaginationMoreButton from '@/components/pagination/PaginationMoreButton.vue'
-import { useI18n } from '@/i18n'
+import { i18n } from '@/i18n'
 import IconXMark from '@/icons/IconXMark.vue'
 import { paths } from '@/utils/item'
 import CommunityComment from '@/views/details/community/CommunityComment.vue'
@@ -19,8 +20,6 @@ const props = defineProps<{
     info: ServerItemCommunityInfo
 }>()
 
-const { locale, i18n } = useI18n()
-
 const show = ref(false)
 const param = ref<string | number>(0)
 
@@ -35,18 +34,13 @@ watchEffect(async () => {
         isLoading.value = true
         list.value = undefined
 
-        const searchParams = new URLSearchParams()
-        if (typeof param.value === 'string') {
-            searchParams.append('cursor', param.value)
-        } else {
-            searchParams.append('page', `${param.value}`)
-        }
-        searchParams.append('localization', locale.value)
-
-        const response = await fetch(
-            `${import.meta.env.BASE_URL}sonolus/${paths[props.type]}/${props.name}/community/comments/list?${searchParams}`,
-        )
-        list.value = (await response.json()) as never
+        list.value = await sonolusGet({
+            url: `/${paths[props.type]}/${props.name}/community/comments/list`,
+            query:
+                typeof param.value === 'string'
+                    ? { cursor: param.value }
+                    : { page: `${param.value}` },
+        })
     } finally {
         isLoading.value = false
     }

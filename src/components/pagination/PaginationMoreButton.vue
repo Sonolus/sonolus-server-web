@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { useI18n } from '@/i18n'
+import { i18n } from '@/i18n'
 import IconMore from '@/icons/IconMore.vue'
-
-const { i18n } = useI18n()
 </script>
 
 <template>

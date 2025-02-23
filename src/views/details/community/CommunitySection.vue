@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { sonolusGet } from '@/client'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import ViewSection from '@/components/ViewSection.vue'
-import { useI18n } from '@/i18n'
+import { i18n } from '@/i18n'
 import IconXMark from '@/icons/IconXMark.vue'
 import { paths } from '@/utils/item'
 import CommunityInfo from '@/views/details/community/CommunityInfo.vue'
@@ -13,20 +14,14 @@ const props = defineProps<{
     name: string
 }>()
 
-const { locale, i18n } = useI18n()
-
 const isLoading = ref(true)
 const info = ref<ServerItemCommunityInfo>()
 
 void (async () => {
     try {
-        const searchParams = new URLSearchParams()
-        searchParams.append('localization', locale.value)
-
-        const response = await fetch(
-            `${import.meta.env.BASE_URL}sonolus/${paths[props.type]}/${props.name}/community/info?${searchParams}`,
-        )
-        info.value = (await response.json()) as never
+        info.value = await sonolusGet({
+            url: `/${paths[props.type]}/${props.name}/community/info`,
+        })
     } finally {
         isLoading.value = false
     }

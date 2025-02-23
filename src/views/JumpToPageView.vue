@@ -2,7 +2,7 @@
 import AppButton from '@/components/AppButton.vue'
 import AppForm from '@/components/AppForm.vue'
 import TextInput from '@/components/TextInput.vue'
-import { useI18n } from '@/i18n'
+import { i18n } from '@/i18n'
 import IconArrowsTurnRight from '@/icons/IconArrowsTurnRight.vue'
 import IconHashtag from '@/icons/IconHashtag.vue'
 import { paths } from '@/utils/item'
@@ -28,8 +28,6 @@ const props = defineProps<{
         pageCount: number
     }
 }>()
-
-const { i18n } = useI18n()
 
 const value = ref(`${(+(props.query.page ?? '') || 0) + 1}`)
 const page = computed(() => +value.value - 1)

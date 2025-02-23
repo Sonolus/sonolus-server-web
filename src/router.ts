@@ -3,6 +3,7 @@ import { paths } from '@/utils/item'
 import BaseView from '@/views/BaseView.vue'
 import JumpToPageView from '@/views/JumpToPageView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
+import ConfigurationView from '@/views/configuration/ConfigurationView.vue'
 import { detailsViews } from '@/views/details'
 import HomeView from '@/views/home/HomeView.vue'
 import ItemInfoView from '@/views/infos/ItemInfoView.vue'
@@ -40,6 +41,8 @@ export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: defineRoutes(
         { name: 'home', path: '/', component: HomeView },
+
+        { name: 'configuration', path: '/configuration', component: ConfigurationView },
 
         ...(
             [

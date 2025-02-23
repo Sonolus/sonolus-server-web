@@ -34,7 +34,7 @@ const props = defineProps<{
 
     <div class="mt-30 flex flex-wrap justify-center gap-10 sm:mt-36 sm:gap-12">
         <template v-for="button in data.buttons" :key="button.type">
-            <ServerInfoButton v-bind="button" />
+            <ServerInfoButton :button :data />
         </template>
     </div>
 </template>

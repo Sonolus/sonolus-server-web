@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { sonolusGet } from '@/client'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import ItemCard from '@/components/cards/ItemCard.vue'
-import { useI18n } from '@/i18n'
+import { i18n, i18nText } from '@/i18n'
 import IconAngleDown from '@/icons/IconAngleDown.vue'
 import IconAngleUp from '@/icons/IconAngleUp.vue'
 import IconXMark from '@/icons/IconXMark.vue'
@@ -20,8 +21,6 @@ const props = defineProps<{
     record: ServerItemLeaderboardRecord
 }>()
 
-const { locale, i18n, i18nText } = useI18n()
-
 const isExpanded = ref(false)
 
 const isLoading = ref(true)
@@ -33,13 +32,9 @@ watchEffect(async () => {
     if (!isLoading.value) return
 
     try {
-        const searchParams = new URLSearchParams()
-        searchParams.append('localization', locale.value)
-
-        const response = await fetch(
-            `${import.meta.env.BASE_URL}sonolus/${paths[props.type]}/${props.name}/leaderboards/${props.leaderboardName}/records/${props.record.name}?${searchParams}`,
-        )
-        details.value = (await response.json()) as never
+        details.value = await sonolusGet({
+            url: `/${paths[props.type]}/${props.name}/leaderboards/${props.leaderboardName}/records/${props.record.name}`,
+        })
     } finally {
         isLoading.value = false
     }

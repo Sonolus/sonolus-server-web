@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import BackgroundGlow from '@/components/BackgroundGlow.vue'
-import { useI18n } from '@/i18n'
-
-const { locale } = useI18n()
+import { locale } from '@/i18n'
 
 const getRouteId = () => (history.state as { routeId: string }).routeId
 </script>

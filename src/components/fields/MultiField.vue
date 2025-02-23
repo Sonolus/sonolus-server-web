@@ -2,7 +2,7 @@
 import BaseField from '@/components/fields/BaseField.vue'
 import UndoButton from '@/components/fields/UndoButton.vue'
 import { useQuery } from '@/components/fields/query'
-import { useI18n } from '@/i18n'
+import { i18n, i18nText } from '@/i18n'
 import IconCheckboxOff from '@/icons/IconCheckboxOff.vue'
 import IconCheckboxOn from '@/icons/IconCheckboxOn.vue'
 import type { ServerMultiOption } from '@sonolus/core'
@@ -13,8 +13,6 @@ const props = defineProps<{
 }>()
 
 const query = defineModel<Record<string, string>>({ required: true })
-
-const { i18n, i18nText } = useI18n()
 
 const getDefault = () =>
     new Set(

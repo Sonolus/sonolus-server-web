@@ -3,7 +3,7 @@ import AppLink from '@/components/AppLink.vue'
 import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { thumbnails } from '@/components/thumbnails'
 import { dynamicIcons } from '@/dynamicIcons'
-import { useI18n } from '@/i18n'
+import { i18nText } from '@/i18n'
 import type { Item } from '@/utils/item'
 import type { ItemType } from '@sonolus/core'
 
@@ -11,8 +11,6 @@ defineProps<{
     type: ItemType
     item: Item
 }>()
-
-const { i18nText } = useI18n()
 </script>
 
 <template>

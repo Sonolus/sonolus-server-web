@@ -1,5 +1,9 @@
 {
     "lang": "en",
     "openInSonolus": "Open in Sonolus",
+    "loggedIn": "Signed in as: ",
+    "logIn": "Click the following link to sign in with Sonolus.",
+    "logInTimedOut": "Sign in timed out.",
+    "logInRetry": "Retry",
     "notFound": "The page you are looking for is not here :("
 }

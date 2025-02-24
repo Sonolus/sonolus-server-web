@@ -1,15 +1,16 @@
 import { getOpenInSonolusUrl } from '@/components/OpenInSonolus'
 import { paths } from '@/utils/item'
-import BaseView from '@/views/BaseView.vue'
-import JumpToPageView from '@/views/JumpToPageView.vue'
-import NotFoundView from '@/views/NotFoundView.vue'
 import AuthenticationView from '@/views/authentication/AuthenticationView.vue'
+import BaseView from '@/views/BaseView.vue'
 import ConfigurationView from '@/views/configuration/ConfigurationView.vue'
 import { detailsViews } from '@/views/details'
 import HomeView from '@/views/home/HomeView.vue'
 import ItemInfoView from '@/views/infos/ItemInfoView.vue'
+import ItemCreateView from '@/views/ItemCreateView.vue'
+import ItemSearchView from '@/views/ItemSearchView.vue'
+import JumpToPageView from '@/views/JumpToPageView.vue'
 import ItemListView from '@/views/lists/ItemListView.vue'
-import ItemSearchView from '@/views/search/ItemSearchView.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
 import type { Component } from 'vue'
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 
@@ -64,6 +65,12 @@ export const router = createRouter({
                 name: `${type}-info`,
                 path: `/${paths[type]}/info`,
                 component: ItemInfoView,
+                props: { type },
+            },
+            {
+                name: `${type}-create`,
+                path: `/${paths[type]}/create`,
+                component: ItemCreateView,
                 props: { type },
             },
             {

@@ -1,40 +1,35 @@
 <script setup lang="ts">
-import AppButton from '@/components/AppButton.vue'
 import AppForm from '@/components/AppForm.vue'
 import { fields } from '@/components/fields'
 import ViewSection from '@/components/ViewSection.vue'
-import { i18n, i18nText } from '@/i18n'
-import IconSearch from '@/icons/IconSearch.vue'
-import type { ItemType, ServerForm } from '@sonolus/core'
+import { i18nText } from '@/i18n'
+import type { ServerForm } from '@sonolus/core'
 import { ref } from 'vue'
 
 const props = defineProps<{
-    type: ItemType
-    search: ServerForm
+    form: ServerForm
     query: Record<string, string>
 }>()
 
 const query = ref(
-    props.query.type === props.search.type
+    props.query.type === props.form.type
         ? Object.fromEntries(new URLSearchParams(props.query))
-        : { type: props.search.type },
+        : { type: props.form.type },
 )
 </script>
 
 <template>
     <AppForm>
-        <ViewSection :title="i18nText(search.title)">
+        <ViewSection :title="i18nText(form.title)">
             <component
                 :is="fields[option.type]"
-                v-for="(option, key) in search.options"
+                v-for="(option, key) in form.options"
                 :key
                 v-model="query"
                 :option="option as never"
             />
             <div class="flex justify-end">
-                <AppButton :to="{ name: `${type}-list`, query }" :icon="IconSearch" data-submit>
-                    {{ i18n.common.search }}
-                </AppButton>
+                <slot :query />
             </div>
         </ViewSection>
     </AppForm>

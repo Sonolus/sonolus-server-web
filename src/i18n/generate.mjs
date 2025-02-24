@@ -11,6 +11,7 @@ const i18n = {
         more: '',
         on: '',
         off: '',
+        create: '',
         search: '',
         multiField: {
             selected: '',
@@ -26,6 +27,7 @@ const i18n = {
             },
             room: {
                 info: { loading: '', error: '' },
+                create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
@@ -44,6 +46,7 @@ const i18n = {
             },
             post: {
                 info: { loading: '', error: '' },
+                create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
@@ -62,6 +65,7 @@ const i18n = {
             },
             playlist: {
                 info: { loading: '', error: '' },
+                create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
@@ -80,6 +84,7 @@ const i18n = {
             },
             level: {
                 info: { loading: '', error: '' },
+                create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
@@ -98,6 +103,7 @@ const i18n = {
             },
             replay: {
                 info: { loading: '', error: '' },
+                create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
@@ -116,6 +122,7 @@ const i18n = {
             },
             skin: {
                 info: { loading: '', error: '' },
+                create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
@@ -134,6 +141,7 @@ const i18n = {
             },
             background: {
                 info: { loading: '', error: '' },
+                create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
@@ -152,6 +160,7 @@ const i18n = {
             },
             effect: {
                 info: { loading: '', error: '' },
+                create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
@@ -170,6 +179,7 @@ const i18n = {
             },
             particle: {
                 info: { loading: '', error: '' },
+                create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {
@@ -188,6 +198,7 @@ const i18n = {
             },
             engine: {
                 info: { loading: '', error: '' },
+                create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
                 community: {

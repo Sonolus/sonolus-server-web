@@ -12,6 +12,7 @@ const i18n = {
         on: '',
         off: '',
         create: '',
+        submit: '',
         search: '',
         multiField: {
             selected: '',
@@ -30,6 +31,7 @@ const i18n = {
                 create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
                     comment: {
@@ -49,6 +51,7 @@ const i18n = {
                 create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
                     comment: {
@@ -68,6 +71,7 @@ const i18n = {
                 create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
                     comment: {
@@ -87,6 +91,7 @@ const i18n = {
                 create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
                     comment: {
@@ -106,6 +111,7 @@ const i18n = {
                 create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
                     comment: {
@@ -125,6 +131,7 @@ const i18n = {
                 create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
                     comment: {
@@ -144,6 +151,7 @@ const i18n = {
                 create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
                     comment: {
@@ -163,6 +171,7 @@ const i18n = {
                 create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
                     comment: {
@@ -182,6 +191,7 @@ const i18n = {
                 create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
                     comment: {
@@ -201,6 +211,7 @@ const i18n = {
                 create: { loading: '', error: '' },
                 list: { loading: '', error: '' },
                 details: { loading: '', error: '' },
+                submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
                     comment: {

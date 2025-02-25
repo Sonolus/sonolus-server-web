@@ -66,7 +66,13 @@ defineEmits<OverlayEmit>()
 
     <slot />
 
-    <CommunitySection v-if="data.hasCommunity" :type :name />
+    <CommunitySection
+        v-if="data.hasCommunity"
+        :type
+        :name
+        :title="data.item.title"
+        @overlay="$emit('overlay', $event)"
+    />
 
     <LeaderboardSection
         v-if="data.leaderboards.length"

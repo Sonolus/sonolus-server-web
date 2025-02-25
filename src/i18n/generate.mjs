@@ -34,6 +34,7 @@ const i18n = {
                 submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
+                    submit: { loading: '', error: '' },
                     comment: {
                         list: { loading: '' },
                     },
@@ -54,6 +55,7 @@ const i18n = {
                 submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
+                    submit: { loading: '', error: '' },
                     comment: {
                         list: { loading: '' },
                     },
@@ -74,6 +76,7 @@ const i18n = {
                 submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
+                    submit: { loading: '', error: '' },
                     comment: {
                         list: { loading: '' },
                     },
@@ -94,6 +97,7 @@ const i18n = {
                 submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
+                    submit: { loading: '', error: '' },
                     comment: {
                         list: { loading: '' },
                     },
@@ -114,6 +118,7 @@ const i18n = {
                 submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
+                    submit: { loading: '', error: '' },
                     comment: {
                         list: { loading: '' },
                     },
@@ -134,6 +139,7 @@ const i18n = {
                 submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
+                    submit: { loading: '', error: '' },
                     comment: {
                         list: { loading: '' },
                     },
@@ -154,6 +160,7 @@ const i18n = {
                 submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
+                    submit: { loading: '', error: '' },
                     comment: {
                         list: { loading: '' },
                     },
@@ -174,6 +181,7 @@ const i18n = {
                 submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
+                    submit: { loading: '', error: '' },
                     comment: {
                         list: { loading: '' },
                     },
@@ -194,6 +202,7 @@ const i18n = {
                 submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
+                    submit: { loading: '', error: '' },
                     comment: {
                         list: { loading: '' },
                     },
@@ -214,6 +223,7 @@ const i18n = {
                 submit: { loading: '', error: '' },
                 community: {
                     info: { loading: '' },
+                    submit: { loading: '', error: '' },
                     comment: {
                         list: { loading: '' },
                     },

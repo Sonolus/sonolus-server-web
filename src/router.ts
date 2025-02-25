@@ -7,6 +7,7 @@ import { detailsViews } from '@/views/details'
 import HomeView from '@/views/home/HomeView.vue'
 import ItemInfoView from '@/views/infos/ItemInfoView.vue'
 import ItemActionView from '@/views/ItemActionView.vue'
+import ItemCommunityActionView from '@/views/ItemCommunityActionView.vue'
 import ItemCreateView from '@/views/ItemCreateView.vue'
 import ItemSearchView from '@/views/ItemSearchView.vue'
 import JumpToPageView from '@/views/JumpToPageView.vue'
@@ -102,6 +103,12 @@ export const router = createRouter({
                 name: `${type}-action`,
                 path: `/${paths[type]}/:name/action`,
                 component: ItemActionView,
+                props: { type },
+            },
+            {
+                name: `${type}-community-action`,
+                path: `/${paths[type]}/:name/community/action`,
+                component: ItemCommunityActionView,
                 props: { type },
             },
         ]),

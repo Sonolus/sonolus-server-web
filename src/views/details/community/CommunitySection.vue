@@ -5,27 +5,35 @@ import ViewSection from '@/components/ViewSection.vue'
 import { i18n } from '@/i18n'
 import IconXMark from '@/icons/IconXMark.vue'
 import { paths } from '@/utils/item'
+import type { OverlayEmit } from '@/views/BaseView'
 import CommunityInfo from '@/views/details/community/CommunityInfo.vue'
 import type { ItemType, ServerItemCommunityInfo } from '@sonolus/core'
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
 
 const props = defineProps<{
     type: ItemType
     name: string
+    title: string
 }>()
+
+defineEmits<OverlayEmit>()
 
 const isLoading = ref(true)
 const info = ref<ServerItemCommunityInfo>()
 
-void (async () => {
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
+watchEffect(async () => {
+    if (!isLoading.value) return
+
     try {
+        info.value = undefined
         info.value = await sonolusGet({
             url: `/${paths[props.type]}/${props.name}/community/info`,
         })
     } finally {
         isLoading.value = false
     }
-})()
+})
 </script>
 
 <template>
@@ -44,7 +52,15 @@ void (async () => {
                 </span>
             </div>
 
-            <CommunityInfo v-else-if="info" :type :name :info />
+            <CommunityInfo
+                v-else-if="info"
+                :type
+                :name
+                :title
+                :info
+                @overlay="$emit('overlay', $event)"
+                @update="isLoading = true"
+            />
 
             <div v-else class="flex justify-center">
                 <IconXMark class="size-50 fill-text-disabled sm:size-60" />

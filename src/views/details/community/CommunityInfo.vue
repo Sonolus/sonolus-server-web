@@ -83,18 +83,15 @@ const onSubmit = async (result: FormResult) => {
         })
 
         if (shouldUpdateCommunity) {
-            emit('update')
+            updateCommunity()
         }
 
         if (shouldUpdateComments) {
-            show.value = false
-            show.value = true
+            updateComments()
         }
 
         if (shouldNavigateCommentsToPage >= 0) {
-            show.value = false
-            param.value = shouldNavigateCommentsToPage
-            show.value = true
+            navigateCommentsToPage(shouldNavigateCommentsToPage)
         }
 
         emit('overlay')
@@ -107,6 +104,21 @@ const onSubmit = async (result: FormResult) => {
                 ),
         })
     }
+}
+
+const updateCommunity = () => {
+    emit('update')
+}
+
+const updateComments = () => {
+    show.value = false
+    show.value = true
+}
+
+const navigateCommentsToPage = (page: number) => {
+    show.value = false
+    param.value = page
+    show.value = true
 }
 </script>
 
@@ -148,7 +160,18 @@ const onSubmit = async (result: FormResult) => {
                 v-else-if="info.topComments.length && show && list"
                 class="flex flex-col gap-10 sm:gap-12"
             >
-                <CommunityComment v-for="(comment, j) in list.comments" :key="j" :comment />
+                <CommunityComment
+                    v-for="(comment, j) in list.comments"
+                    :key="j"
+                    :type
+                    :name
+                    :title
+                    :comment
+                    @overlay="$emit('overlay', $event)"
+                    @update-community="updateCommunity"
+                    @update-comments="updateComments"
+                    @navigate-comments-to-page="navigateCommentsToPage"
+                />
                 <PaginationControls v-model="param" :count="list.pageCount" :cursor="list.cursor" />
             </div>
 
@@ -157,7 +180,18 @@ const onSubmit = async (result: FormResult) => {
             </div>
 
             <div v-else-if="info.topComments.length" class="flex flex-col gap-10 sm:gap-12">
-                <CommunityComment v-for="(comment, j) in info.topComments" :key="j" :comment />
+                <CommunityComment
+                    v-for="(comment, j) in info.topComments"
+                    :key="j"
+                    :type
+                    :name
+                    :title
+                    :comment
+                    @overlay="$emit('overlay', $event)"
+                    @update-community="updateCommunity"
+                    @update-comments="updateComments"
+                    @navigate-comments-to-page="navigateCommentsToPage"
+                />
                 <div class="flex justify-center">
                     <PaginationMoreButton @click="show = true" />
                 </div>

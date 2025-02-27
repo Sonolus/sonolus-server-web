@@ -13,6 +13,7 @@ const i18n = {
         off: '',
         create: '',
         submit: '',
+        cancel: '',
         search: '',
         multiField: {
             selected: '',

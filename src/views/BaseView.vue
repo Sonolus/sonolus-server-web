@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { sonolusGet } from '@/client'
+import AppButton from '@/components/AppButton.vue'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import NavBar from '@/components/NavBar.vue'
 import ViewBanner from '@/components/ViewBanner.vue'
 import { i18n, type I18n } from '@/i18n'
 import IconError from '@/icons/IconError.vue'
+import IconXMark from '@/icons/IconXMark.vue'
 import { viewData, type OverlayState } from '@/views/BaseView'
 import { computed, ref, watchEffect, type Component } from 'vue'
 
@@ -85,13 +87,43 @@ watchEffect(async () => {
         >
             <div
                 v-if="overlayState"
-                class="fixed left-0 top-0 z-20 flex h-[100vh] w-[100vw] flex-col items-center justify-center gap-10 bg-overlay-main p-30 sm:gap-12 sm:p-36"
+                class="fixed left-0 top-0 z-20 h-[100vh] w-[100vw] bg-overlay-main p-30 sm:p-36"
             >
-                <LoadingSpinner v-if="overlayState.type === 'loading'" />
-                <IconError v-else class="size-30 fill-current sm:size-36" />
-                <span class="whitespace-break-spaces text-center">
-                    {{ overlayState.getMessage() }}
-                </span>
+                <Transition
+                    mode="out-in"
+                    enter-from-class="opacity-0"
+                    enter-active-class="transition-opacity"
+                    leave-to-class="opacity-0"
+                    leave-active-class="transition-opacity"
+                >
+                    <div
+                        v-if="overlayState.type === 'loading'"
+                        class="flex h-full flex-col items-center justify-center gap-10 sm:gap-12"
+                    >
+                        <LoadingSpinner />
+                        <span class="whitespace-break-spaces text-center">
+                            {{ overlayState.getMessage() }}
+                        </span>
+                    </div>
+
+                    <div
+                        v-else
+                        class="flex h-full flex-col items-center justify-center gap-30 sm:gap-36"
+                    >
+                        <div class="flex flex-col items-center justify-center gap-10 sm:gap-12">
+                            <IconError class="size-30 fill-current sm:size-36" />
+                            <span class="whitespace-break-spaces text-center">
+                                {{ overlayState.getMessage() }}
+                            </span>
+                        </div>
+
+                        <div class="flex justify-center">
+                            <AppButton :icon="IconXMark" @click="overlayState = undefined">
+                                {{ i18n.common.cancel }}
+                            </AppButton>
+                        </div>
+                    </div>
+                </Transition>
             </div>
         </Transition>
 

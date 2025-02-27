@@ -16,6 +16,7 @@ const i18n = {
         cancel: '',
         confirm: '',
         search: '',
+        requiredOption: '',
         multiField: {
             selected: '',
             allSelected: '',

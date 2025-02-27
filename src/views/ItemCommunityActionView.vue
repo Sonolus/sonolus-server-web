@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppButton from '@/components/AppButton.vue'
 import { i18n } from '@/i18n'
 import IconCheck from '@/icons/IconCheck.vue'
 import type { FormResult } from '@/views/form'
@@ -27,14 +28,8 @@ const props = defineProps<{
 
 <template>
     <FormView v-slot="result" :query="{}" :forms="[data.action]">
-        <button
-            class="flex min-w-120 items-center gap-5 bg-button-normal p-5 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:min-w-144 sm:gap-6 sm:p-6"
-            @click="data.onSubmit(result)"
-        >
-            <IconCheck class="size-20 flex-shrink-0 fill-current sm:size-24" />
-            <span class="flex-grow px-2.5 text-center sm:px-3">
-                {{ i18n.common.submit }}
-            </span>
-        </button>
+        <AppButton :icon="IconCheck" data-submit @click="data.onSubmit(result)">
+            {{ i18n.common.submit }}
+        </AppButton>
     </FormView>
 </template>

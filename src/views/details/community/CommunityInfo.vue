@@ -3,10 +3,10 @@ import { sonolusGet, sonolusPost } from '@/client'
 import AppButton from '@/components/AppButton.vue'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import PaginationControls from '@/components/pagination/PaginationControls.vue'
-import PaginationMoreButton from '@/components/pagination/PaginationMoreButton.vue'
 import { dynamicIcons } from '@/dynamicIcons'
 import { i18n, i18nText } from '@/i18n'
 import { icons } from '@/icons'
+import IconMore from '@/icons/IconMore.vue'
 import IconXMark from '@/icons/IconXMark.vue'
 import { paths } from '@/utils/item'
 import type { OverlayEmit } from '@/views/BaseView'
@@ -193,7 +193,9 @@ const navigateCommentsToPage = (page: number) => {
                     @navigate-comments-to-page="navigateCommentsToPage"
                 />
                 <div class="flex justify-center">
-                    <PaginationMoreButton @click="show = true" />
+                    <AppButton :icon="IconMore" @click="show = true">
+                        {{ i18n.common.more }}
+                    </AppButton>
                 </div>
             </div>
 

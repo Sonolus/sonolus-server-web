@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { auth, createAuthAttempt } from '@/auth'
 import { sonolusPost } from '@/client'
+import AppButton from '@/components/AppButton.vue'
 import OpenInSonolus from '@/components/OpenInSonolus.vue'
 import { i18n } from '@/i18n'
 import IconLogout from '@/icons/IconLogout.vue'
@@ -81,15 +82,9 @@ void (async () => {
     >
         <template v-if="auth">
             <div>{{ i18n.loggedIn }}{{ auth.title }}</div>
-            <button
-                class="flex min-w-120 items-center gap-5 bg-button-normal p-5 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:min-w-144 sm:gap-6 sm:p-6"
-                @click="onLogout"
-            >
-                <IconLogout class="size-20 flex-shrink-0 fill-current sm:size-24" />
-                <span class="flex-grow px-2.5 text-center sm:px-3">
-                    {{ i18n.routes.server.home.logout }}
-                </span>
-            </button>
+            <AppButton :icon="IconLogout" @click="onLogout">
+                {{ i18n.routes.server.home.logout }}
+            </AppButton>
         </template>
         <template v-else-if="attempt">
             <template v-if="count > 0">
@@ -98,13 +93,9 @@ void (async () => {
             </template>
             <template v-else>
                 <div>{{ i18n.logInTimedOut }}</div>
-                <button
-                    class="flex min-w-120 items-center gap-5 bg-button-normal p-5 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:min-w-144 sm:gap-6 sm:p-6"
-                    @click="onRetry"
-                >
-                    <IconRedo class="size-20 flex-shrink-0 fill-current sm:size-24" />
-                    <span class="flex-grow px-2.5 text-center sm:px-3">{{ i18n.logInRetry }}</span>
-                </button>
+                <AppButton :icon="IconRedo" @click="onRetry">
+                    {{ i18n.logInRetry }}
+                </AppButton>
             </template>
         </template>
     </div>

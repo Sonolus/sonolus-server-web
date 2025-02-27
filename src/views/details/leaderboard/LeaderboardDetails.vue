@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { sonolusGet } from '@/client'
+import AppButton from '@/components/AppButton.vue'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import PaginationControls from '@/components/pagination/PaginationControls.vue'
-import PaginationMoreButton from '@/components/pagination/PaginationMoreButton.vue'
 import { i18n } from '@/i18n'
+import IconMore from '@/icons/IconMore.vue'
 import IconXMark from '@/icons/IconXMark.vue'
 import { paths } from '@/utils/item'
 import LeaderboardRecord from '@/views/details/leaderboard/LeaderboardRecord.vue'
@@ -89,7 +90,9 @@ watchEffect(async () => {
                 :record
             />
             <div class="flex justify-center">
-                <PaginationMoreButton @click="show = true" />
+                <AppButton :icon="IconMore" @click="show = true">
+                    {{ i18n.common.more }}
+                </AppButton>
             </div>
         </div>
 

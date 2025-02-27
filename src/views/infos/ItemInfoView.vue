@@ -11,7 +11,7 @@ import IconMore from '@/icons/IconMore.vue'
 import IconPlus from '@/icons/IconPlus.vue'
 import IconSearch from '@/icons/IconSearch.vue'
 import { paths } from '@/utils/item'
-import { viewReload, type OverlayEmit } from '@/views/BaseView'
+import { type ViewEmit } from '@/views/BaseView'
 import type { FormResult } from '@/views/form'
 import { viewOptions } from '@/views/viewOptions'
 import type { ItemType, ServerCreateItemResponse, ServerItemInfo } from '@sonolus/core'
@@ -35,7 +35,7 @@ const props = defineProps<{
     data: ServerItemInfo
 }>()
 
-const emit = defineEmits<OverlayEmit>()
+const emit = defineEmits<ViewEmit>()
 
 const router = useRouter()
 
@@ -60,7 +60,7 @@ const onCreate = async (result: FormResult) => {
             })
 
         if (shouldUpdateInfo) {
-            viewReload.value++
+            emit('reload')
         }
 
         if (shouldNavigateToItem) {

@@ -6,7 +6,7 @@ import ViewBanner from '@/components/ViewBanner.vue'
 import { i18n, type I18n } from '@/i18n'
 import IconError from '@/icons/IconError.vue'
 import { viewData, type OverlayState } from '@/views/BaseView'
-import { computed, ref, type Component } from 'vue'
+import { computed, ref, watchEffect, type Component } from 'vue'
 
 const props = defineProps<{
     routeId: unknown
@@ -21,11 +21,11 @@ const props = defineProps<{
     }
 }>()
 
-const state = ref<boolean>()
+const isLoading = ref(true)
 const data = ref<unknown>()
 
 if (viewData && viewData.routeId === props.routeId) {
-    state.value = true
+    isLoading.value = false
     data.value = viewData.data
 }
 
@@ -43,29 +43,33 @@ const banner = computed(() => props.banner?.({ ...props.componentProps, data: da
 
 const overlayState = ref<OverlayState>()
 
-void (async () => {
-    if (state.value) return
+const onReload = () => {
+    isLoading.value = true
+    data.value = undefined
+}
+
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
+watchEffect(async () => {
+    if (!isLoading.value) return
 
     if (!props.url) {
-        state.value = false
+        isLoading.value = false
         return
     }
 
     try {
         const url = props.url(props.componentProps)
 
-        if (url) {
-            data.value = await sonolusGet({
-                url,
-                query: props.componentProps.query,
-            })
-        }
-
-        state.value = true
-    } catch {
-        state.value = false
+        data.value = url
+            ? await sonolusGet({
+                  url,
+                  query: props.componentProps.query,
+              })
+            : true
+    } finally {
+        isLoading.value = false
     }
-})()
+})
 </script>
 
 <template>
@@ -99,30 +103,33 @@ void (async () => {
                 leave-to-class="opacity-0"
                 leave-active-class="transition-opacity"
             >
-                <div v-if="state">
+                <div
+                    v-if="isLoading"
+                    class="flex min-h-[calc(100vh-110px)] flex-col items-center justify-center gap-10 sm:min-h-[calc(100vh-132px)] sm:gap-12"
+                >
+                    <LoadingSpinner />
+                    <span class="whitespace-break-spaces text-center">{{ loading }}</span>
+                </div>
+
+                <div v-else-if="data">
                     <ViewBanner :banner />
                     <div class="flex flex-col gap-30 sm:gap-36">
                         <component
                             :is="component"
                             v-bind="componentProps"
                             :data
+                            @reload="onReload"
                             @overlay="overlayState = $event"
                         />
                     </div>
                 </div>
+
                 <div
                     v-else
-                    :key="`${state}`"
                     class="flex min-h-[calc(100vh-110px)] flex-col items-center justify-center gap-10 sm:min-h-[calc(100vh-132px)] sm:gap-12"
                 >
-                    <template v-if="state === undefined">
-                        <LoadingSpinner />
-                        <span class="whitespace-break-spaces text-center">{{ loading }}</span>
-                    </template>
-                    <template v-else>
-                        <IconError class="size-30 fill-current sm:size-36" />
-                        <span class="whitespace-break-spaces text-center">{{ error }}</span>
-                    </template>
+                    <IconError class="size-30 fill-current sm:size-36" />
+                    <span class="whitespace-break-spaces text-center">{{ error }}</span>
                 </div>
             </Transition>
         </main>

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import BackgroundGlow from '@/components/BackgroundGlow.vue'
 import { locale } from '@/i18n'
-import { viewReload } from '@/views/BaseView'
 
 const getRouteId = () => (history.state as { routeId: string }).routeId
 </script>
@@ -14,7 +13,7 @@ const getRouteId = () => (history.state as { routeId: string }).routeId
             <KeepAlive>
                 <component
                     :is="Component"
-                    :key="`${viewReload}:${getRouteId()}:${locale}:${route.fullPath}`"
+                    :key="`${getRouteId()}:${locale}:${route.fullPath}`"
                     :route-id="getRouteId()"
                 />
             </KeepAlive>

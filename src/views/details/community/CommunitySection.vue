@@ -5,7 +5,7 @@ import ViewSection from '@/components/ViewSection.vue'
 import { i18n } from '@/i18n'
 import IconXMark from '@/icons/IconXMark.vue'
 import { paths } from '@/utils/item'
-import type { OverlayEmit } from '@/views/BaseView'
+import type { ViewEmit } from '@/views/BaseView'
 import CommunityInfo from '@/views/details/community/CommunityInfo.vue'
 import type { ItemType, ServerItemCommunityInfo } from '@sonolus/core'
 import { ref, watchEffect } from 'vue'
@@ -16,7 +16,7 @@ const props = defineProps<{
     title: string
 }>()
 
-defineEmits<OverlayEmit>()
+defineEmits<ViewEmit>()
 
 const isLoading = ref(true)
 const info = ref<ServerItemCommunityInfo>()

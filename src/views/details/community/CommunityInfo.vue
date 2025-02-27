@@ -9,7 +9,7 @@ import { icons } from '@/icons'
 import IconMore from '@/icons/IconMore.vue'
 import IconXMark from '@/icons/IconXMark.vue'
 import { paths } from '@/utils/item'
-import type { OverlayEmit } from '@/views/BaseView'
+import type { ViewEmit } from '@/views/BaseView'
 import CommunityComment from '@/views/details/community/CommunityComment.vue'
 import type { FormResult } from '@/views/form'
 import type {
@@ -29,7 +29,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<
-    OverlayEmit & {
+    ViewEmit & {
         update: []
     }
 >()

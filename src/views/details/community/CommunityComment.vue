@@ -5,7 +5,7 @@ import { dynamicIcons } from '@/dynamicIcons'
 import { i18n } from '@/i18n'
 import { icons } from '@/icons'
 import { paths } from '@/utils/item'
-import type { OverlayEmit } from '@/views/BaseView'
+import type { ViewEmit } from '@/views/BaseView'
 import type { FormResult } from '@/views/form'
 import type {
     ItemType,
@@ -22,7 +22,7 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<
-    OverlayEmit & {
+    ViewEmit & {
         updateCommunity: []
         updateComments: []
         navigateCommentsToPage: [page: number]

@@ -2,7 +2,7 @@
 import ViewSection from '@/components/ViewSection.vue'
 import ItemCard from '@/components/cards/ItemCard.vue'
 import { i18n } from '@/i18n'
-import type { OverlayEmit } from '@/views/BaseView'
+import type { ViewEmit } from '@/views/BaseView'
 import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
 import ItemDetailsView from '@/views/details/ItemDetailsView.vue'
 import { detailsViewOptions } from '@/views/details/detailsViewOptions'
@@ -11,7 +11,7 @@ defineOptions(detailsViewOptions)
 
 defineProps<ItemDetailsViewProps<'playlist'>>()
 
-defineEmits<OverlayEmit>()
+defineEmits<ViewEmit>()
 </script>
 
 <template>

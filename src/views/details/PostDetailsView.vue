@@ -5,7 +5,7 @@ import ItemCard from '@/components/cards/ItemCard.vue'
 import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { thumbnails } from '@/components/thumbnails'
 import { i18n, i18nText } from '@/i18n'
-import type { OverlayEmit } from '@/views/BaseView'
+import type { ViewEmit } from '@/views/BaseView'
 import ItemActions from '@/views/details/ItemActions.vue'
 import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
 import CommunitySection from '@/views/details/community/CommunitySection.vue'
@@ -16,7 +16,7 @@ defineOptions(detailsViewOptions)
 
 defineProps<ItemDetailsViewProps<'post'>>()
 
-defineEmits<OverlayEmit>()
+defineEmits<ViewEmit>()
 </script>
 
 <template>
@@ -59,7 +59,7 @@ defineEmits<OverlayEmit>()
         <OpenInSonolus />
     </div>
 
-    <ItemActions v-bind="$props" @overlay="$emit('overlay', $event)" />
+    <ItemActions v-bind="$props" @reload="$emit('reload')" @overlay="$emit('overlay', $event)" />
 
     <CommunitySection
         v-if="data.hasCommunity"

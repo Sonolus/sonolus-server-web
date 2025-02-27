@@ -5,7 +5,7 @@ import { dynamicIcons } from '@/dynamicIcons'
 import { i18n, i18nText } from '@/i18n'
 import { icons } from '@/icons'
 import { paths } from '@/utils/item'
-import { viewReload, type OverlayEmit } from '@/views/BaseView'
+import { type ViewEmit } from '@/views/BaseView'
 import { type ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
 import type { FormResult } from '@/views/form'
 import type { ServerSubmitItemActionResponse } from '@sonolus/core'
@@ -13,7 +13,7 @@ import { useRouter } from 'vue-router'
 
 const props = defineProps<ItemDetailsViewProps>()
 
-const emit = defineEmits<OverlayEmit>()
+const emit = defineEmits<ViewEmit>()
 
 const router = useRouter()
 
@@ -37,7 +37,7 @@ const onSubmit = async (result: FormResult) => {
         if (shouldRemoveItem) {
             router.back()
         } else if (shouldUpdateItem) {
-            viewReload.value++
+            emit('reload')
         }
 
         if (shouldNavigateToItem) {

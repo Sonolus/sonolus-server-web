@@ -10,6 +10,7 @@ defineProps<{
     option: ServerOption
     displayValue: string
     isModified?: boolean
+    isValidating?: boolean
 }>()
 
 const isExpanded = ref(false)
@@ -18,8 +19,15 @@ const isExpanded = ref(false)
 <template>
     <div>
         <button
-            class="flex w-full items-center gap-10 p-5 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:gap-12 sm:p-6"
-            :class="isExpanded || isModified ? 'bg-button-normal' : 'bg-button-soften'"
+            class="flex w-full items-center gap-10 p-5 transition-colors focus-visible:outline sm:gap-12 sm:p-6"
+            :class="
+                isValidating && option.required && !isModified
+                    ? 'bg-warning'
+                    : [
+                          'hover:bg-button-highlighted active:bg-button-pressed',
+                          isExpanded || isModified ? 'bg-button-normal' : 'bg-button-soften',
+                      ]
+            "
             type="button"
             @click="isExpanded = !isExpanded"
         >

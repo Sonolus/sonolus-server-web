@@ -27,7 +27,19 @@ const query = ref(
         : { type: props.form.type },
 )
 
+const isValidating = ref(false)
+
 const onSubmit = () => {
+    isValidating.value = true
+
+    if (props.form.options.some((option) => option.required && !(option.query in query.value))) {
+        emit('overlay', {
+            type: 'error',
+            getMessage: () => i18n.value.routes.server.forms.validationError,
+        })
+        return
+    }
+
     if (props.form.requireConfirmation) {
         emit('overlay', {
             type: 'confirm',
@@ -56,6 +68,7 @@ const submit = () => {
                 :key
                 v-model="query"
                 :option="option as never"
+                :is-validating
             />
 
             <div class="flex justify-end">

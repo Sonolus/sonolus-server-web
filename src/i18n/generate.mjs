@@ -260,6 +260,7 @@ const i18n = {
             },
             search: { title: '' },
             forms: {
+                validationError: '',
                 confirmation: '',
             },
             infos: {

@@ -21,6 +21,8 @@ const query = ref(
 <template>
     <AppForm>
         <ViewSection :title="i18nText(form.title)">
+            <p v-if="form.description" class="whitespace-break-spaces">{{ form.description }}</p>
+
             <component
                 :is="fields[option.type]"
                 v-for="(option, key) in form.options"
@@ -28,6 +30,7 @@ const query = ref(
                 v-model="query"
                 :option="option as never"
             />
+
             <div class="flex justify-end">
                 <slot :query />
             </div>

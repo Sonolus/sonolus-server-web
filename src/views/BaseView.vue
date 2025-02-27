@@ -5,7 +5,9 @@ import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import NavBar from '@/components/NavBar.vue'
 import ViewBanner from '@/components/ViewBanner.vue'
 import { i18n, type I18n } from '@/i18n'
+import IconCheck from '@/icons/IconCheck.vue'
 import IconError from '@/icons/IconError.vue'
+import IconQuestion from '@/icons/IconQuestion.vue'
 import IconXMark from '@/icons/IconXMark.vue'
 import { viewData, type OverlayState } from '@/views/BaseView'
 import { computed, ref, watchEffect, type Component } from 'vue'
@@ -44,6 +46,11 @@ const title = computed(() =>
 const banner = computed(() => props.banner?.({ ...props.componentProps, data: data.value }))
 
 const overlayState = ref<OverlayState>()
+
+const onConfirm = (onConfirm: () => void) => {
+    overlayState.value = undefined
+    onConfirm()
+}
 
 const onReload = () => {
     isLoading.value = true
@@ -107,7 +114,7 @@ watchEffect(async () => {
                     </div>
 
                     <div
-                        v-else
+                        v-else-if="overlayState.type === 'error'"
                         class="flex h-full flex-col items-center justify-center gap-30 sm:gap-36"
                     >
                         <div class="flex flex-col items-center justify-center gap-10 sm:gap-12">
@@ -120,6 +127,27 @@ watchEffect(async () => {
                         <div class="flex justify-center">
                             <AppButton :icon="IconXMark" @click="overlayState = undefined">
                                 {{ i18n.common.cancel }}
+                            </AppButton>
+                        </div>
+                    </div>
+
+                    <div
+                        v-else-if="overlayState.type === 'confirm'"
+                        class="flex h-full flex-col items-center justify-center gap-30 sm:gap-36"
+                    >
+                        <div class="flex flex-col items-center justify-center gap-10 sm:gap-12">
+                            <IconQuestion class="size-30 fill-current sm:size-36" />
+                            <span class="whitespace-break-spaces text-center">
+                                {{ overlayState.getMessage() }}
+                            </span>
+                        </div>
+
+                        <div class="mt-10 flex flex-wrap justify-center gap-10 sm:mt-12 sm:gap-12">
+                            <AppButton :icon="IconXMark" @click="overlayState = undefined">
+                                {{ i18n.common.cancel }}
+                            </AppButton>
+                            <AppButton :icon="IconCheck" @click="onConfirm(overlayState.onConfirm)">
+                                {{ i18n.common.confirm }}
                             </AppButton>
                         </div>
                     </div>

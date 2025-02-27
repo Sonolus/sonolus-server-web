@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import AppButton from '@/components/AppButton.vue'
 import { i18n } from '@/i18n'
 import IconCheck from '@/icons/IconCheck.vue'
+import type { OverlayEmit } from '@/views/BaseView'
 import type { FormResult } from '@/views/form'
 import FormView from '@/views/form/FormView.vue'
 import { viewOptions } from '@/views/viewOptions'
@@ -23,12 +23,18 @@ const props = defineProps<{
         onSubmit: (result: FormResult) => void
     }
 }>()
+
+defineEmits<OverlayEmit>()
 </script>
 
 <template>
-    <FormView v-slot="result" :query="{}" :forms="[data.action]">
-        <AppButton :icon="IconCheck" data-submit @click="data.onSubmit(result)">
-            {{ i18n.common.submit }}
-        </AppButton>
+    <FormView
+        :query="{}"
+        :forms="[data.action]"
+        :icon="IconCheck"
+        @overlay="$emit('overlay', $event)"
+        @submit="data.onSubmit"
+    >
+        {{ i18n.common.submit }}
     </FormView>
 </template>

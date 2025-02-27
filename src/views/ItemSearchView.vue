@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import AppButton from '@/components/AppButton.vue'
+import { pushRoute } from '@/components/AppLink'
 import { i18n } from '@/i18n'
 import IconSearch from '@/icons/IconSearch.vue'
 import { paths } from '@/utils/item'
+import type { OverlayEmit } from '@/views/BaseView'
 import FormView from '@/views/form/FormView.vue'
 import { viewOptions } from '@/views/viewOptions'
 import { Text, type ItemType, type ServerForm } from '@sonolus/core'
@@ -27,6 +28,8 @@ const props = defineProps<{
     }
 }>()
 
+defineEmits<OverlayEmit>()
+
 const forms = computed<ServerForm[]>(() => [
     {
         type: 'quick',
@@ -50,13 +53,13 @@ const forms = computed<ServerForm[]>(() => [
 </script>
 
 <template>
-    <FormView v-slot="result" :query :forms>
-        <AppButton
-            :to="{ name: `${type}-list`, query: result.query }"
-            :icon="IconSearch"
-            data-submit
-        >
-            {{ i18n.common.search }}
-        </AppButton>
+    <FormView
+        :query
+        :forms
+        :icon="IconSearch"
+        @overlay="$emit('overlay', $event)"
+        @submit="pushRoute({ name: `${type}-list`, query: $event.query })"
+    >
+        {{ i18n.common.search }}
     </FormView>
 </template>

@@ -14,6 +14,7 @@ const i18n = {
         create: '',
         submit: '',
         cancel: '',
+        confirm: '',
         search: '',
         multiField: {
             selected: '',
@@ -257,6 +258,9 @@ const i18n = {
                 configuration: '',
             },
             search: { title: '' },
+            forms: {
+                confirmation: '',
+            },
             infos: {
                 advanced: '',
                 room: { title: '' },

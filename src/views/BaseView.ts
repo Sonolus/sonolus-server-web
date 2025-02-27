@@ -1,11 +1,20 @@
-export type OverlayState = {
-    type: 'loading' | 'error'
-    getMessage: () => string
+export type OverlayState =
+    | {
+          type: 'loading' | 'error'
+          getMessage: () => string
+      }
+    | {
+          type: 'confirm'
+          getMessage: () => string
+          onConfirm: () => void
+      }
+
+export type OverlayEmit = {
+    overlay: [state?: OverlayState]
 }
 
-export type ViewEmit = {
+export type ViewEmit = OverlayEmit & {
     reload: []
-    overlay: [state?: OverlayState]
 }
 
 export let viewData: { routeId: unknown; data: unknown } | undefined

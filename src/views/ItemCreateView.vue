@@ -10,7 +10,6 @@ import type { ItemType, ServerForm } from '@sonolus/core'
 defineOptions(
     viewOptions({
         title: ({ i18n }) => i18n.common.create,
-        error: ({ i18n }) => i18n.notFound,
     }),
 )
 

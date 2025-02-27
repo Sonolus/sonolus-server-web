@@ -94,7 +94,7 @@ const onSubmit = async (result: FormResult) => {
                 v-for="(action, key) in comment.actions"
                 :key
                 :to="{
-                    name: `${type}-community-action`,
+                    name: `${type}-action`,
                     params: { name },
                     data: { title, action, onSubmit },
                 }"

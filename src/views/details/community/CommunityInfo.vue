@@ -129,7 +129,7 @@ const navigateCommentsToPage = (page: number) => {
                 v-for="(action, key) in info.actions"
                 :key
                 :to="{
-                    name: `${type}-community-action`,
+                    name: `${type}-action`,
                     params: { name },
                     data: { title, action, onSubmit },
                 }"

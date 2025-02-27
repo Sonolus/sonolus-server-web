@@ -13,7 +13,7 @@ const getRouteId = () => (history.state as { routeId: string }).routeId
             <KeepAlive>
                 <component
                     :is="Component"
-                    :key="`${getRouteId()}:${locale}:${route.fullPath}`"
+                    :key="`${getRouteId()}:${locale}:${String(route.name)}:${route.fullPath}`"
                     :route-id="getRouteId()"
                 />
             </KeepAlive>

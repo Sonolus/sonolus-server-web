@@ -10,7 +10,6 @@ import type { ItemType, ServerForm } from '@sonolus/core'
 defineOptions(
     viewOptions<typeof props>({
         title: ({ props: { name, data } }) => data?.title ?? name,
-        error: ({ i18n }) => i18n.notFound,
     }),
 )
 

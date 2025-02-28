@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { useI18n } from '@/i18n'
+import { i18nText } from '@/i18n'
 import type { ServerOption } from '@sonolus/core'
 
 defineProps<{
     option: ServerOption
 }>()
-
-const { i18nText } = useI18n()
 </script>
 
 <template>

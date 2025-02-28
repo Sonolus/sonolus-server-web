@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { sonolusGet } from '@/client'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import ViewSection from '@/components/ViewSection.vue'
-import { useI18n } from '@/i18n'
+import { i18n, i18nText } from '@/i18n'
 import IconAngleDown from '@/icons/IconAngleDown.vue'
 import IconAngleUp from '@/icons/IconAngleUp.vue'
 import IconRadioOff from '@/icons/IconRadioOff.vue'
@@ -18,8 +19,6 @@ const props = defineProps<{
     leaderboards: ServerItemLeaderboard[]
 }>()
 
-const { locale, i18n, i18nText } = useI18n()
-
 const isExpanded = ref(false)
 const index = ref(0)
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -34,13 +33,9 @@ watchEffect(async () => {
         isLoading.value = true
         details.value = undefined
 
-        const searchParams = new URLSearchParams()
-        searchParams.append('localization', locale.value)
-
-        const response = await fetch(
-            `${import.meta.env.BASE_URL}sonolus/${paths[props.type]}/${props.name}/leaderboards/${leaderboardName.value}?${searchParams}`,
-        )
-        details.value = (await response.json()) as never
+        details.value = await sonolusGet({
+            url: `/${paths[props.type]}/${props.name}/leaderboards/${leaderboardName.value}`,
+        })
     } finally {
         isLoading.value = false
     }

@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { sonolusGet } from '@/client'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import NavBar from '@/components/NavBar.vue'
-import SelectLocalization from '@/components/SelectLocalization.vue'
 import ViewBanner from '@/components/ViewBanner.vue'
-import { useI18n, type I18n } from '@/i18n'
+import { i18n, type I18n } from '@/i18n'
 import IconError from '@/icons/IconError.vue'
 import { viewData } from '@/views/BaseView'
 import { computed, ref, type Component } from 'vue'
@@ -20,8 +20,6 @@ const props = defineProps<{
         query: Record<string, string>
     }
 }>()
-
-const { locale, i18n } = useI18n()
 
 const state = ref<boolean>()
 const data = ref<unknown>()
@@ -50,36 +48,22 @@ void (async () => {
     }
 
     try {
-        const searchParams = new URLSearchParams(props.componentProps.query)
-        searchParams.append('localization', locale.value)
-
-        const response = await fetch(
-            `${import.meta.env.BASE_URL}sonolus${props.url(props.componentProps)}?${searchParams}`,
-        )
-        data.value = await response.json()
+        data.value = await sonolusGet({
+            url: props.url(props.componentProps),
+            query: props.componentProps.query,
+        })
         state.value = true
     } catch {
         state.value = false
     }
 })()
-
-const showSelectLocalization = ref(false)
 </script>
 
 <template>
     <div class="transition-opacity">
-        <NavBar
-            v-model="showSelectLocalization"
-            class="transition-transform v-transition:-translate-y-full"
-            :title
-        />
+        <NavBar class="transition-transform v-transition:-translate-y-full" :title />
 
-        <SelectLocalization v-model="showSelectLocalization" />
-
-        <main
-            class="mx-auto max-w-3xl p-30 transition-opacity v-transition:opacity-0 sm:p-36"
-            :inert="showSelectLocalization"
-        >
+        <main class="mx-auto max-w-3xl p-30 transition-opacity v-transition:opacity-0 sm:p-36">
             <Transition
                 mode="out-in"
                 enter-from-class="opacity-0"

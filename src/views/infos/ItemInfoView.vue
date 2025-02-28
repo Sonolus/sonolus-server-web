@@ -4,7 +4,7 @@ import AppForm from '@/components/AppForm.vue'
 import TextInput from '@/components/TextInput.vue'
 import ViewSection from '@/components/ViewSection.vue'
 import ItemCard from '@/components/cards/ItemCard.vue'
-import { useI18n } from '@/i18n'
+import { i18n, i18nText } from '@/i18n'
 import IconAdvanced from '@/icons/IconAdvanced.vue'
 import IconMore from '@/icons/IconMore.vue'
 import IconSearch from '@/icons/IconSearch.vue'
@@ -30,8 +30,6 @@ const props = defineProps<{
     type: ItemType
     data: ServerItemInfo
 }>()
-
-const { i18n, i18nText } = useI18n()
 
 const search = ref('')
 const keywords = computed(() => search.value.trim())

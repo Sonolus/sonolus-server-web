@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useI18n } from '@/i18n'
+import { i18nText } from '@/i18n'
 import IconAngleDown from '@/icons/IconAngleDown.vue'
 import IconAngleUp from '@/icons/IconAngleUp.vue'
 import type { ServerOption } from '@sonolus/core'
@@ -10,8 +10,6 @@ defineProps<{
     displayValue: string
     isModified?: boolean
 }>()
-
-const { i18nText } = useI18n()
 
 const isExpanded = ref(false)
 </script>

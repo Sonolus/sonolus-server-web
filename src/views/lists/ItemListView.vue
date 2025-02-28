@@ -2,7 +2,7 @@
 import AppButton from '@/components/AppButton.vue'
 import OpenInSonolus from '@/components/OpenInSonolus.vue'
 import ItemCard from '@/components/cards/ItemCard.vue'
-import { useI18n } from '@/i18n'
+import { i18n, i18nText } from '@/i18n'
 import IconAngleLeft from '@/icons/IconAngleLeft.vue'
 import IconAngleRight from '@/icons/IconAngleRight.vue'
 import IconAnglesLeft from '@/icons/IconAnglesLeft.vue'
@@ -30,8 +30,6 @@ const props = defineProps<{
     query: Record<string, string>
     data: ServerItemList<Item>
 }>()
-
-const { i18n, i18nText } = useI18n()
 
 const text = computed(() => {
     if (!props.data.searches) return

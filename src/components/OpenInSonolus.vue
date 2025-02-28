@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getOpenInSonolusUrl } from '@/components/OpenInSonolus'
-import { useI18n } from '@/i18n'
+import { i18n } from '@/i18n'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -9,7 +9,6 @@ defineProps<{
 }>()
 
 const route = useRoute()
-const { i18n } = useI18n()
 
 const href = computed(() => getOpenInSonolusUrl(route.fullPath))
 </script>

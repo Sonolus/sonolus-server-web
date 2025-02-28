@@ -2,7 +2,7 @@
 import BaseField from '@/components/fields/BaseField.vue'
 import UndoButton from '@/components/fields/UndoButton.vue'
 import { useQuery } from '@/components/fields/query'
-import { useI18n } from '@/i18n'
+import { i18nText } from '@/i18n'
 import type { ServerTextAreaOption } from '@sonolus/core'
 
 const props = defineProps<{
@@ -10,8 +10,6 @@ const props = defineProps<{
 }>()
 
 const query = defineModel<Record<string, string>>({ required: true })
-
-const { i18nText } = useI18n()
 
 const { value, isModified } = useQuery(
     query,

@@ -4,7 +4,7 @@ import ViewSection from '@/components/ViewSection.vue'
 import ItemCard from '@/components/cards/ItemCard.vue'
 import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { thumbnails } from '@/components/thumbnails'
-import { useI18n } from '@/i18n'
+import { i18n, i18nText } from '@/i18n'
 import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
 import CommunitySection from '@/views/details/community/CommunitySection.vue'
 import { detailsViewOptions } from '@/views/details/detailsViewOptions'
@@ -13,8 +13,6 @@ import LeaderboardSection from '@/views/details/leaderboard/LeaderboardSection.v
 defineOptions(detailsViewOptions)
 
 defineProps<ItemDetailsViewProps<'post'>>()
-
-const { i18n, i18nText } = useI18n()
 </script>
 
 <template>

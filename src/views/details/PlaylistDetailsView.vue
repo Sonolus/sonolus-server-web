@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ViewSection from '@/components/ViewSection.vue'
 import ItemCard from '@/components/cards/ItemCard.vue'
-import { useI18n } from '@/i18n'
+import { i18n } from '@/i18n'
 import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
 import ItemDetailsView from '@/views/details/ItemDetailsView.vue'
 import { detailsViewOptions } from '@/views/details/detailsViewOptions'
@@ -9,8 +9,6 @@ import { detailsViewOptions } from '@/views/details/detailsViewOptions'
 defineOptions(detailsViewOptions)
 
 defineProps<ItemDetailsViewProps<'playlist'>>()
-
-const { i18n } = useI18n()
 </script>
 
 <template>

@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import AppLink from '@/components/AppLink.vue'
+import IconAngleLeft from '@/icons/IconAngleLeft.vue'
 import IconHome from '@/icons/IconHome.vue'
-import IconLocalization from '@/icons/IconLocalization.vue'
 import { computed, onActivated, onDeactivated, ref, watchEffect } from 'vue'
+import { useRouter } from 'vue-router'
 
 const props = defineProps<{
     title: string | undefined
 }>()
+
+const router = useRouter()
 
 // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
 const navBarTitle = computed(() => props.title || import.meta.env.VITE_TITLE)
@@ -25,7 +28,9 @@ watchEffect(() => {
     document.title = documentTitle.value
 })
 
-const value = defineModel<boolean>()
+const onBack = () => {
+    router.back()
+}
 </script>
 
 <template>
@@ -46,9 +51,9 @@ const value = defineModel<boolean>()
         <button
             class="flex-shrink-0 p-10 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:p-12"
             type="button"
-            @click="value = !value"
+            @click="onBack"
         >
-            <IconLocalization class="size-30 fill-current sm:size-36" />
+            <IconAngleLeft class="size-30 fill-current sm:size-36" />
         </button>
     </nav>
 </template>

@@ -279,6 +279,14 @@ const i18n = {
             },
             jump: '',
         },
+        settings: {
+            ui: {
+                contentLocalization: {
+                    title: '',
+                    description: '',
+                },
+            },
+        },
     },
 }
 
@@ -352,7 +360,7 @@ function walk(localization, obj = i18n, parentPath = '', level = 1, lines = []) 
 }
 
 function capitalize(text) {
-    return text[0].toUpperCase() + text.substring(1)
+    return text === 'ui' ? 'UI' : text[0].toUpperCase() + text.substring(1)
 }
 
 function getArgumentCount(text) {

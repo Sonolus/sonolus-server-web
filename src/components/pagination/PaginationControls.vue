@@ -26,7 +26,7 @@ const page = computed({
             <PaginationButton
                 :icon="IconAngleRight"
                 :disabled="cursor === undefined"
-                @click="value = cursor"
+                @click="value = cursor ?? ''"
             />
         </template>
         <template v-else>

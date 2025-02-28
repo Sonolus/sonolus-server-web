@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { fields } from '@/components/fields'
+import type { OptionValues } from '@/components/fields/value'
 import ViewSection from '@/components/ViewSection.vue'
 import { configuration } from '@/configuration'
 import { i18n, locales } from '@/i18n'
@@ -36,6 +37,19 @@ const options = computed<ServerOption[]>(() => [
     },
     ...props.data.configuration.options,
 ])
+
+const values = computed({
+    get: (): OptionValues =>
+        Object.fromEntries(
+            Object.entries(configuration.value).map(([key, value]) => [key, { value, files: {} }]),
+        ),
+
+    set: (values) => {
+        configuration.value = Object.fromEntries(
+            Object.entries(values).map(([key, { value }]) => [key, value]),
+        ) as never
+    },
+})
 </script>
 
 <template>
@@ -44,7 +58,7 @@ const options = computed<ServerOption[]>(() => [
             :is="fields[option.type]"
             v-for="(option, key) in options"
             :key
-            v-model="configuration"
+            v-model="values"
             :option="option as never"
         />
     </ViewSection>

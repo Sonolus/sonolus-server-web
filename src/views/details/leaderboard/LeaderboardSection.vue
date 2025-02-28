@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { sonolusGet } from '@/client'
+import AppButton from '@/components/AppButton.vue'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import ViewSection from '@/components/ViewSection.vue'
 import { i18n, i18nText } from '@/i18n'
@@ -66,21 +67,15 @@ watchEffect(async () => {
                 >
                     <div class="overflow-hidden">
                         <div class="flex flex-wrap gap-10 p-30 sm:gap-12 sm:p-36">
-                            <button
+                            <AppButton
                                 v-for="(leaderboard, i) in leaderboards"
                                 :key="leaderboard.name"
-                                class="flex items-center gap-5 bg-button-normal p-5 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:gap-6 sm:p-6"
-                                type="button"
+                                :icon="index === i ? IconRadioOn : IconRadioOff"
+                                auto-width
                                 @click="index = i"
                             >
-                                <component
-                                    :is="index === i ? IconRadioOn : IconRadioOff"
-                                    class="size-20 fill-current sm:size-24"
-                                />
-                                <span class="px-2.5 text-center sm:px-3">
-                                    {{ i18nText(leaderboard.title) }}
-                                </span>
-                            </button>
+                                {{ i18nText(leaderboard.title) }}
+                            </AppButton>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import AppButton from '@/components/AppButton.vue'
 import BaseField from '@/components/fields/BaseField.vue'
 import UndoButton from '@/components/fields/UndoButton.vue'
-import { useQuery } from '@/components/fields/query'
+import { useValue, type OptionValues } from '@/components/fields/value'
 import { i18nText } from '@/i18n'
 import IconRadioOff from '@/icons/IconRadioOff.vue'
 import IconRadioOn from '@/icons/IconRadioOn.vue'
@@ -11,14 +12,14 @@ const props = defineProps<{
     option: ServerSelectOption
 }>()
 
-const query = defineModel<Record<string, string>>({ required: true })
+const values = defineModel<OptionValues>({ required: true })
 
-const { value, isModified } = useQuery(
-    query,
+const { value, isModified } = useValue(
+    values,
     props.option,
     () => props.option.def,
-    (value) => value,
-    (value) => value,
+    ({ value }) => value,
+    (value) => ({ value, files: {} }),
 )
 </script>
 
@@ -32,21 +33,15 @@ const { value, isModified } = useQuery(
             <UndoButton class="flex-shrink-0" :is-modified @click="value = option.def" />
         </div>
         <div class="mt-10 flex flex-wrap gap-10 sm:mt-12 sm:gap-12">
-            <button
+            <AppButton
                 v-for="{ name, title } in option.values"
                 :key="name"
-                class="flex items-center gap-5 bg-button-normal p-5 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:gap-6 sm:p-6"
-                type="button"
+                :icon="value === name ? IconRadioOn : IconRadioOff"
+                auto-width
                 @click="value = name"
             >
-                <component
-                    :is="value === name ? IconRadioOn : IconRadioOff"
-                    class="size-20 fill-current sm:size-24"
-                />
-                <span class="px-2.5 text-center sm:px-3">
-                    {{ i18nText(title) }}
-                </span>
-            </button>
+                {{ i18nText(title) }}
+            </AppButton>
         </div>
     </BaseField>
 </template>

@@ -1,6 +1,7 @@
 {
     "lang": "en",
     "openInSonolus": "Open in Sonolus",
+    "optionNotSupported": "This option is not supported on web. Please use Sonolus app.",
     "loggedIn": "Signed in as: ",
     "logIn": "Click the following link to sign in with Sonolus.",
     "logInTimedOut": "Sign in timed out.",

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { i18nText } from '@/i18n'
+import BaseField from '@/components/fields/BaseField.vue'
+import { i18n } from '@/i18n'
 import type { ServerOption } from '@sonolus/core'
 
 defineProps<{
@@ -8,7 +9,9 @@ defineProps<{
 </script>
 
 <template>
-    <div class="bg-button-disabled p-5 text-text-disabled sm:p-6" inert>
-        {{ i18nText(option.name) }}
-    </div>
+    <BaseField :option display-value="">
+        <span class="whitespace-break-spaces">
+            {{ i18n.optionNotSupported }}
+        </span>
+    </BaseField>
 </template>

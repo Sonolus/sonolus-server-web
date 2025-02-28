@@ -1,15 +1,17 @@
 import { getOpenInSonolusUrl } from '@/components/OpenInSonolus'
 import { paths } from '@/utils/item'
-import BaseView from '@/views/BaseView.vue'
-import JumpToPageView from '@/views/JumpToPageView.vue'
-import NotFoundView from '@/views/NotFoundView.vue'
 import AuthenticationView from '@/views/authentication/AuthenticationView.vue'
+import BaseView from '@/views/BaseView.vue'
 import ConfigurationView from '@/views/configuration/ConfigurationView.vue'
 import { detailsViews } from '@/views/details'
 import HomeView from '@/views/home/HomeView.vue'
 import ItemInfoView from '@/views/infos/ItemInfoView.vue'
+import ItemActionView from '@/views/ItemActionView.vue'
+import ItemCreateView from '@/views/ItemCreateView.vue'
+import ItemSearchView from '@/views/ItemSearchView.vue'
+import JumpToPageView from '@/views/JumpToPageView.vue'
 import ItemListView from '@/views/lists/ItemListView.vue'
-import ItemSearchView from '@/views/search/ItemSearchView.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
 import type { Component } from 'vue'
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 
@@ -67,6 +69,12 @@ export const router = createRouter({
                 props: { type },
             },
             {
+                name: `${type}-create`,
+                path: `/${paths[type]}/info`,
+                component: ItemCreateView,
+                props: { type },
+            },
+            {
                 name: `${type}-list`,
                 path: `/${paths[type]}/list`,
                 component: ItemListView,
@@ -88,6 +96,12 @@ export const router = createRouter({
                 name: `${type}-details`,
                 path: `/${paths[type]}/:name`,
                 component: detailsViews[type],
+                props: { type },
+            },
+            {
+                name: `${type}-action`,
+                path: `/${paths[type]}/:name`,
+                component: ItemActionView,
                 props: { type },
             },
         ]),

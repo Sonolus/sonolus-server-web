@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { sonolusPost, sonolusUpload } from '@/client'
 import AppButton from '@/components/AppButton.vue'
 import AppForm from '@/components/AppForm.vue'
 import TextInput from '@/components/TextInput.vue'
@@ -7,11 +8,20 @@ import ItemCard from '@/components/cards/ItemCard.vue'
 import { i18n, i18nText } from '@/i18n'
 import IconAdvanced from '@/icons/IconAdvanced.vue'
 import IconMore from '@/icons/IconMore.vue'
+import IconPlus from '@/icons/IconPlus.vue'
 import IconSearch from '@/icons/IconSearch.vue'
 import { paths } from '@/utils/item'
+import { type ViewEmit } from '@/views/BaseView'
+import type { FormResult } from '@/views/form'
 import { viewOptions } from '@/views/viewOptions'
-import type { ItemType, ServerItemInfo } from '@sonolus/core'
+import type {
+    ItemType,
+    ServerCreateItemResponse,
+    ServerItemInfo,
+    ServerUploadItemResponse,
+} from '@sonolus/core'
 import { computed, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 defineOptions(
     viewOptions<typeof props>({
@@ -25,14 +35,66 @@ defineOptions(
     }),
 )
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<{
     type: ItemType
     data: ServerItemInfo
 }>()
 
+const emit = defineEmits<ViewEmit>()
+
+const router = useRouter()
+
 const search = ref('')
 const keywords = computed(() => search.value.trim())
+
+const onCreate = async (result: FormResult) => {
+    router.back()
+
+    try {
+        emit('overlay', {
+            type: 'loading',
+            getMessage: () => i18n.value.clients.customServer[props.type].create.loading,
+        })
+
+        const { key, hashes, shouldUpdateInfo, shouldNavigateToItem } =
+            await sonolusPost<ServerCreateItemResponse>({
+                url: `/${paths[props.type]}/create`,
+                body: {
+                    values: new URLSearchParams(result.query).toString(),
+                },
+            })
+
+        if (hashes.length) {
+            await sonolusUpload<ServerUploadItemResponse>({
+                url: `/${paths[props.type]}/upload`,
+                key,
+                hashes,
+                files: result.files,
+            })
+        }
+
+        if (shouldUpdateInfo) {
+            emit('reload')
+        }
+
+        if (shouldNavigateToItem) {
+            void router.push({
+                name: `${props.type}-details`,
+                params: { name: shouldNavigateToItem },
+            })
+        }
+
+        emit('overlay')
+    } catch {
+        emit('overlay', {
+            type: 'error',
+            getMessage: () =>
+                i18n.value.clients.customServer[props.type].create.error(
+                    import.meta.env.VITE_TITLE,
+                ),
+        })
+    }
+}
 </script>
 
 <template>
@@ -44,6 +106,13 @@ const keywords = computed(() => search.value.trim())
             :placeholder="i18n.texts['#KEYWORDS_PLACEHOLDER']"
         />
         <div class="mt-10 flex flex-wrap justify-center gap-10 sm:mt-12 sm:gap-12">
+            <AppButton
+                v-if="data.creates?.length"
+                :to="{ name: `${type}-create`, data: { creates: data.creates, onCreate } }"
+                :icon="IconPlus"
+            >
+                {{ i18n.common.create }}
+            </AppButton>
             <AppButton
                 v-if="data.searches?.length"
                 :to="{ name: `${type}-search`, data }"

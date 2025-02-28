@@ -1,30 +1,37 @@
 import type { ServerOption } from '@sonolus/core'
 import { computed, type Ref } from 'vue'
 
-export const useQuery = <T>(
-    query: Ref<Record<string, string>>,
+export type OptionValue = {
+    value: string
+    files: Record<string, File>
+}
+
+export type OptionValues = Record<string, OptionValue>
+
+export const useValue = <T>(
+    values: Ref<OptionValues>,
     option: ServerOption,
     getDefault: () => T,
-    deserialize: (value: string) => T,
-    serialize: (value: T) => string,
+    deserialize: (value: OptionValue) => T,
+    serialize: (value: T) => OptionValue,
     comparer: (a: T, b: T) => boolean = (a, b) => a === b,
 ) => {
     const value = computed({
         get: () => {
-            const value = query.value[option.query]
-            return value !== undefined ? deserialize(value) : getDefault()
+            const value = values.value[option.query]
+            return value ? deserialize(value) : getDefault()
         },
 
         set: (value) => {
-            const newQuery = { ...query.value }
+            const newValues = { ...values.value }
             if (comparer(value, getDefault())) {
                 // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-                delete newQuery[option.query]
+                delete newValues[option.query]
             } else {
-                newQuery[option.query] = serialize(value)
+                newValues[option.query] = serialize(value)
             }
 
-            query.value = newQuery
+            values.value = newValues
         },
     })
 

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppButton from '@/components/AppButton.vue'
 import IconXMark from '@/icons/IconXMark.vue'
 import type { Component } from 'vue'
 
@@ -26,12 +27,6 @@ const value = defineModel<string>()
                 class="absolute left-5 top-5 size-20 fill-current sm:left-6 sm:top-6 sm:size-24"
             />
         </div>
-        <button
-            class="flex-shrink-0 bg-button-normal p-5 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:p-6"
-            type="button"
-            @click="value = ''"
-        >
-            <IconXMark class="size-20 fill-current sm:size-24" />
-        </button>
+        <AppButton :icon="IconXMark" @click="value = ''" />
     </div>
 </template>

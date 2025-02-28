@@ -6,6 +6,8 @@ import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { thumbnails } from '@/components/thumbnails'
 import { dynamicIcons } from '@/dynamicIcons'
 import { i18n, i18nText } from '@/i18n'
+import { type ViewEmit } from '@/views/BaseView'
+import ItemActions from '@/views/details/ItemActions.vue'
 import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
 import CommunitySection from '@/views/details/community/CommunitySection.vue'
 import { detailsViewOptions } from '@/views/details/detailsViewOptions'
@@ -14,6 +16,8 @@ import LeaderboardSection from '@/views/details/leaderboard/LeaderboardSection.v
 defineOptions(detailsViewOptions)
 
 defineProps<ItemDetailsViewProps>()
+
+defineEmits<ViewEmit>()
 </script>
 
 <template>
@@ -25,6 +29,8 @@ defineProps<ItemDetailsViewProps>()
         </div>
         <OpenInSonolus />
     </div>
+
+    <ItemActions v-bind="$props" @reload="$emit('reload')" @overlay="$emit('overlay', $event)" />
 
     <ViewSection :title="i18n.routes.server.details.description.title">
         <p v-if="data.description" class="whitespace-break-spaces">{{ data.description }}</p>
@@ -60,7 +66,13 @@ defineProps<ItemDetailsViewProps>()
 
     <slot />
 
-    <CommunitySection v-if="data.hasCommunity" :type :name />
+    <CommunitySection
+        v-if="data.hasCommunity"
+        :type
+        :name
+        :title="data.item.title"
+        @overlay="$emit('overlay', $event)"
+    />
 
     <LeaderboardSection
         v-if="data.leaderboards.length"

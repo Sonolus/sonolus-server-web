@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { sonolusPost } from '@/client'
+import { sonolusPost, sonolusUpload } from '@/client'
 import AppButton from '@/components/AppButton.vue'
 import { dynamicIcons } from '@/dynamicIcons'
 import { i18n, i18nText } from '@/i18n'
@@ -8,7 +8,7 @@ import { paths } from '@/utils/item'
 import { type ViewEmit } from '@/views/BaseView'
 import { type ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
 import type { FormResult } from '@/views/form'
-import type { ServerSubmitItemActionResponse } from '@sonolus/core'
+import type { ServerSubmitItemActionResponse, ServerUploadItemActionResponse } from '@sonolus/core'
 import { useRouter } from 'vue-router'
 
 const props = defineProps<ItemDetailsViewProps>()
@@ -26,13 +26,22 @@ const onSubmit = async (result: FormResult) => {
             getMessage: () => i18n.value.clients.customServer[props.type].submit.loading,
         })
 
-        const { shouldUpdateItem, shouldRemoveItem, shouldNavigateToItem } =
+        const { key, hashes, shouldUpdateItem, shouldRemoveItem, shouldNavigateToItem } =
             await sonolusPost<ServerSubmitItemActionResponse>({
                 url: `/${paths[props.type]}/${props.name}/submit`,
                 body: {
                     values: new URLSearchParams(result.query).toString(),
                 },
             })
+
+        if (hashes.length) {
+            await sonolusUpload<ServerUploadItemActionResponse>({
+                url: `/${paths[props.type]}/${props.name}/upload`,
+                key,
+                hashes,
+                files: result.files,
+            })
+        }
 
         if (shouldRemoveItem) {
             router.back()

@@ -2,7 +2,7 @@
 import TextInput from '@/components/TextInput.vue'
 import BaseField from '@/components/fields/BaseField.vue'
 import UndoButton from '@/components/fields/UndoButton.vue'
-import { useQuery } from '@/components/fields/query'
+import { useValue, type OptionValues } from '@/components/fields/value'
 import { i18nText } from '@/i18n'
 import IconSearch from '@/icons/IconSearch.vue'
 import type { ServerTextOption } from '@sonolus/core'
@@ -11,14 +11,14 @@ const props = defineProps<{
     option: ServerTextOption
 }>()
 
-const query = defineModel<Record<string, string>>({ required: true })
+const values = defineModel<OptionValues>({ required: true })
 
-const { value, isModified } = useQuery(
-    query,
+const { value, isModified } = useValue(
+    values,
     props.option,
     () => props.option.def,
-    (value) => value,
-    (value) => value,
+    ({ value }) => value,
+    (value) => ({ value, files: {} }),
 )
 </script>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { sonolusPost } from '@/client'
+import { sonolusPost, sonolusUpload } from '@/client'
 import AppButton from '@/components/AppButton.vue'
 import AppForm from '@/components/AppForm.vue'
 import TextInput from '@/components/TextInput.vue'
@@ -14,7 +14,12 @@ import { paths } from '@/utils/item'
 import { type ViewEmit } from '@/views/BaseView'
 import type { FormResult } from '@/views/form'
 import { viewOptions } from '@/views/viewOptions'
-import type { ItemType, ServerCreateItemResponse, ServerItemInfo } from '@sonolus/core'
+import type {
+    ItemType,
+    ServerCreateItemResponse,
+    ServerItemInfo,
+    ServerUploadItemResponse,
+} from '@sonolus/core'
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -51,13 +56,22 @@ const onCreate = async (result: FormResult) => {
             getMessage: () => i18n.value.clients.customServer[props.type].create.loading,
         })
 
-        const { shouldUpdateInfo, shouldNavigateToItem } =
+        const { key, hashes, shouldUpdateInfo, shouldNavigateToItem } =
             await sonolusPost<ServerCreateItemResponse>({
                 url: `/${paths[props.type]}/create`,
                 body: {
                     values: new URLSearchParams(result.query).toString(),
                 },
             })
+
+        if (hashes.length) {
+            await sonolusUpload<ServerUploadItemResponse>({
+                url: `/${paths[props.type]}/upload`,
+                key,
+                hashes,
+                files: result.files,
+            })
+        }
 
         if (shouldUpdateInfo) {
             emit('reload')

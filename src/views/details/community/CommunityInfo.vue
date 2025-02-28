@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { sonolusGet, sonolusPost } from '@/client'
+import { sonolusGet, sonolusPost, sonolusUpload } from '@/client'
 import AppButton from '@/components/AppButton.vue'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import PaginationControls from '@/components/pagination/PaginationControls.vue'
@@ -17,6 +17,7 @@ import type {
     ServerItemCommunityCommentList,
     ServerItemCommunityInfo,
     ServerSubmitItemCommunityActionResponse,
+    ServerUploadItemCommunityActionResponse,
 } from '@sonolus/core'
 import { ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
@@ -72,6 +73,8 @@ const onSubmit = async (result: FormResult) => {
         })
 
         const {
+            key,
+            hashes,
             shouldUpdateCommunity,
             shouldUpdateComments,
             shouldNavigateCommentsToPage = -1,
@@ -81,6 +84,15 @@ const onSubmit = async (result: FormResult) => {
                 values: new URLSearchParams(result.query).toString(),
             },
         })
+
+        if (hashes.length) {
+            await sonolusUpload<ServerUploadItemCommunityActionResponse>({
+                url: `/${paths[props.type]}/${props.name}/community/upload`,
+                key,
+                hashes,
+                files: result.files,
+            })
+        }
 
         if (shouldUpdateCommunity) {
             updateCommunity()

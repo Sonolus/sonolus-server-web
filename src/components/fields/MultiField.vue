@@ -2,7 +2,7 @@
 import AppButton from '@/components/AppButton.vue'
 import BaseField from '@/components/fields/BaseField.vue'
 import UndoButton from '@/components/fields/UndoButton.vue'
-import { useQuery } from '@/components/fields/query'
+import { useValue, type OptionValues } from '@/components/fields/value'
 import { i18n, i18nText } from '@/i18n'
 import IconCheckboxOff from '@/icons/IconCheckboxOff.vue'
 import IconCheckboxOn from '@/icons/IconCheckboxOn.vue'
@@ -13,24 +13,24 @@ const props = defineProps<{
     option: ServerMultiOption
 }>()
 
-const query = defineModel<Record<string, string>>({ required: true })
+const values = defineModel<OptionValues>({ required: true })
 
 const getDefault = () =>
     new Set(
         props.option.values.filter((_, index) => props.option.def[index]).map(({ name }) => name),
     )
 
-const { value, isModified } = useQuery(
-    query,
+const { value, isModified } = useValue(
+    values,
     props.option,
     getDefault,
-    (value) =>
+    ({ value }) =>
         new Set(
             value
                 .split(',')
                 .filter((name) => props.option.values.some((value) => value.name === name)),
         ),
-    (value) => [...value].join(','),
+    (value) => ({ value: [...value].join(','), files: {} }),
     (a, b) => a.size === b.size && [...a].every((value) => b.has(value)),
 )
 

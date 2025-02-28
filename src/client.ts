@@ -34,6 +34,37 @@ export const sonolusPost = async <T>(options: {
     return (await response.json()) as T
 }
 
+export const sonolusUpload = async <T>(options: {
+    url: string
+    query?: Record<string, string>
+    key: string
+    hashes: string[]
+    files: Record<string, File>
+}) => {
+    const params = new URLSearchParams({
+        ...configuration.value,
+        ...options.query,
+    })
+
+    const body = new FormData()
+    for (const hash of options.hashes) {
+        const file = options.files[hash]
+        if (!file) throw new Error(`File ${hash} not found`)
+
+        body.append('files', file, hash)
+    }
+
+    const response = await fetch(`${import.meta.env.BASE_URL}sonolus${options.url}?${params}`, {
+        method: 'POST',
+        headers: {
+            ...getAuthHeaders(),
+            'Sonolus-Upload-Key': options.key,
+        },
+        body,
+    })
+    return (await response.json()) as T
+}
+
 const getAuthHeaders = () => {
     checkAuth()
     if (!auth.value) return

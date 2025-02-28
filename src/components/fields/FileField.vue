@@ -2,23 +2,25 @@
 import AppButton from '@/components/AppButton.vue'
 import BaseField from '@/components/fields/BaseField.vue'
 import UndoButton from '@/components/fields/UndoButton.vue'
-import { useQuery } from '@/components/fields/query'
+import { useValue, type OptionValues } from '@/components/fields/value'
 import { i18n } from '@/i18n'
 import IconXMark from '@/icons/IconXMark.vue'
+import { digest } from '@/utils/sha1'
 import type { ServerFileOption } from '@sonolus/core'
 
 const props = defineProps<{
     option: ServerFileOption
 }>()
 
-const query = defineModel<Record<string, string>>({ required: true })
+const values = defineModel<OptionValues>({ required: true })
 
-const { value, isModified } = useQuery(
-    query,
+const { value, isModified } = useValue(
+    values,
     props.option,
-    () => props.option.def,
+    () => ({ value: props.option.def, files: {} }),
     (value) => value,
     (value) => value,
+    (a, b) => a.value === b.value,
 )
 
 const onSelect = () => {
@@ -28,16 +30,14 @@ const onSelect = () => {
     const onSelect = async () => {
         const file = input.files?.[0]
         if (!file) {
-            value.value = ''
+            value.value = { value: '', files: {} }
             return
         }
 
         const buffer = await file.arrayBuffer()
-        const hash = [...new Uint8Array(await crypto.subtle.digest('SHA-1', buffer))]
-            .map((x) => x.toString(16).padStart(2, '0'))
-            .join('')
+        const hash = await digest(buffer)
 
-        value.value = hash
+        value.value = { value: hash, files: { [hash]: file } }
     }
 
     input.onchange = onSelect
@@ -48,16 +48,24 @@ const onSelect = () => {
 </script>
 
 <template>
-    <BaseField :option :display-value="value || i18n.common.none" :is-modified>
+    <BaseField :option :display-value="value.value || i18n.common.none" :is-modified>
         <div class="flex justify-end gap-10 sm:gap-12">
             <AppButton @click="onSelect">
                 {{ i18n.common.select }}
             </AppButton>
-            <AppButton class="flex-shrink-0" :icon="IconXMark" @click="value = ''" />
-            <UndoButton class="flex-shrink-0" :is-modified @click="value = option.def" />
+            <AppButton
+                class="flex-shrink-0"
+                :icon="IconXMark"
+                @click="value = { value: '', files: {} }"
+            />
+            <UndoButton
+                class="flex-shrink-0"
+                :is-modified
+                @click="value = { value: option.def, files: {} }"
+            />
         </div>
         <div class="mt-10 whitespace-break-spaces sm:mt-12">
-            {{ value || i18n.common.fileField.noSelected }}
+            {{ value.value || i18n.common.fileField.noSelected }}
         </div>
     </BaseField>
 </template>

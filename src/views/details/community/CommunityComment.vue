@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { sonolusPost } from '@/client'
+import { sonolusPost, sonolusUpload } from '@/client'
 import AppButton from '@/components/AppButton.vue'
 import { dynamicIcons } from '@/dynamicIcons'
 import { i18n } from '@/i18n'
@@ -11,6 +11,7 @@ import type {
     ItemType,
     ServerItemCommunityComment,
     ServerSubmitItemCommunityCommentActionResponse,
+    ServerUploadItemCommunityCommentActionResponse,
 } from '@sonolus/core'
 import { useRouter } from 'vue-router'
 
@@ -41,6 +42,8 @@ const onSubmit = async (result: FormResult) => {
         })
 
         const {
+            key,
+            hashes,
             shouldUpdateCommunity,
             shouldUpdateComments,
             shouldNavigateCommentsToPage = -1,
@@ -50,6 +53,15 @@ const onSubmit = async (result: FormResult) => {
                 values: new URLSearchParams(result.query).toString(),
             },
         })
+
+        if (hashes.length) {
+            await sonolusUpload<ServerUploadItemCommunityCommentActionResponse>({
+                url: `/${paths[props.type]}/${props.name}/community/comments/${props.comment.name}/upload`,
+                key,
+                hashes,
+                files: result.files,
+            })
+        }
 
         if (shouldUpdateCommunity) {
             emit('updateCommunity')

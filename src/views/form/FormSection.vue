@@ -2,6 +2,7 @@
 import AppButton from '@/components/AppButton.vue'
 import AppForm from '@/components/AppForm.vue'
 import { fields } from '@/components/fields'
+import type { OptionValues } from '@/components/fields/value'
 import ViewSection from '@/components/ViewSection.vue'
 import { i18n, i18nText } from '@/i18n'
 import type { OverlayEmit } from '@/views/BaseView'
@@ -21,10 +22,17 @@ const emit = defineEmits<
     }
 >()
 
-const query = ref(
+const values = ref<OptionValues>(
     props.query.type === props.form.type
-        ? Object.fromEntries(new URLSearchParams(props.query))
-        : { type: props.form.type },
+        ? Object.fromEntries(
+              [...new URLSearchParams(props.query).entries()].map(([key, value]) => [
+                  key,
+                  { value, files: {} },
+              ]),
+          )
+        : {
+              type: { value: props.form.type, files: {} },
+          },
 )
 
 const isValidating = ref(false)
@@ -32,7 +40,7 @@ const isValidating = ref(false)
 const onSubmit = () => {
     isValidating.value = true
 
-    if (props.form.options.some((option) => option.required && !(option.query in query.value))) {
+    if (props.form.options.some((option) => option.required && !(option.query in values.value))) {
         emit('overlay', {
             type: 'error',
             getMessage: () => i18n.value.routes.server.forms.validationError,
@@ -53,7 +61,14 @@ const onSubmit = () => {
 }
 
 const submit = () => {
-    emit('submit', { query: query.value })
+    emit('submit', {
+        query: Object.fromEntries(
+            Object.entries(values.value).map(([key, { value }]) => [key, value]),
+        ),
+        files: Object.fromEntries(
+            Object.entries(values.value).flatMap(([, { files }]) => Object.entries(files)),
+        ),
+    })
 }
 </script>
 
@@ -66,7 +81,7 @@ const submit = () => {
                 :is="fields[option.type]"
                 v-for="(option, key) in form.options"
                 :key
-                v-model="query"
+                v-model="values"
                 :option="option as never"
                 :is-validating
             />

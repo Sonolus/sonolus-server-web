@@ -42,3 +42,37 @@ Simply serve contents of `dist` under root of Sonolus server.
 ### `VITE_BASE_URL`
 
 Must have trailing `/`.
+
+### `VITE_WEB_AUTH`
+
+Enable web auth with `VITE_WEB_AUTH=true`.
+
+## Web Auth
+
+To support web auth, server needs to implement the following endpoints:
+
+### `POST /sonolus/web/authenticate/[hash]`
+
+[Sonolus external authentication](https://wiki.sonolus.com/custom-server-specs/misc/external-authentication.html) endpoint.
+
+### `POST /sonolus/web/authenticate`
+
+Request body:
+
+```json
+{
+    "key": "..."
+}
+```
+
+Server should calculate SHA1 digest of key, and respond if the corresponding external authentication is found.
+
+Response body:
+
+```json
+{
+    "title": "User#1234",
+    "session": "...",
+    "expiration": ...
+}
+```

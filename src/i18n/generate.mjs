@@ -210,6 +210,7 @@ const i18n = {
         server: {
             home: {
                 login: '',
+                logout: '',
                 multiplayer: '',
                 post: '',
                 playlist: '',
@@ -294,6 +295,13 @@ const locales = readdirSync('./src/i18n').filter((name) =>
     statSync(`./src/i18n/${name}`).isDirectory(),
 )
 
+const webs = Object.fromEntries(
+    locales.map((locale) => [
+        locale,
+        JSON.parse(readFileSync(`./src/i18n/${locale}/web.json`, 'utf8')),
+    ]),
+)
+
 const localizations = Object.fromEntries(
     await Promise.all(
         locales.map((locale) =>
@@ -316,11 +324,7 @@ for (const locale of locales) {
     writeFileSync(
         `./src/i18n/generated-${locale}.ts`,
         [
-            `const web = ${JSON.stringify(
-                JSON.parse(readFileSync(`./src/i18n/${locale}/web.json`).toString()),
-                null,
-                4,
-            )} as const`,
+            `const web = ${JSON.stringify({ ...webs.en, ...webs[locale] }, null, 4)} as const`,
             'const app = {',
             ...walk(localization),
             '} as const',

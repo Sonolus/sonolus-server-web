@@ -4,13 +4,14 @@ import { i18n } from '@/i18n'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
-defineProps<{
+const props = defineProps<{
+    url?: string
     noText?: boolean
 }>()
 
 const route = useRoute()
 
-const href = computed(() => getOpenInSonolusUrl(route.fullPath))
+const href = computed(() => props.url ?? getOpenInSonolusUrl(route.fullPath))
 </script>
 
 <template>

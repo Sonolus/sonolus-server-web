@@ -10,7 +10,7 @@ import { computed, ref, type Component } from 'vue'
 
 const props = defineProps<{
     routeId: unknown
-    url?: (props: unknown) => string
+    url?: (props: unknown) => string | undefined
     loading?: (context: { i18n: I18n; props: unknown }) => string
     error?: (context: { i18n: I18n; props: unknown }) => string
     title?: (context: { i18n: I18n; props: unknown }) => string
@@ -48,10 +48,15 @@ void (async () => {
     }
 
     try {
-        data.value = await sonolusGet({
-            url: props.url(props.componentProps),
-            query: props.componentProps.query,
-        })
+        const url = props.url(props.componentProps)
+
+        if (url) {
+            data.value = await sonolusGet({
+                url,
+                query: props.componentProps.query,
+            })
+        }
+
         state.value = true
     } catch {
         state.value = false

@@ -3,6 +3,7 @@ import { paths } from '@/utils/item'
 import BaseView from '@/views/BaseView.vue'
 import JumpToPageView from '@/views/JumpToPageView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
+import AuthenticationView from '@/views/authentication/AuthenticationView.vue'
 import ConfigurationView from '@/views/configuration/ConfigurationView.vue'
 import { detailsViews } from '@/views/details'
 import HomeView from '@/views/home/HomeView.vue'
@@ -42,6 +43,7 @@ export const router = createRouter({
     routes: defineRoutes(
         { name: 'home', path: '/', component: HomeView },
 
+        { name: 'authentication', path: '/authentication', component: AuthenticationView },
         { name: 'configuration', path: '/configuration', component: ConfigurationView },
 
         ...(

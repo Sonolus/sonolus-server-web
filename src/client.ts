@@ -10,6 +10,8 @@ export const sonolusGet = async <T>(options: { url: string; query?: Record<strin
     const response = await fetch(`${import.meta.env.BASE_URL}sonolus${options.url}?${params}`, {
         headers: getAuthHeaders(),
     })
+    handle401(response)
+
     return (await response.json()) as T
 }
 
@@ -31,6 +33,8 @@ export const sonolusPost = async <T>(options: {
         },
         body: JSON.stringify(options.body),
     })
+    handle401(response)
+
     return (await response.json()) as T
 }
 
@@ -62,6 +66,8 @@ export const sonolusUpload = async <T>(options: {
         },
         body,
     })
+    handle401(response)
+
     return (await response.json()) as T
 }
 
@@ -72,4 +78,10 @@ const getAuthHeaders = () => {
     return {
         'Sonolus-Session': auth.value.session,
     }
+}
+
+const handle401 = (response: Response) => {
+    if (response.status !== 401) return
+
+    auth.value = null
 }

@@ -1,3 +1,4 @@
+import FileField from '@/components/fields/FileField.vue'
 import MultiField from '@/components/fields/MultiField.vue'
 import SelectField from '@/components/fields/SelectField.vue'
 import SliderField from '@/components/fields/SliderField.vue'
@@ -16,5 +17,5 @@ export const fields = {
     serverItem: UnsupportedField,
     serverItems: UnsupportedField,
     collectionItem: UnsupportedField,
-    file: UnsupportedField,
+    file: FileField,
 } as const

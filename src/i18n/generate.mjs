@@ -11,6 +11,8 @@ const i18n = {
         more: '',
         on: '',
         off: '',
+        none: '',
+        select: '',
         create: '',
         submit: '',
         cancel: '',
@@ -22,6 +24,9 @@ const i18n = {
             allSelected: '',
             selectAll: '',
             selectNone: '',
+        },
+        fileField: {
+            noSelected: '',
         },
     },
     clients: {

@@ -96,7 +96,7 @@ const onSubmit = async (result: FormResult) => {
             <span class="text-left">{{ comment.author }}</span>
             <span class="text-right">{{ new Date(comment.time).toLocaleString() }}</span>
         </div>
-        <div class="mt-5 sm:mt-6">{{ comment.content }}</div>
+        <div class="mt-5 whitespace-break-spaces sm:mt-6">{{ comment.content }}</div>
 
         <div
             v-if="comment.actions.length"

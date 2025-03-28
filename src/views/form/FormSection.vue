@@ -3,6 +3,7 @@ import AppButton from '@/components/AppButton.vue'
 import AppForm from '@/components/AppForm.vue'
 import { fields } from '@/components/fields'
 import type { OptionValues } from '@/components/fields/value'
+import RichText from '@/components/RichText.vue'
 import ViewSection from '@/components/ViewSection.vue'
 import { i18n, i18nText } from '@/i18n'
 import type { OverlayEmit } from '@/views/BaseView'
@@ -75,7 +76,7 @@ const submit = () => {
 <template>
     <AppForm>
         <ViewSection :title="i18nText(form.title)">
-            <p v-if="form.description" class="whitespace-break-spaces">{{ form.description }}</p>
+            <RichText v-if="form.description" :text="form.description" />
 
             <component
                 :is="fields[option.type]"

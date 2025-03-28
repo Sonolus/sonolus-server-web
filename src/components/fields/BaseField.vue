@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import RichText from '@/components/RichText.vue'
 import { i18n, i18nText } from '@/i18n'
 import IconAngleDown from '@/icons/IconAngleDown.vue'
 import IconAngleUp from '@/icons/IconAngleUp.vue'
@@ -56,9 +57,11 @@ const isExpanded = ref(false)
                     <div>
                         <slot />
                     </div>
-                    <div v-if="option.description" class="mt-30 sm:mt-36">
-                        <span class="whitespace-break-spaces">{{ option.description }}</span>
-                    </div>
+                    <RichText
+                        v-if="option.description"
+                        class="mt-30 sm:mt-36"
+                        :text="option.description"
+                    />
                     <div
                         v-if="option.required"
                         class="mt-30 flex items-center gap-10 sm:mt-36 sm:gap-12"

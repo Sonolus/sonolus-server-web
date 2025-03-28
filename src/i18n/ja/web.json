@@ -1,5 +1,10 @@
 {
-    "lang": "ja",
-    "openInSonolus": "Sonolusで開く",
-    "notFound": "おっと、このページは存在しませんね。(´･ω･`)"
+  "lang": "ja",
+  "openInSonolus": "Sonolusで開く",
+  "optionNotSupported": "このオプションはWebでは使用できません。Sonolusアプリを使用してください。",
+  "loggedIn": "ログイン中：",
+  "logIn": "このリンクを使ってSonolusでログインできます：",
+  "logInTimedOut": "ログインがタイムアウトしました。",
+  "logInRetry": "再試行",
+  "notFound": "ここには何も無いようです (´・ω・｀)"
 }

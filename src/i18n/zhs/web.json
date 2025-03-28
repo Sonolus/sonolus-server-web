@@ -1,5 +1,10 @@
 {
-    "lang": "zh-hans",
-    "openInSonolus": "在 Sonolus 中打开",
-    "notFound": "您要访问的页面不在这里 :("
+  "lang": "zh-hans",
+  "openInSonolus": "在 Sonolus 中打开",
+  "optionNotSupported": "此选项在浏览器端不受支持，请使用 Sonolus 应用。",
+  "loggedIn": "登录为: ",
+  "logIn": "点击下方链接以使用 Sonolus 登录。",
+  "logInTimedOut": "登录超时。",
+  "logInRetry": "重试",
+  "notFound": "您要访问的页面不在这里 :("
 }

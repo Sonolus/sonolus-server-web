@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { sonolusPost, sonolusUpload } from '@/client'
 import AppButton from '@/components/AppButton.vue'
+import RichText from '@/components/RichText.vue'
 import { dynamicIcons } from '@/dynamicIcons'
 import { i18n } from '@/i18n'
 import { icons } from '@/icons'
@@ -96,7 +97,7 @@ const onSubmit = async (result: FormResult) => {
             <span class="text-left">{{ comment.author }}</span>
             <span class="text-right">{{ new Date(comment.time).toLocaleString() }}</span>
         </div>
-        <div class="mt-5 whitespace-break-spaces sm:mt-6">{{ comment.content }}</div>
+        <RichText class="mt-5 sm:mt-6" :text="comment.content" />
 
         <div
             v-if="comment.actions.length"

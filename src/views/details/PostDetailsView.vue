@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import OpenInSonolus from '@/components/OpenInSonolus.vue'
+import RichText from '@/components/RichText.vue'
 import ViewSection from '@/components/ViewSection.vue'
 import ItemCard from '@/components/cards/ItemCard.vue'
 import ItemHeader from '@/components/headers/ItemHeader.vue'
@@ -47,7 +48,7 @@ defineEmits<ViewEmit>()
         </div>
     </div>
 
-    <p v-if="data.description" class="whitespace-break-spaces">{{ data.description }}</p>
+    <RichText v-if="data.description" :text="data.description" />
     <div
         v-else
         class="flex h-30 items-center justify-center text-center text-text-disabled sm:h-36"

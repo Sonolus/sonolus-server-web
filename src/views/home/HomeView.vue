@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import OpenInSonolus from '@/components/OpenInSonolus.vue'
+import RichText from '@/components/RichText.vue'
 import ServerInfoButton from '@/views/home/ServerInfoButton.vue'
 import { viewOptions } from '@/views/viewOptions'
 import type { ServerInfo } from '@sonolus/core'
@@ -28,9 +29,7 @@ const props = defineProps<{
     <div class="flex justify-center">
         <OpenInSonolus />
     </div>
-    <p v-if="data.description" class="mt-30 whitespace-break-spaces text-center sm:mt-36">
-        {{ data.description }}
-    </p>
+    <RichText v-if="data.description" class="mt-30 text-center sm:mt-36" :text="data.description" />
 
     <div class="mt-30 flex flex-wrap justify-center gap-10 sm:mt-36 sm:gap-12">
         <template v-for="button in data.buttons" :key="button.type">

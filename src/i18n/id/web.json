@@ -1,5 +1,10 @@
 {
-    "lang": "id",
-    "openInSonolus": "Buka di Sonolus",
-    "notFound": "Halaman yang Anda cari tidak ada di sini :("
+  "lang": "id",
+  "openInSonolus": "Buka di Sonolus",
+  "optionNotSupported": "Opsi ini tidak didukung di web. Harap gunakan aplikasi Sonolus.",
+  "loggedIn": "Masuk sebagai:",
+  "logIn": "Klik tautan berikut untuk masuk dengan Sonolus.",
+  "logInTimedOut": "Waktu masuk habis.",
+  "logInRetry": "Coba lagi",
+  "notFound": "Halaman yang Anda cari tidak ada di sini :("
 }

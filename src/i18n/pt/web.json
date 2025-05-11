@@ -1,0 +1,10 @@
+{
+  "lang": "pt",
+  "openInSonolus": "Abrir em Sonolus",
+  "optionNotSupported": "Esta opção não é compatível com a web. Use o aplicativo Sonolus.",
+  "loggedIn": "Conectado como:",
+  "logIn": "Clique no link a seguir para fazer login com o Sonolus.",
+  "logInTimedOut": "O tempo de login expirou.",
+  "logInRetry": "Tentar novamente",
+  "notFound": "A página que você procura não está aqui :("
+}

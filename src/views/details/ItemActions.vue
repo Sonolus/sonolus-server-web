@@ -8,7 +8,11 @@ import { paths } from '@/utils/item'
 import { type ViewEmit } from '@/views/BaseView'
 import { type ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
 import type { FormResult } from '@/views/form'
-import type { ServerSubmitItemActionResponse, ServerUploadItemActionResponse } from '@sonolus/core'
+import type {
+    ServerForm,
+    ServerSubmitItemActionResponse,
+    ServerUploadItemActionResponse,
+} from '@sonolus/core'
 import { useRouter } from 'vue-router'
 
 const props = defineProps<ItemDetailsViewProps>()
@@ -17,9 +21,37 @@ const emit = defineEmits<ViewEmit>()
 
 const router = useRouter()
 
-const onSubmit = async (result: FormResult) => {
+const onQuickSubmit = (action: ServerForm) => {
+    if (action.requireConfirmation) {
+        emit('overlay', {
+            type: 'confirm',
+            getMessage: () => i18n.value.routes.server.forms.confirmation(i18nText(action.title)),
+            onConfirm: () => {
+                void submit({
+                    query: {
+                        type: action.type,
+                    },
+                    files: {},
+                })
+            },
+        })
+    } else {
+        void submit({
+            query: {
+                type: action.type,
+            },
+            files: {},
+        })
+    }
+}
+
+const onSubmit = (result: FormResult) => {
     router.back()
 
+    void submit(result)
+}
+
+const submit = async (result: FormResult) => {
     try {
         emit('overlay', {
             type: 'loading',
@@ -74,12 +106,20 @@ const onSubmit = async (result: FormResult) => {
         <AppButton
             v-for="(action, key) in data.actions"
             :key
-            :to="{
-                name: `${type}-action`,
-                params: { name },
-                data: { title: data.item.title, action, onSubmit },
-            }"
             :icon="dynamicIcons[action.icon ?? ''] ?? icons[type]"
+            v-bind="
+                action.options.length || action.description || action.help
+                    ? {
+                          to: {
+                              name: `${type}-action`,
+                              params: { name },
+                              data: { title: data.item.title, action, onSubmit },
+                          },
+                      }
+                    : {
+                          onClick: () => onQuickSubmit(action),
+                      }
+            "
         >
             {{ i18nText(action.title) }}
         </AppButton>

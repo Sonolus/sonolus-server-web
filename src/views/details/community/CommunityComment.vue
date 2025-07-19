@@ -3,13 +3,14 @@ import { sonolusPost, sonolusUpload } from '@/client'
 import AppButton from '@/components/AppButton.vue'
 import RichText from '@/components/RichText.vue'
 import { dynamicIcons } from '@/dynamicIcons'
-import { i18n } from '@/i18n'
+import { i18n, i18nText } from '@/i18n'
 import { icons } from '@/icons'
 import { paths } from '@/utils/item'
 import type { ViewEmit } from '@/views/BaseView'
 import type { FormResult } from '@/views/form'
 import type {
     ItemType,
+    ServerForm,
     ServerItemCommunityComment,
     ServerSubmitItemCommunityCommentActionResponse,
     ServerUploadItemCommunityCommentActionResponse,
@@ -33,9 +34,37 @@ const emit = defineEmits<
 
 const router = useRouter()
 
-const onSubmit = async (result: FormResult) => {
+const onQuickSubmit = (action: ServerForm) => {
+    if (action.requireConfirmation) {
+        emit('overlay', {
+            type: 'confirm',
+            getMessage: () => i18n.value.routes.server.forms.confirmation(i18nText(action.title)),
+            onConfirm: () => {
+                void submit({
+                    query: {
+                        type: action.type,
+                    },
+                    files: {},
+                })
+            },
+        })
+    } else {
+        void submit({
+            query: {
+                type: action.type,
+            },
+            files: {},
+        })
+    }
+}
+
+const onSubmit = (result: FormResult) => {
     router.back()
 
+    void submit(result)
+}
+
+const submit = async (result: FormResult) => {
     try {
         emit('overlay', {
             type: 'loading',
@@ -106,12 +135,20 @@ const onSubmit = async (result: FormResult) => {
             <AppButton
                 v-for="(action, key) in comment.actions"
                 :key
-                :to="{
-                    name: `${type}-action`,
-                    params: { name },
-                    data: { title, action, onSubmit },
-                }"
                 :icon="dynamicIcons[action.icon ?? ''] ?? icons[type]"
+                v-bind="
+                    action.options.length || action.description || action.help
+                        ? {
+                              to: {
+                                  name: `${type}-action`,
+                                  params: { name },
+                                  data: { title, action, onSubmit },
+                              },
+                          }
+                        : {
+                              onClick: () => onQuickSubmit(action),
+                          }
+                "
             />
         </div>
     </div>

@@ -33,6 +33,7 @@ export default tsEslint.config(
                     },
                 },
             ],
+            'no-undef': 'off',
             '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
             '@typescript-eslint/switch-exhaustiveness-check': 'error',
             '@typescript-eslint/restrict-template-expressions': [

@@ -315,6 +315,18 @@ const i18n = {
                 playlist: {
                     levels: { title: '' },
                 },
+                level: {
+                    engine: { title: '' },
+                },
+                engine: {
+                    skin: { title: '' },
+                    background: { title: '' },
+                    effect: { title: '' },
+                    particle: { title: '' },
+                },
+                replay: {
+                    level: { title: '' },
+                },
             },
         },
         jumpToPage: {

@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'fs'
 
-const baseUrl = 'https://api-venus.sonolus.com'
+const baseUrl = 'https://i18n.sonolus.com'
 const i18n = {
     meta: {
         name: '',
@@ -361,7 +361,7 @@ const webs = Object.fromEntries(
 const localizations = Object.fromEntries(
     await Promise.all(
         locales.map((locale) =>
-            fetch(`${baseUrl}/localizations/${locale}.json`)
+            fetch(`${baseUrl}/${locale}.json`)
                 .then((response) => response.json())
                 .then((data) => [locale, data]),
         ),

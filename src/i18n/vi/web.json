@@ -1,0 +1,10 @@
+{
+  "lang": "vi",
+  "openInSonolus": "Mở trong Sonolus",
+  "optionNotSupported": "Tùy chọn này không được hỗ trợ trên web. Vui lòng sử dụng ứng dụng Sonolus.",
+  "loggedIn": "Đã đăng nhập với tư cách: ",
+  "logIn": "Nhấp vào liên kết sau để đăng nhập bằng Sonolus.",
+  "logInTimedOut": "Đã hết thời gian đăng nhập.",
+  "logInRetry": "Thử lại",
+  "notFound": "Trang bạn đang tìm kiếm không có ở đây :("
+}

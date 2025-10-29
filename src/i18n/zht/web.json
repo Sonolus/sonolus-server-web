@@ -1,5 +1,10 @@
 {
-    "lang": "zh-hant",
-    "openInSonolus": "在Sonolus中打開",
-    "notFound": "您想要的頁面並不在這裏 :("
+  "lang": "zh-hant",
+  "openInSonolus": "在Sonolus中打開",
+  "optionNotSupported": "網頁不支援此選項。請使用 Sonolus 應用程式。",
+  "loggedIn": "登入身分：",
+  "logIn": "點擊以下連結使用 Sonolus 登入。",
+  "logInTimedOut": "登入超時。",
+  "logInRetry": "重試",
+  "notFound": "您想要的頁面並不在這裏 :("
 }

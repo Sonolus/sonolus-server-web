@@ -79,7 +79,7 @@ const text = computed(() => {
 
             case 'toggle': {
                 const val = value !== '0'
-                if (val === !!option.def) continue
+                if (val === option.def) continue
 
                 add(val ? i18n.value.common.on : i18n.value.common.off)
                 break

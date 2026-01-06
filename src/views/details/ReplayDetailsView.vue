@@ -15,7 +15,7 @@ defineEmits<ViewEmit>()
 </script>
 
 <template>
-    <ItemDetailsView v-bind="$props" @overlay="$emit('overlay', $event)">
+    <ItemDetailsView v-bind="$props" @reload="$emit('reload')" @overlay="$emit('overlay', $event)">
         <ViewSection :title="i18n.routes.server.details.replay.level.title">
             <ItemCard type="level" :item="data.item.level" />
         </ViewSection>

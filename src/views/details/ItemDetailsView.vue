@@ -2,7 +2,6 @@
 import OpenInSonolus from '@/components/OpenInSonolus.vue'
 import RichText from '@/components/RichText.vue'
 import ViewSection from '@/components/ViewSection.vue'
-import ItemCard from '@/components/cards/ItemCard.vue'
 import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { thumbnails } from '@/components/thumbnails'
 import { dynamicIcons } from '@/dynamicIcons'
@@ -13,6 +12,7 @@ import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
 import CommunitySection from '@/views/details/community/CommunitySection.vue'
 import { detailsViewOptions } from '@/views/details/detailsViewOptions'
 import LeaderboardSection from '@/views/details/leaderboard/LeaderboardSection.vue'
+import ItemSection from './ItemSection.vue'
 
 defineOptions(detailsViewOptions)
 
@@ -82,7 +82,5 @@ defineEmits<ViewEmit>()
         :leaderboards="data.leaderboards"
     />
 
-    <ViewSection v-for="(section, i) in data.sections" :key="i" :title="i18nText(section.title)">
-        <ItemCard v-for="(item, j) in section.items" :key="j" :type="section.itemType" :item />
-    </ViewSection>
+    <ItemSection v-for="(section, key) in data.sections" :key :section />
 </template>

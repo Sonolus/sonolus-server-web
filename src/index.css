@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.wrap-anywhere {
+    overflow-wrap: anywhere;
+}
+
 body {
     animation-name: bg-color;
     animation-duration: 8s;

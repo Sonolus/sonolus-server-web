@@ -13,7 +13,7 @@ const segments = computed(() =>
 </script>
 
 <template>
-    <p class="whitespace-break-spaces">
+    <p class="wrap-anywhere whitespace-break-spaces">
         <template v-for="(segment, index) in segments" :key="index">
             <a
                 v-if="index % 2"

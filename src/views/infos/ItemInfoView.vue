@@ -3,9 +3,7 @@ import { sonolusPost, sonolusUpload } from '@/client'
 import AppButton from '@/components/AppButton.vue'
 import AppForm from '@/components/AppForm.vue'
 import TextInput from '@/components/TextInput.vue'
-import ViewSection from '@/components/ViewSection.vue'
-import ItemCard from '@/components/cards/ItemCard.vue'
-import { i18n, i18nText } from '@/i18n'
+import { i18n } from '@/i18n'
 import IconAdvanced from '@/icons/IconAdvanced.vue'
 import IconMore from '@/icons/IconMore.vue'
 import IconPlus from '@/icons/IconPlus.vue'
@@ -22,6 +20,7 @@ import type {
 } from '@sonolus/core'
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import ItemSection from '../details/ItemSection.vue'
 
 defineOptions(
     viewOptions<typeof props>({
@@ -130,7 +129,5 @@ const onCreate = async (result: FormResult) => {
         </div>
     </AppForm>
 
-    <ViewSection v-for="(section, i) in data.sections" :key="i" :title="i18nText(section.title)">
-        <ItemCard v-for="(item, j) in section.items" :key="j" :type="section.itemType" :item />
-    </ViewSection>
+    <ItemSection v-for="(section, key) in data.sections" :key :section />
 </template>

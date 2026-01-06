@@ -14,7 +14,7 @@ const values = defineModel<OptionValues>({ required: true })
 const { value, isModified } = useValue(
     values,
     props.option,
-    () => !!props.option.def,
+    () => props.option.def,
     ({ value }) => !!+value,
     (value) => ({ value: `${+value}`, files: {} }),
 )

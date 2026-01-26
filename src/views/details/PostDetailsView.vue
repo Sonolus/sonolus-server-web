@@ -37,7 +37,9 @@ defineEmits<ViewEmit>()
                         :is="dynamicIcons[tag.icon ?? '']"
                         class="size-15 fill-current sm:size-18"
                     />
-                    <span class="px-2.5 text-15 sm:px-3 sm:text-18">{{ i18nText(tag.title) }}</span>
+                    <span v-if="tag.title" class="px-2.5 text-15 sm:px-3 sm:text-18">{{
+                        i18nText(tag.title)
+                    }}</span>
                 </div>
             </div>
             <div

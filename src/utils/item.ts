@@ -10,6 +10,7 @@ import type {
     ReplayItem,
     RoomItem,
     SkinItem,
+    UserItem,
 } from '@sonolus/core'
 
 export type ItemMap = {
@@ -23,6 +24,7 @@ export type ItemMap = {
     effect: EffectItem
     particle: ParticleItem
     engine: EngineItem
+    user: UserItem
 }
 
 export type Item = ItemMap[ItemType]

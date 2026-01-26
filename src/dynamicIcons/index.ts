@@ -7,6 +7,7 @@ import DynamicIconAnglesLeft from '@/dynamicIcons/DynamicIconAnglesLeft.vue'
 import DynamicIconAnglesRight from '@/dynamicIcons/DynamicIconAnglesRight.vue'
 import DynamicIconAnglesUp from '@/dynamicIcons/DynamicIconAnglesUp.vue'
 import DynamicIconAngleUp from '@/dynamicIcons/DynamicIconAngleUp.vue'
+import DynamicIconAnnouncement from '@/dynamicIcons/DynamicIconAnnouncement.vue'
 import DynamicIconArrowDown from '@/dynamicIcons/DynamicIconArrowDown.vue'
 import DynamicIconArrowLeft from '@/dynamicIcons/DynamicIconArrowLeft.vue'
 import DynamicIconArrowRight from '@/dynamicIcons/DynamicIconArrowRight.vue'
@@ -15,6 +16,7 @@ import DynamicIconAward from '@/dynamicIcons/DynamicIconAward.vue'
 import DynamicIconBackground from '@/dynamicIcons/DynamicIconBackground.vue'
 import DynamicIconBell from '@/dynamicIcons/DynamicIconBell.vue'
 import DynamicIconBellSlash from '@/dynamicIcons/DynamicIconBellSlash.vue'
+import DynamicIconBook from '@/dynamicIcons/DynamicIconBook.vue'
 import DynamicIconBookmark from '@/dynamicIcons/DynamicIconBookmark.vue'
 import DynamicIconBookmarkHollow from '@/dynamicIcons/DynamicIconBookmarkHollow.vue'
 import DynamicIconCheck from '@/dynamicIcons/DynamicIconCheck.vue'
@@ -28,6 +30,7 @@ import DynamicIconEffect from '@/dynamicIcons/DynamicIconEffect.vue'
 import DynamicIconEngine from '@/dynamicIcons/DynamicIconEngine.vue'
 import DynamicIconEnvelope from '@/dynamicIcons/DynamicIconEnvelope.vue'
 import DynamicIconEnvelopeOpen from '@/dynamicIcons/DynamicIconEnvelopeOpen.vue'
+import DynamicIconFilter from '@/dynamicIcons/DynamicIconFilter.vue'
 import DynamicIconGlobe from '@/dynamicIcons/DynamicIconGlobe.vue'
 import DynamicIconHeart from '@/dynamicIcons/DynamicIconHeart.vue'
 import DynamicIconHeartHollow from '@/dynamicIcons/DynamicIconHeartHollow.vue'
@@ -56,6 +59,21 @@ import DynamicIconSettings from '@/dynamicIcons/DynamicIconSettings.vue'
 import DynamicIconShow from '@/dynamicIcons/DynamicIconShow.vue'
 import DynamicIconShuffle from '@/dynamicIcons/DynamicIconShuffle.vue'
 import DynamicIconSkin from '@/dynamicIcons/DynamicIconSkin.vue'
+import DynamicIconSort from '@/dynamicIcons/DynamicIconSort.vue'
+import DynamicIconSortDown from '@/dynamicIcons/DynamicIconSortDown.vue'
+import DynamicIconSortDown19 from '@/dynamicIcons/DynamicIconSortDown19.vue'
+import DynamicIconSortDown91 from '@/dynamicIcons/DynamicIconSortDown91.vue'
+import DynamicIconSortDownAZ from '@/dynamicIcons/DynamicIconSortDownAZ.vue'
+import DynamicIconSortDownShortWide from '@/dynamicIcons/DynamicIconSortDownShortWide.vue'
+import DynamicIconSortDownWideShort from '@/dynamicIcons/DynamicIconSortDownWideShort.vue'
+import DynamicIconSortDownZA from '@/dynamicIcons/DynamicIconSortDownZA.vue'
+import DynamicIconSortUp from '@/dynamicIcons/DynamicIconSortUp.vue'
+import DynamicIconSortUp19 from '@/dynamicIcons/DynamicIconSortUp19.vue'
+import DynamicIconSortUp91 from '@/dynamicIcons/DynamicIconSortUp91.vue'
+import DynamicIconSortUpAZ from '@/dynamicIcons/DynamicIconSortUpAZ.vue'
+import DynamicIconSortUpShortWide from '@/dynamicIcons/DynamicIconSortUpShortWide.vue'
+import DynamicIconSortUpWideShort from '@/dynamicIcons/DynamicIconSortUpWideShort.vue'
+import DynamicIconSortUpZA from '@/dynamicIcons/DynamicIconSortUpZA.vue'
 import DynamicIconStar from '@/dynamicIcons/DynamicIconStar.vue'
 import DynamicIconStarHalf from '@/dynamicIcons/DynamicIconStarHalf.vue'
 import DynamicIconStarHollow from '@/dynamicIcons/DynamicIconStarHollow.vue'
@@ -67,6 +85,7 @@ import DynamicIconThumbsUp from '@/dynamicIcons/DynamicIconThumbsUp.vue'
 import DynamicIconThumbsUpHollow from '@/dynamicIcons/DynamicIconThumbsUpHollow.vue'
 import DynamicIconTrophy from '@/dynamicIcons/DynamicIconTrophy.vue'
 import DynamicIconUnlock from '@/dynamicIcons/DynamicIconUnlock.vue'
+import DynamicIconUser from '@/dynamicIcons/DynamicIconUser.vue'
 import DynamicIconXMark from '@/dynamicIcons/DynamicIconXMark.vue'
 import type { Icon } from '@sonolus/core'
 import type { Component } from 'vue'
@@ -81,6 +100,7 @@ export const dynamicIcons: Record<string, Component> = {
     anglesRight: DynamicIconAnglesRight,
     anglesUp: DynamicIconAnglesUp,
     angleUp: DynamicIconAngleUp,
+    announcement: DynamicIconAnnouncement,
     arrowDown: DynamicIconArrowDown,
     arrowLeft: DynamicIconArrowLeft,
     arrowRight: DynamicIconArrowRight,
@@ -89,6 +109,7 @@ export const dynamicIcons: Record<string, Component> = {
     background: DynamicIconBackground,
     bell: DynamicIconBell,
     bellSlash: DynamicIconBellSlash,
+    book: DynamicIconBook,
     bookmark: DynamicIconBookmark,
     bookmarkHollow: DynamicIconBookmarkHollow,
     check: DynamicIconCheck,
@@ -102,6 +123,7 @@ export const dynamicIcons: Record<string, Component> = {
     engine: DynamicIconEngine,
     envelope: DynamicIconEnvelope,
     envelopeOpen: DynamicIconEnvelopeOpen,
+    filter: DynamicIconFilter,
     globe: DynamicIconGlobe,
     heart: DynamicIconHeart,
     heartHollow: DynamicIconHeartHollow,
@@ -130,6 +152,21 @@ export const dynamicIcons: Record<string, Component> = {
     show: DynamicIconShow,
     shuffle: DynamicIconShuffle,
     skin: DynamicIconSkin,
+    sort: DynamicIconSort,
+    sortDown: DynamicIconSortDown,
+    sortDown19: DynamicIconSortDown19,
+    sortDown91: DynamicIconSortDown91,
+    sortDownAZ: DynamicIconSortDownAZ,
+    sortDownShortWide: DynamicIconSortDownShortWide,
+    sortDownWideShort: DynamicIconSortDownWideShort,
+    sortDownZA: DynamicIconSortDownZA,
+    sortUp: DynamicIconSortUp,
+    sortUp19: DynamicIconSortUp19,
+    sortUp91: DynamicIconSortUp91,
+    sortUpAZ: DynamicIconSortUpAZ,
+    sortUpShortWide: DynamicIconSortUpShortWide,
+    sortUpWideShort: DynamicIconSortUpWideShort,
+    sortUpZA: DynamicIconSortUpZA,
     star: DynamicIconStar,
     starHalf: DynamicIconStarHalf,
     starHollow: DynamicIconStarHollow,
@@ -141,5 +178,6 @@ export const dynamicIcons: Record<string, Component> = {
     thumbsUpHollow: DynamicIconThumbsUpHollow,
     trophy: DynamicIconTrophy,
     unlock: DynamicIconUnlock,
+    user: DynamicIconUser,
     xMark: DynamicIconXMark,
 } satisfies Record<Icon, Component>

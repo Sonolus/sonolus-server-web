@@ -40,4 +40,5 @@ export const paths = {
     effect: 'effects',
     particle: 'particles',
     engine: 'engines',
+    user: 'users',
 } as const

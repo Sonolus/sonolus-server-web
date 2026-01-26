@@ -13,4 +13,5 @@ export const thumbnails = {
     effect: ItemThumbnail,
     particle: ItemThumbnail,
     engine: ItemThumbnail,
+    user: ItemThumbnail,
 } as const

@@ -19,6 +19,7 @@ const normalizes: {
     effect: (item) => item,
     particle: (item) => item,
     engine: (item) => item,
+    user: (item) => ({ ...item, author: '', subtitle: '' }),
 }
 </script>
 

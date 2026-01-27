@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import AppLink from '@/components/AppLink.vue'
 import ItemHeader from '@/components/headers/ItemHeader.vue'
-import { thumbnails } from '@/components/thumbnails'
 import { dynamicIcons } from '@/dynamicIcons'
 import { i18nText } from '@/i18n'
 import type { ItemType } from '@sonolus/core'
 import type { Item } from '../../utils/item'
+import ItemThumbnail from '../thumbnails/ItemThumbnail.vue'
 
 defineProps<{
     type: ItemType
@@ -19,12 +19,12 @@ defineProps<{
         :to="{ name: `${type}-details`, params: { name: item.name } }"
     >
         <div class="relative hidden flex-shrink-0 sm:block sm:size-120">
-            <component :is="thumbnails[type]" :type :item />
+            <ItemThumbnail :type :item />
         </div>
         <div class="flex-grow">
             <ItemHeader :type :item>
                 <div class="relative my-10 size-100 sm:hidden">
-                    <component :is="thumbnails[type]" :type :item />
+                    <ItemThumbnail :type :item />
                 </div>
             </ItemHeader>
             <div class="mt-10 flex flex-wrap justify-center gap-5 sm:mt-12 sm:gap-6">

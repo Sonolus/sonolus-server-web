@@ -3,7 +3,6 @@ import OpenInSonolus from '@/components/OpenInSonolus.vue'
 import RichText from '@/components/RichText.vue'
 import ViewSection from '@/components/ViewSection.vue'
 import ItemHeader from '@/components/headers/ItemHeader.vue'
-import { thumbnails } from '@/components/thumbnails'
 import { dynamicIcons } from '@/dynamicIcons'
 import { i18n, i18nText } from '@/i18n'
 import { type ViewEmit } from '@/views/BaseView'
@@ -12,6 +11,7 @@ import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
 import CommunitySection from '@/views/details/community/CommunitySection.vue'
 import { detailsViewOptions } from '@/views/details/detailsViewOptions'
 import LeaderboardSection from '@/views/details/leaderboard/LeaderboardSection.vue'
+import ItemThumbnail from '../../components/thumbnails/ItemThumbnail.vue'
 import ItemSection from './ItemSection.vue'
 
 defineOptions(detailsViewOptions)
@@ -26,7 +26,7 @@ defineEmits<ViewEmit>()
 
     <div class="flex flex-col items-center justify-evenly gap-30 sm:flex-row sm:gap-0">
         <div class="relative size-150 sm:size-180">
-            <component :is="thumbnails[type]" :type :item="data.item" full-size />
+            <ItemThumbnail :type :item="data.item" full-size />
         </div>
         <OpenInSonolus />
     </div>

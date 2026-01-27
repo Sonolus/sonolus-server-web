@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import type { ItemThumbnailProps } from '@/components/thumbnails/ItemThumbnail'
-import ItemThumbnail from '@/components/thumbnails/ItemThumbnail.vue'
 import LevelThumbnailOverlay from '@/components/thumbnails/LevelThumbnailOverlay.vue'
 import type { ReplayItem } from '@sonolus/core'
+import SimpleItemThumbnail from './SimpleItemThumbnail.vue'
 
-defineProps<
-    ItemThumbnailProps<ReplayItem> & {
-        fullSize?: boolean
-    }
->()
+defineProps<{
+    type: 'replay'
+    item: ReplayItem
+    fullSize?: boolean
+}>()
 </script>
 
 <template>
-    <ItemThumbnail :type :item />
+    <SimpleItemThumbnail :type :item />
     <LevelThumbnailOverlay :level="item.level" :full-size />
 </template>

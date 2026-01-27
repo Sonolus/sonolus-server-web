@@ -13,6 +13,7 @@ import type {
     ServerItemLeaderboardRecordDetails,
 } from '@sonolus/core'
 import { ref, watchEffect } from 'vue'
+import { dynamicIcons } from '../../../dynamicIcons'
 
 const props = defineProps<{
     type: ItemType
@@ -51,7 +52,22 @@ watchEffect(async () => {
             <div class="ml-2.5 w-60 flex-shrink-0 text-left sm:ml-3 sm:w-72">
                 {{ i18nText(record.rank) }}
             </div>
-            <div class="flex-grow text-left">{{ record.player }}</div>
+            <div class="flex flex-grow gap-5 sm:gap-6">
+                <span class="text-left">{{ record.player }}</span>
+                <div
+                    v-for="(tag, key) in record.playerUser?.tags"
+                    :key
+                    class="flex gap-2.5 bg-button-disabled p-2.5 sm:gap-3 sm:p-3"
+                >
+                    <component
+                        :is="dynamicIcons[tag.icon ?? '']"
+                        class="size-15 fill-current sm:size-18"
+                    />
+                    <span v-if="tag.title" class="px-2.5 text-15 sm:px-3 sm:text-18">{{
+                        i18nText(tag.title)
+                    }}</span>
+                </div>
+            </div>
             <div class="flex-shrink-0">{{ i18nText(record.value) }}</div>
             <component
                 :is="isExpanded ? IconAngleUp : IconAngleDown"

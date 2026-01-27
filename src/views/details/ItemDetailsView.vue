@@ -12,6 +12,7 @@ import PlaylistDetailsView from './PlaylistDetailsView.vue'
 import PostDetailsView from './PostDetailsView.vue'
 import ReplayDetailsView from './ReplayDetailsView.vue'
 import SimpleItemDetailsView from './SimpleItemDetailsView.vue'
+import UserDetailsView from './UserDetailsView.vue'
 
 const views: Partial<Record<ItemType, Component>> = {
     post: PostDetailsView,
@@ -19,6 +20,7 @@ const views: Partial<Record<ItemType, Component>> = {
     level: LevelDetailsView,
     replay: ReplayDetailsView,
     engine: EngineDetailsView,
+    user: UserDetailsView,
 }
 </script>
 

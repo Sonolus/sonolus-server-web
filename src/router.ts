@@ -60,6 +60,7 @@ export const router = createRouter({
                 'effect',
                 'particle',
                 'engine',
+                'user',
             ] as const
         ).flatMap((type) => [
             {

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { fields } from '@/components/fields'
 import type { OptionValues } from '@/components/fields/value'
 import ViewSection from '@/components/ViewSection.vue'
 import { configuration } from '@/configuration'
@@ -8,6 +7,7 @@ import { defaultLocale } from '@/i18n/locale'
 import { viewOptions } from '@/views/viewOptions'
 import type { ServerInfo, ServerOption } from '@sonolus/core'
 import { computed } from 'vue'
+import OptionField from '../../components/fields/OptionField.vue'
 
 defineOptions(
     viewOptions<typeof props>({
@@ -54,8 +54,7 @@ const values = computed({
 
 <template>
     <ViewSection :title="i18n.routes.server.home.configuration">
-        <component
-            :is="fields[option.type]"
+        <OptionField
             v-for="(option, key) in options"
             :key
             v-model="values"

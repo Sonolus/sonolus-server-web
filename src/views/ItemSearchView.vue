@@ -25,10 +25,17 @@ const props = defineProps<{
     query: Record<string, string>
     data: {
         searches?: ServerForm[]
+        quickSearchValues?: string
     }
 }>()
 
 defineEmits<OverlayEmit>()
+
+const quickSearchQuery = computed(() => {
+    if (!props.data.quickSearchValues) return
+
+    return Object.fromEntries(new URLSearchParams(props.data.quickSearchValues))
+})
 
 const forms = computed<ServerForm[]>(() => [
     {
@@ -58,7 +65,15 @@ const forms = computed<ServerForm[]>(() => [
         :forms
         :icon="IconSearch"
         @overlay="$emit('overlay', $event)"
-        @submit="pushRoute({ name: `${type}-list`, query: $event.query })"
+        @submit="
+            pushRoute({
+                name: `${type}-list`,
+                query:
+                    $event.query.type === 'quick'
+                        ? { ...$event.query, ...quickSearchQuery }
+                        : $event.query,
+            })
+        "
     >
         {{ i18n.common.search }}
     </FormView>

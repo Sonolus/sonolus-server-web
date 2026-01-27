@@ -1,20 +1,39 @@
-<script setup lang="ts">
-import OpenInSonolus from '@/components/OpenInSonolus.vue'
-import RichText from '@/components/RichText.vue'
-import ViewSection from '@/components/ViewSection.vue'
-import ItemHeader from '@/components/headers/ItemHeader.vue'
-import { dynamicIcons } from '@/dynamicIcons'
-import { i18n, i18nText } from '@/i18n'
+<script lang="ts">
 import { type ViewEmit } from '@/views/BaseView'
-import ItemActions from '@/views/details/ItemActions.vue'
 import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
-import CommunitySection from '@/views/details/community/CommunitySection.vue'
-import { detailsViewOptions } from '@/views/details/detailsViewOptions'
-import LeaderboardSection from '@/views/details/leaderboard/LeaderboardSection.vue'
-import ItemThumbnail from '../../components/thumbnails/ItemThumbnail.vue'
-import ItemSection from './ItemSection.vue'
+import type { ItemType } from '@sonolus/core'
+import type { Component } from 'vue'
+import { paths } from '../../utils/item'
+import { thumbnailUrls } from '../../utils/thumbnailUrl'
+import { viewOptions } from '../viewOptions'
+import EngineDetailsView from './EngineDetailsView.vue'
+import LevelDetailsView from './LevelDetailsView.vue'
+import PlaylistDetailsView from './PlaylistDetailsView.vue'
+import PostDetailsView from './PostDetailsView.vue'
+import ReplayDetailsView from './ReplayDetailsView.vue'
+import SimpleItemDetailsView from './SimpleItemDetailsView.vue'
 
-defineOptions(detailsViewOptions)
+const views: Partial<Record<ItemType, Component>> = {
+    post: PostDetailsView,
+    playlist: PlaylistDetailsView,
+    level: LevelDetailsView,
+    replay: ReplayDetailsView,
+    engine: EngineDetailsView,
+}
+</script>
+
+<script setup lang="ts">
+defineOptions(
+    viewOptions<ItemDetailsViewProps>({
+        url: ({ type, name }) => `/${paths[type]}/${name}`,
+        loading: ({ i18n, props: { type } }) => i18n.clients.customServer[type].details.loading,
+        error: ({ i18n, props: { type, name } }) =>
+            i18n.clients.customServer[type].details.error(name),
+
+        title: ({ props: { name, data } }) => data?.item.title ?? name,
+        banner: ({ type, data }) => data && thumbnailUrls[type](data.item as never),
+    }),
+)
 
 defineProps<ItemDetailsViewProps>()
 
@@ -22,65 +41,12 @@ defineEmits<ViewEmit>()
 </script>
 
 <template>
-    <ItemHeader :type :item="data.item" />
-
-    <div class="flex flex-col items-center justify-evenly gap-30 sm:flex-row sm:gap-0">
-        <div class="relative size-150 sm:size-180">
-            <ItemThumbnail :type :item="data.item" full-size />
-        </div>
-        <OpenInSonolus />
-    </div>
-
-    <ItemActions v-bind="$props" @reload="$emit('reload')" @overlay="$emit('overlay', $event)" />
-
-    <ViewSection :title="i18n.routes.server.details.description.title">
-        <RichText v-if="data.description" :text="data.description" />
-        <div
-            v-else
-            class="flex h-30 items-center justify-center text-center text-text-disabled sm:h-36"
-        >
-            {{ i18n.routes.server.details.description.noDescription }}
-        </div>
-    </ViewSection>
-
-    <ViewSection :title="i18n.routes.server.details.tags.title">
-        <div v-if="data.item.tags.length" class="flex flex-wrap gap-10 sm:gap-12">
-            <div
-                v-for="(tag, key) in data.item.tags"
-                :key
-                class="flex gap-5 bg-button-disabled p-5 sm:gap-6 sm:p-6"
-            >
-                <component
-                    :is="dynamicIcons[tag.icon ?? '']"
-                    class="size-20 fill-current sm:size-24"
-                />
-                <span v-if="tag.title" class="px-5 sm:px-6">{{ i18nText(tag.title) }}</span>
-            </div>
-        </div>
-        <div
-            v-else
-            class="flex h-30 items-center justify-center text-center text-text-disabled sm:h-36"
-        >
-            {{ i18n.routes.server.details.tags.noTags }}
-        </div>
-    </ViewSection>
-
-    <slot />
-
-    <CommunitySection
-        v-if="data.hasCommunity"
+    <component
+        :is="views[type] ?? SimpleItemDetailsView"
         :type
         :name
-        :title="data.item.title"
+        :data
+        @reload="$emit('reload')"
         @overlay="$emit('overlay', $event)"
     />
-
-    <LeaderboardSection
-        v-if="data.leaderboards.length"
-        :type
-        :name
-        :leaderboards="data.leaderboards"
-    />
-
-    <ItemSection v-for="(section, key) in data.sections" :key :section />
 </template>

@@ -8,12 +8,9 @@ import type { ViewEmit } from '@/views/BaseView'
 import ItemActions from '@/views/details/ItemActions.vue'
 import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
 import CommunitySection from '@/views/details/community/CommunitySection.vue'
-import { detailsViewOptions } from '@/views/details/detailsViewOptions'
 import LeaderboardSection from '@/views/details/leaderboard/LeaderboardSection.vue'
 import ItemThumbnail from '../../components/thumbnails/ItemThumbnail.vue'
 import ItemSection from './ItemSection.vue'
-
-defineOptions(detailsViewOptions)
 
 defineProps<ItemDetailsViewProps<'post'>>()
 

@@ -27,6 +27,21 @@ const i18n = {
         },
         fileField: {
             noSelected: '',
+            validation: {
+                invalid: '',
+                minSize: '',
+                maxSize: '',
+                image: {
+                    minWidth: '',
+                    maxWidth: '',
+                    minHeight: '',
+                    maxHeight: '',
+                },
+                audio: {
+                    minLength: '',
+                    maxLength: '',
+                },
+            },
         },
     },
     clients: {

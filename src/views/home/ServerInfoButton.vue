@@ -53,7 +53,7 @@ const webAuth = !!import.meta.env.VITE_WEB_AUTH
         :to="
             button.itemName
                 ? { name: `${button.type}-details`, params: { name: button.itemName } }
-                : { name: `${button.type}-info` }
+                : { name: `${button.type}-info`, query: { type: button.infoType } }
         "
     >
         <component

@@ -50,7 +50,11 @@ const webAuth = !!import.meta.env.VITE_WEB_AUTH
     <AppLink
         v-else
         class="flex w-120 flex-col items-center gap-10 bg-button-normal p-10 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:w-144 sm:gap-12 sm:p-12"
-        :to="{ name: `${button.type}-info` }"
+        :to="
+            button.itemName
+                ? { name: `${button.type}-details`, params: { name: button.itemName } }
+                : { name: `${button.type}-info` }
+        "
     >
         <component
             :is="dynamicIcons[button.icon ?? ''] ?? icons[button.type]"

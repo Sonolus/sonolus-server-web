@@ -20,7 +20,7 @@ defineEmits<ViewEmit>()
 <template>
     <div class="flex flex-col items-center gap-30 sm:flex-row sm:items-start sm:gap-36">
         <div class="w-full flex-grow">
-            <ItemHeader :type :item="data.item" align-left />
+            <ItemHeader :type :item="data.item" clickable align-left />
             <div
                 v-if="data.item.tags.length"
                 class="mt-10 flex flex-wrap justify-center gap-5 sm:mt-12 sm:justify-start sm:gap-6"

@@ -19,7 +19,7 @@ defineEmits<ViewEmit>()
 </script>
 
 <template>
-    <ItemHeader :type :item="data.item" />
+    <ItemHeader :type :item="data.item" clickable />
 
     <div class="flex flex-col items-center justify-evenly gap-30 sm:flex-row sm:gap-0">
         <div class="relative size-150 sm:size-180">

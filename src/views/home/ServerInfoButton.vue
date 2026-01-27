@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { auth } from '@/auth'
 import AppLink from '@/components/AppLink.vue'
-import { i18n } from '@/i18n'
+import { i18n, i18nText } from '@/i18n'
 import { icons } from '@/icons'
 import IconConfiguration from '@/icons/IconConfiguration.vue'
 import IconLogin from '@/icons/IconLogin.vue'
 import IconLogout from '@/icons/IconLogout.vue'
 import type { ServerInfo, ServerInfoButton } from '@sonolus/core'
+import { dynamicIcons } from '../../dynamicIcons'
 
 defineProps<{
     button: ServerInfoButton
@@ -51,7 +52,12 @@ const webAuth = !!import.meta.env.VITE_WEB_AUTH
         class="flex w-120 flex-col items-center gap-10 bg-button-normal p-10 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:w-144 sm:gap-12 sm:p-12"
         :to="{ name: `${button.type}-info` }"
     >
-        <component :is="icons[button.type]" class="size-60 fill-current sm:size-72" />
-        <span>{{ i18n.routes.server.home[button.type] }}</span>
+        <component
+            :is="dynamicIcons[button.icon ?? ''] ?? icons[button.type]"
+            class="size-60 fill-current sm:size-72"
+        />
+        <span>{{
+            button.title ? i18nText(button.title) : i18n.routes.server.home[button.type]
+        }}</span>
     </AppLink>
 </template>

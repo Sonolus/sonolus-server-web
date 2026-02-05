@@ -26,6 +26,7 @@ npm generate-i18n
 - Edit `.env`
 - Edit `public/favicon.ico`
 - Edit `public/thumbnail.png`
+- Edit `public/apple-touch-icon.png`
 
 ### Build for Production
 

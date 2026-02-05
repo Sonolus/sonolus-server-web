@@ -49,7 +49,7 @@ const webAuth = !!import.meta.env.VITE_WEB_AUTH
     </AppLink>
     <AppLink
         v-else
-        class="flex w-120 flex-col items-center gap-10 bg-button-normal p-10 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:w-144 sm:gap-12 sm:p-12"
+        class="relative flex w-120 flex-col items-center gap-10 bg-button-normal p-10 transition-colors hover:bg-button-highlighted focus-visible:outline active:bg-button-pressed sm:w-144 sm:gap-12 sm:p-12"
         :to="
             button.itemName
                 ? { name: `${button.type}-details`, params: { name: button.itemName } }
@@ -63,5 +63,11 @@ const webAuth = !!import.meta.env.VITE_WEB_AUTH
         <span>{{
             button.title ? i18nText(button.title) : i18n.routes.server.home[button.type]
         }}</span>
+        <div
+            v-if="button.badgeCount"
+            class="absolute right-0 top-0 flex size-30 items-center justify-center bg-warning sm:size-36"
+        >
+            <span>{{ button.badgeCount }}</span>
+        </div>
     </AppLink>
 </template>

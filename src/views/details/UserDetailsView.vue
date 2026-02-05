@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import OpenInSonolus from '@/components/OpenInSonolus.vue'
 import RichText from '@/components/RichText.vue'
-import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { dynamicIcons } from '@/dynamicIcons'
 import { i18n, i18nText } from '@/i18n'
 import type { ViewEmit } from '@/views/BaseView'
@@ -9,18 +8,20 @@ import ItemActions from '@/views/details/ItemActions.vue'
 import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
 import CommunitySection from '@/views/details/community/CommunitySection.vue'
 import LeaderboardSection from '@/views/details/leaderboard/LeaderboardSection.vue'
-import ItemThumbnail from '../../components/thumbnails/ItemThumbnail.vue'
+import IconUser from '../../icons/IconUser.vue'
 import ItemSection from './ItemSection.vue'
 
-defineProps<ItemDetailsViewProps<'post'>>()
+defineProps<ItemDetailsViewProps<'user'>>()
 
 defineEmits<ViewEmit>()
 </script>
 
 <template>
-    <div class="flex flex-col items-center gap-30 sm:flex-row sm:items-start sm:gap-36">
+    <div class="flex flex-col items-center gap-30 sm:flex-row-reverse sm:items-start sm:gap-36">
         <div class="w-full flex-grow">
-            <ItemHeader :type :item="data.item" clickable align-left />
+            <div class="wrap-anywhere text-center text-30 font-bold sm:text-left sm:text-36">
+                {{ data.item.title }}
+            </div>
             <div
                 v-if="data.item.tags.length"
                 class="mt-10 flex flex-wrap justify-center gap-5 sm:mt-12 sm:justify-start sm:gap-6"
@@ -46,9 +47,7 @@ defineEmits<ViewEmit>()
                 {{ i18n.routes.server.details.tags.noTags }}
             </div>
         </div>
-        <div class="relative size-100 flex-shrink-0 sm:size-120">
-            <ItemThumbnail :type :item="data.item" />
-        </div>
+        <IconUser class="size-60 flex-shrink-0 fill-text-disabled sm:size-72" />
     </div>
 
     <RichText v-if="data.description" :text="data.description" />

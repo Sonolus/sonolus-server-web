@@ -4,10 +4,7 @@ import ItemCard from '@/components/cards/ItemCard.vue'
 import { i18n } from '@/i18n'
 import type { ViewEmit } from '@/views/BaseView'
 import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
-import ItemDetailsView from '@/views/details/ItemDetailsView.vue'
-import { detailsViewOptions } from '@/views/details/detailsViewOptions'
-
-defineOptions(detailsViewOptions)
+import SimpleItemDetailsView from './SimpleItemDetailsView.vue'
 
 defineProps<ItemDetailsViewProps<'engine'>>()
 
@@ -15,7 +12,11 @@ defineEmits<ViewEmit>()
 </script>
 
 <template>
-    <ItemDetailsView v-bind="$props" @reload="$emit('reload')" @overlay="$emit('overlay', $event)">
+    <SimpleItemDetailsView
+        v-bind="$props"
+        @reload="$emit('reload')"
+        @overlay="$emit('overlay', $event)"
+    >
         <ViewSection :title="i18n.routes.server.details.engine.skin.title">
             <ItemCard type="skin" :item="data.item.skin" />
         </ViewSection>
@@ -28,5 +29,5 @@ defineEmits<ViewEmit>()
         <ViewSection :title="i18n.routes.server.details.engine.particle.title">
             <ItemCard type="particle" :item="data.item.particle" />
         </ViewSection>
-    </ItemDetailsView>
+    </SimpleItemDetailsView>
 </template>

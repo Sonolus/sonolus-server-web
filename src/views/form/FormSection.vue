@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import AppButton from '@/components/AppButton.vue'
 import AppForm from '@/components/AppForm.vue'
-import { fields } from '@/components/fields'
 import type { OptionValues } from '@/components/fields/value'
 import RichText from '@/components/RichText.vue'
 import ViewSection from '@/components/ViewSection.vue'
@@ -10,6 +9,7 @@ import type { OverlayEmit } from '@/views/BaseView'
 import type { FormResult } from '@/views/form'
 import type { ServerForm } from '@sonolus/core'
 import { ref, type Component } from 'vue'
+import OptionField from '../../components/fields/OptionField.vue'
 
 const props = defineProps<{
     form: ServerForm
@@ -78,8 +78,7 @@ const submit = () => {
         <ViewSection :title="i18nText(form.title)">
             <RichText v-if="form.description" :text="form.description" />
 
-            <component
-                :is="fields[option.type]"
+            <OptionField
                 v-for="(option, key) in form.options"
                 :key
                 v-model="values"

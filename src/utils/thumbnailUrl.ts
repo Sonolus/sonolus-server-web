@@ -14,4 +14,5 @@ export const thumbnailUrls: {
     effect: (item) => item.thumbnail.url ?? undefined,
     particle: (item) => item.thumbnail.url ?? undefined,
     engine: (item) => item.thumbnail.url ?? undefined,
+    user: () => undefined,
 }

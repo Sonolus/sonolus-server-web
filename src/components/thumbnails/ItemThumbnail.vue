@@ -1,27 +1,24 @@
-<script setup lang="ts">
-import type { ItemThumbnailProps } from '@/components/thumbnails/ItemThumbnail'
-import { icons } from '@/icons'
+<script lang="ts">
 import type { Item } from '@/utils/item'
-import { thumbnailUrls } from '@/utils/thumbnailUrl'
-import { computed, ref } from 'vue'
+import type { ItemType } from '@sonolus/core'
+import type { Component } from 'vue'
+import LevelThumbnail from './LevelThumbnail.vue'
+import ReplayThumbnail from './ReplayThumbnail.vue'
+import SimpleItemThumbnail from './SimpleItemThumbnail.vue'
 
-const props = defineProps<ItemThumbnailProps<Item>>()
+const thumbnails: Partial<Record<ItemType, Component>> = {
+    level: LevelThumbnail,
+    replay: ReplayThumbnail,
+}
+</script>
 
-const src = computed(() => {
-    const url = thumbnailUrls[props.type](props.item as never)
-    if (!url) return ''
-
-    return url.startsWith('/') ? `${import.meta.env.BASE_URL}${url.slice(1)}` : url
-})
-
-const errorSrc = ref('')
+<script setup lang="ts">
+defineProps<{
+    type: ItemType
+    item: Item
+}>()
 </script>
 
 <template>
-    <img v-if="src !== errorSrc" class="size-full" :src alt="thumbnail" @error="errorSrc = src" />
-    <component
-        :is="icons[type]"
-        v-else
-        class="absolute left-1/4 top-1/4 size-1/2 fill-text-disabled"
-    />
+    <component :is="thumbnails[type] ?? SimpleItemThumbnail" :type :item />
 </template>

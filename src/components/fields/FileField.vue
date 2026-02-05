@@ -7,6 +7,9 @@ import { i18n } from '@/i18n'
 import IconXMark from '@/icons/IconXMark.vue'
 import { digest } from '@/utils/sha1'
 import type { ServerFileOption } from '@sonolus/core'
+import { getAudioInfo } from '../../utils/audio'
+import { isGzippedJson } from '../../utils/gzippedJson'
+import { getImageInfo } from '../../utils/image'
 
 const props = defineProps<{
     option: ServerFileOption
@@ -35,8 +38,112 @@ const onSelect = () => {
         }
 
         const buffer = await file.arrayBuffer()
-        const hash = await digest(buffer)
 
+        if (props.option.validation) {
+            const validation = props.option.validation
+
+            if (buffer.byteLength < (validation.minSize ?? 0)) {
+                alert(i18n.value.common.fileField.validation.minSize)
+                return
+            }
+            if (buffer.byteLength > (validation.maxSize ?? Number.POSITIVE_INFINITY)) {
+                alert(i18n.value.common.fileField.validation.maxSize)
+                return
+            }
+
+            switch (validation.type) {
+                case 'file':
+                case 'engineRom':
+                    break
+
+                case 'image':
+                case 'serverBanner':
+                case 'postThumbnail':
+                case 'playlistThumbnail':
+                case 'levelCover':
+                case 'skinThumbnail':
+                case 'skinTexture':
+                case 'backgroundThumbnail':
+                case 'backgroundImage':
+                case 'effectThumbnail':
+                case 'particleThumbnail':
+                case 'particleTexture':
+                case 'engineThumbnail':
+                case 'roomCover': {
+                    const info = await getImageInfo(buffer)
+                    if (!info) {
+                        alert(i18n.value.common.fileField.validation.invalid)
+                        return
+                    }
+
+                    if (info.width < (validation.minWidth ?? 0)) {
+                        alert(i18n.value.common.fileField.validation.image.minWidth)
+                        return
+                    }
+                    if (info.width > (validation.maxWidth ?? Number.POSITIVE_INFINITY)) {
+                        alert(i18n.value.common.fileField.validation.image.maxWidth)
+                        return
+                    }
+
+                    if (info.height < (validation.minHeight ?? 0)) {
+                        alert(i18n.value.common.fileField.validation.image.minHeight)
+                        return
+                    }
+                    if (info.height > (validation.maxHeight ?? Number.POSITIVE_INFINITY)) {
+                        alert(i18n.value.common.fileField.validation.image.maxHeight)
+                        return
+                    }
+                    break
+                }
+
+                case 'audio':
+                case 'levelBgm':
+                case 'levelPreview':
+                case 'roomBgm':
+                case 'roomPreview': {
+                    const info = await getAudioInfo(buffer)
+                    if (!info) {
+                        alert(i18n.value.common.fileField.validation.invalid)
+                        return
+                    }
+
+                    if (info.length < (validation.minLength ?? 0)) {
+                        alert(i18n.value.common.fileField.validation.audio.minLength)
+                        return
+                    }
+                    if (info.length > (validation.maxLength ?? Number.POSITIVE_INFINITY)) {
+                        alert(i18n.value.common.fileField.validation.audio.maxLength)
+                        return
+                    }
+                    break
+                }
+
+                case 'zip':
+                case 'effectAudio':
+                    break
+
+                case 'levelData':
+                case 'skinData':
+                case 'backgroundData':
+                case 'backgroundConfiguration':
+                case 'effectData':
+                case 'particleData':
+                case 'enginePlayData':
+                case 'engineWatchData':
+                case 'enginePreviewData':
+                case 'engineTutorialData':
+                case 'engineConfiguration':
+                case 'replayData':
+                case 'replayConfiguration':
+                    if (!(await isGzippedJson(buffer))) {
+                        alert(i18n.value.common.fileField.validation.invalid)
+                        return
+                    }
+                    break
+            }
+        }
+
+        const hash = await digest(buffer)
         value.value = { value: hash, files: { [hash]: file } }
     }
 

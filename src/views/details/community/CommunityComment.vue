@@ -120,10 +120,31 @@ const submit = async (result: FormResult) => {
 
 <template>
     <div class="bg-button-disabled p-10 sm:p-12">
-        <div
-            class="flex h-15 justify-between gap-15 text-15 text-text-soften sm:h-18 sm:gap-18 sm:text-18"
-        >
-            <span class="text-left">{{ comment.author }}</span>
+        <div class="flex items-center text-15 text-text-soften sm:text-18">
+            <AppButton
+                v-if="comment.authorUser"
+                :to="{ name: 'user-details', params: { name: comment.authorUser.name } }"
+                auto-width
+            >
+                <span class="text-left">{{ comment.author }}</span>
+            </AppButton>
+            <span v-else class="text-left">{{ comment.author }}</span>
+            <div
+                v-for="(tag, key) in comment.authorUser?.tags"
+                :key
+                class="ml-5 flex gap-2.5 bg-button-disabled p-2.5 sm:ml-6 sm:gap-3 sm:p-3"
+            >
+                <component
+                    :is="dynamicIcons[tag.icon ?? '']"
+                    class="size-15 fill-current sm:size-18"
+                />
+                <span v-if="tag.title" class="px-2.5 text-15 sm:px-3 sm:text-18">{{
+                    i18nText(tag.title)
+                }}</span>
+            </div>
+
+            <div class="flex-grow" />
+
             <span class="text-right">{{ new Date(comment.time).toLocaleString() }}</span>
         </div>
         <RichText class="mt-5 sm:mt-6" :text="comment.content" />

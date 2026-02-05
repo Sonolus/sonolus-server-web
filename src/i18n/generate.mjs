@@ -27,6 +27,21 @@ const i18n = {
         },
         fileField: {
             noSelected: '',
+            validation: {
+                invalid: '',
+                minSize: '',
+                maxSize: '',
+                image: {
+                    minWidth: '',
+                    maxWidth: '',
+                    minHeight: '',
+                    maxHeight: '',
+                },
+                audio: {
+                    minLength: '',
+                    maxLength: '',
+                },
+            },
         },
     },
     clients: {
@@ -244,6 +259,27 @@ const i18n = {
                     },
                 },
             },
+            user: {
+                info: { loading: '', error: '' },
+                create: { loading: '', error: '' },
+                list: { loading: '', error: '' },
+                details: { loading: '', error: '' },
+                submit: { loading: '', error: '' },
+                community: {
+                    info: { loading: '' },
+                    submit: { loading: '', error: '' },
+                    comment: {
+                        list: { loading: '' },
+                    },
+                },
+                leaderboard: {
+                    details: { loading: '' },
+                    record: {
+                        list: { loading: '' },
+                        details: { loading: '' },
+                    },
+                },
+            },
         },
     },
     routes: {
@@ -251,7 +287,6 @@ const i18n = {
             home: {
                 login: '',
                 logout: '',
-                multiplayer: '',
                 post: '',
                 playlist: '',
                 level: '',
@@ -261,6 +296,8 @@ const i18n = {
                 effect: '',
                 particle: '',
                 engine: '',
+                user: '',
+                room: '',
                 configuration: '',
             },
             search: { title: '' },
@@ -280,6 +317,7 @@ const i18n = {
                 effect: { title: '' },
                 particle: { title: '' },
                 engine: { title: '' },
+                user: { title: '' },
             },
             lists: {
                 searchOption: '',
@@ -293,6 +331,7 @@ const i18n = {
                 effect: { title: '' },
                 particle: { title: '' },
                 engine: { title: '' },
+                user: { title: '' },
             },
             details: {
                 tags: {

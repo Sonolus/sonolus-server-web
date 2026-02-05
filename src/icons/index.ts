@@ -8,6 +8,7 @@ import IconPost from '@/icons/IconPost.vue'
 import IconReplay from '@/icons/IconReplay.vue'
 import IconRoom from '@/icons/IconRoom.vue'
 import IconSkin from '@/icons/IconSkin.vue'
+import IconUser from './IconUser.vue'
 
 export const icons = {
     room: IconRoom,
@@ -20,4 +21,5 @@ export const icons = {
     effect: IconEffect,
     particle: IconParticle,
     engine: IconEngine,
+    user: IconUser,
 } as const

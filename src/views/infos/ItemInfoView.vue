@@ -46,6 +46,12 @@ const router = useRouter()
 const search = ref('')
 const keywords = computed(() => search.value.trim())
 
+const quickSearchQuery = computed(() => {
+    if (!props.data.quickSearchValues) return
+
+    return Object.fromEntries(new URLSearchParams(props.data.quickSearchValues))
+})
+
 const onCreate = async (result: FormResult) => {
     router.back()
 
@@ -120,7 +126,10 @@ const onCreate = async (result: FormResult) => {
                 {{ i18n.routes.server.infos.advanced }}
             </AppButton>
             <AppButton
-                :to="{ name: `${type}-list`, query: keywords ? { type: 'quick', keywords } : {} }"
+                :to="{
+                    name: `${type}-list`,
+                    query: { ...(keywords && { type: 'quick', keywords }), ...quickSearchQuery },
+                }"
                 :icon="keywords ? IconSearch : IconMore"
                 data-submit
             >

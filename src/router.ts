@@ -3,7 +3,6 @@ import { paths } from '@/utils/item'
 import AuthenticationView from '@/views/authentication/AuthenticationView.vue'
 import BaseView from '@/views/BaseView.vue'
 import ConfigurationView from '@/views/configuration/ConfigurationView.vue'
-import { detailsViews } from '@/views/details'
 import HomeView from '@/views/home/HomeView.vue'
 import ItemInfoView from '@/views/infos/ItemInfoView.vue'
 import ItemActionView from '@/views/ItemActionView.vue'
@@ -14,6 +13,7 @@ import ItemListView from '@/views/lists/ItemListView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
 import type { Component } from 'vue'
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import ItemDetailsView from './views/details/ItemDetailsView.vue'
 
 const defineRoutes = (
     ...routes: {
@@ -60,6 +60,7 @@ export const router = createRouter({
                 'effect',
                 'particle',
                 'engine',
+                'user',
             ] as const
         ).flatMap((type) => [
             {
@@ -95,7 +96,7 @@ export const router = createRouter({
             {
                 name: `${type}-details`,
                 path: `/${paths[type]}/:name`,
-                component: detailsViews[type],
+                component: ItemDetailsView,
                 props: { type },
             },
             {

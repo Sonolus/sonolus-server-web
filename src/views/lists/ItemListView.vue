@@ -21,7 +21,10 @@ defineOptions(
         error: ({ i18n, props: { type } }) =>
             i18n.clients.customServer[type].list.error(import.meta.env.VITE_TITLE),
 
-        title: ({ i18n, props: { type } }) => i18n.routes.server.lists[type].title,
+        title: ({ i18n, props: { type, data } }) =>
+            data?.title
+                ? (i18n.texts[data.title] ?? data.title)
+                : i18n.routes.server.lists[type].title,
     }),
 )
 

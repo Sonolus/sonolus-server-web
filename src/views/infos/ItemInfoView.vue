@@ -3,7 +3,7 @@ import { sonolusPost, sonolusUpload } from '@/client'
 import AppButton from '@/components/AppButton.vue'
 import AppForm from '@/components/AppForm.vue'
 import TextInput from '@/components/TextInput.vue'
-import { i18n } from '@/i18n'
+import { i18n, i18nText } from '@/i18n'
 import IconAdvanced from '@/icons/IconAdvanced.vue'
 import IconMore from '@/icons/IconMore.vue'
 import IconPlus from '@/icons/IconPlus.vue'
@@ -108,7 +108,7 @@ const onCreate = async (result: FormResult) => {
             v-if="data.searches"
             v-model="search"
             :icon="IconSearch"
-            :placeholder="i18n.texts['#KEYWORDS_PLACEHOLDER']"
+            :placeholder="i18nText('#KEYWORDS_PLACEHOLDER')"
         />
         <div class="mt-10 flex flex-wrap justify-center gap-10 sm:mt-12 sm:gap-12">
             <AppButton

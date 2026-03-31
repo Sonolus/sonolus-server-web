@@ -41,7 +41,7 @@ const text = computed(() => {
         const keywords = props.query.keywords
         if (!keywords) return
 
-        return i18n.value.routes.server.lists.searchOption(i18n.value.texts['#KEYWORDS'], keywords)
+        return i18n.value.routes.server.lists.searchOption(i18nText('#KEYWORDS'), keywords)
     }
 
     const search = props.data.searches.find((search) => search.type === type)

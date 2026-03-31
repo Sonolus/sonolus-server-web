@@ -14,8 +14,7 @@ export const locales = Object.values(modules).map(({ i18n }) => i18n.meta)
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 export const i18n = computed(() => modules[`./generated-${locale.value}.ts`]!.i18n)
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-export const i18nText = (name: string): string => i18n.value.texts[name as never] ?? name
+export const i18nText = (name: string): string => i18n.value.texts[name] ?? name
 
 watchEffect(() => (document.documentElement.lang = i18n.value.lang))
 

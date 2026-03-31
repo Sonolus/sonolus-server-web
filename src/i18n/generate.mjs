@@ -423,7 +423,7 @@ for (const locale of locales) {
             'const app = {',
             ...walk(localization),
             '} as const',
-            `const texts = ${JSON.stringify(texts, null, 4)} as const`,
+            `const texts: Record<string, string> = ${JSON.stringify(texts, null, 4)}`,
             '',
             'export const i18n = {',
             '    ...web,',

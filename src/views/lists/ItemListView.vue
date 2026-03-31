@@ -21,7 +21,10 @@ defineOptions(
         error: ({ i18n, props: { type } }) =>
             i18n.clients.customServer[type].list.error(import.meta.env.VITE_TITLE),
 
-        title: ({ i18n, props: { type } }) => i18n.routes.server.lists[type].title,
+        title: ({ i18n, props: { type, data } }) =>
+            data?.title
+                ? (i18n.texts[data.title] ?? data.title)
+                : i18n.routes.server.lists[type].title,
     }),
 )
 
@@ -41,7 +44,7 @@ const text = computed(() => {
         const keywords = props.query.keywords
         if (!keywords) return
 
-        return i18n.value.routes.server.lists.searchOption(i18n.value.texts['#KEYWORDS'], keywords)
+        return i18n.value.routes.server.lists.searchOption(i18nText('#KEYWORDS'), keywords)
     }
 
     const search = props.data.searches.find((search) => search.type === type)

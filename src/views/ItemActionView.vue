@@ -13,7 +13,7 @@ defineOptions(
     }),
 )
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-useless-assignment
 const props = defineProps<{
     type: ItemType
     name: string

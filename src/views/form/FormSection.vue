@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppButton from '@/components/AppButton.vue'
 import AppForm from '@/components/AppForm.vue'
-import type { OptionValues } from '@/components/fields/value'
+import type { OptionValue } from '@/components/fields/value'
 import RichText from '@/components/RichText.vue'
 import ViewSection from '@/components/ViewSection.vue'
 import { i18n, i18nText } from '@/i18n'
@@ -23,9 +23,9 @@ const emit = defineEmits<
     }
 >()
 
-const values = ref<OptionValues>(
+const values = ref(
     props.query.type === props.form.type
-        ? Object.fromEntries(
+        ? Object.fromEntries<OptionValue>(
               [...new URLSearchParams(props.query).entries()].map(([key, value]) => [
                   key,
                   { value, files: {} },

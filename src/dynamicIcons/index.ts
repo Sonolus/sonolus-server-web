@@ -11,6 +11,9 @@ import DynamicIconAnnouncement from '@/dynamicIcons/DynamicIconAnnouncement.vue'
 import DynamicIconArrowDown from '@/dynamicIcons/DynamicIconArrowDown.vue'
 import DynamicIconArrowLeft from '@/dynamicIcons/DynamicIconArrowLeft.vue'
 import DynamicIconArrowRight from '@/dynamicIcons/DynamicIconArrowRight.vue'
+import DynamicIconArrowsLeftRight from '@/dynamicIcons/DynamicIconArrowsLeftRight.vue'
+import DynamicIconArrowsUpDown from '@/dynamicIcons/DynamicIconArrowsUpDown.vue'
+import DynamicIconArrowsUpLeft from '@/dynamicIcons/DynamicIconArrowsUpLeft.vue'
 import DynamicIconArrowUp from '@/dynamicIcons/DynamicIconArrowUp.vue'
 import DynamicIconAward from '@/dynamicIcons/DynamicIconAward.vue'
 import DynamicIconBackground from '@/dynamicIcons/DynamicIconBackground.vue'
@@ -19,6 +22,7 @@ import DynamicIconBellSlash from '@/dynamicIcons/DynamicIconBellSlash.vue'
 import DynamicIconBook from '@/dynamicIcons/DynamicIconBook.vue'
 import DynamicIconBookmark from '@/dynamicIcons/DynamicIconBookmark.vue'
 import DynamicIconBookmarkHollow from '@/dynamicIcons/DynamicIconBookmarkHollow.vue'
+import DynamicIconBroom from '@/dynamicIcons/DynamicIconBroom.vue'
 import DynamicIconCheck from '@/dynamicIcons/DynamicIconCheck.vue'
 import DynamicIconClock from '@/dynamicIcons/DynamicIconClock.vue'
 import DynamicIconComment from '@/dynamicIcons/DynamicIconComment.vue'
@@ -32,9 +36,11 @@ import DynamicIconEnvelope from '@/dynamicIcons/DynamicIconEnvelope.vue'
 import DynamicIconEnvelopeOpen from '@/dynamicIcons/DynamicIconEnvelopeOpen.vue'
 import DynamicIconFilter from '@/dynamicIcons/DynamicIconFilter.vue'
 import DynamicIconGlobe from '@/dynamicIcons/DynamicIconGlobe.vue'
+import DynamicIconHand from '@/dynamicIcons/DynamicIconHand.vue'
 import DynamicIconHeart from '@/dynamicIcons/DynamicIconHeart.vue'
 import DynamicIconHeartHollow from '@/dynamicIcons/DynamicIconHeartHollow.vue'
 import DynamicIconHide from '@/dynamicIcons/DynamicIconHide.vue'
+import DynamicIconIceCream from '@/dynamicIcons/DynamicIconIceCream.vue'
 import DynamicIconInformation from '@/dynamicIcons/DynamicIconInformation.vue'
 import DynamicIconLevel from '@/dynamicIcons/DynamicIconLevel.vue'
 import DynamicIconLock from '@/dynamicIcons/DynamicIconLock.vue'
@@ -54,6 +60,7 @@ import DynamicIconReplay from '@/dynamicIcons/DynamicIconReplay.vue'
 import DynamicIconReply from '@/dynamicIcons/DynamicIconReply.vue'
 import DynamicIconRestore from '@/dynamicIcons/DynamicIconRestore.vue'
 import DynamicIconRoom from '@/dynamicIcons/DynamicIconRoom.vue'
+import DynamicIconScissors from '@/dynamicIcons/DynamicIconScissors.vue'
 import DynamicIconSearch from '@/dynamicIcons/DynamicIconSearch.vue'
 import DynamicIconSettings from '@/dynamicIcons/DynamicIconSettings.vue'
 import DynamicIconShow from '@/dynamicIcons/DynamicIconShow.vue'
@@ -86,6 +93,7 @@ import DynamicIconThumbsUpHollow from '@/dynamicIcons/DynamicIconThumbsUpHollow.
 import DynamicIconTrophy from '@/dynamicIcons/DynamicIconTrophy.vue'
 import DynamicIconUnlock from '@/dynamicIcons/DynamicIconUnlock.vue'
 import DynamicIconUser from '@/dynamicIcons/DynamicIconUser.vue'
+import DynamicIconWarning from '@/dynamicIcons/DynamicIconWarning.vue'
 import DynamicIconXMark from '@/dynamicIcons/DynamicIconXMark.vue'
 import type { Icon } from '@sonolus/core'
 import type { Component } from 'vue'
@@ -104,6 +112,9 @@ export const dynamicIcons: Record<string, Component> = {
     arrowDown: DynamicIconArrowDown,
     arrowLeft: DynamicIconArrowLeft,
     arrowRight: DynamicIconArrowRight,
+    arrowsLeftRight: DynamicIconArrowsLeftRight,
+    arrowsUpDown: DynamicIconArrowsUpDown,
+    arrowsUpLeft: DynamicIconArrowsUpLeft,
     arrowUp: DynamicIconArrowUp,
     award: DynamicIconAward,
     background: DynamicIconBackground,
@@ -112,6 +123,7 @@ export const dynamicIcons: Record<string, Component> = {
     book: DynamicIconBook,
     bookmark: DynamicIconBookmark,
     bookmarkHollow: DynamicIconBookmarkHollow,
+    broom: DynamicIconBroom,
     check: DynamicIconCheck,
     clock: DynamicIconClock,
     comment: DynamicIconComment,
@@ -125,9 +137,11 @@ export const dynamicIcons: Record<string, Component> = {
     envelopeOpen: DynamicIconEnvelopeOpen,
     filter: DynamicIconFilter,
     globe: DynamicIconGlobe,
+    hand: DynamicIconHand,
     heart: DynamicIconHeart,
     heartHollow: DynamicIconHeartHollow,
     hide: DynamicIconHide,
+    iceCream: DynamicIconIceCream,
     information: DynamicIconInformation,
     level: DynamicIconLevel,
     lock: DynamicIconLock,
@@ -147,6 +161,7 @@ export const dynamicIcons: Record<string, Component> = {
     reply: DynamicIconReply,
     restore: DynamicIconRestore,
     room: DynamicIconRoom,
+    scissors: DynamicIconScissors,
     search: DynamicIconSearch,
     settings: DynamicIconSettings,
     show: DynamicIconShow,
@@ -179,5 +194,6 @@ export const dynamicIcons: Record<string, Component> = {
     trophy: DynamicIconTrophy,
     unlock: DynamicIconUnlock,
     user: DynamicIconUser,
+    warning: DynamicIconWarning,
     xMark: DynamicIconXMark,
 } satisfies Record<Icon, Component>

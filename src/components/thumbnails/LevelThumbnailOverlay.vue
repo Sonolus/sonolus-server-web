@@ -14,9 +14,11 @@ defineProps<{
     >
         <span>{{ level.rating }}</span>
     </div>
-    <div class="absolute left-0 top-0 flex h-full w-full items-end justify-center">
+    <div
+        class="pointer-events-none absolute left-0 top-0 flex h-full w-full items-end justify-center"
+    >
         <span
-            class="bg-overlay-surface"
+            class="pointer-events-auto bg-overlay-surface"
             :class="[
                 fullSize
                     ? 'px-7.5 py-5 sm:px-9 sm:py-6'

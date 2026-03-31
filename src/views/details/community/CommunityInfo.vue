@@ -195,20 +195,14 @@ const navigateCommentsToPage = (page: number) => {
             leave-to-class="opacity-0"
             leave-active-class="transition-opacity"
         >
-            <div
-                v-if="info.topComments.length && show && isLoading"
-                class="flex flex-col items-center gap-10 sm:gap-12"
-            >
+            <div v-if="show && isLoading" class="flex flex-col items-center gap-10 sm:gap-12">
                 <LoadingSpinner />
                 <span class="whitespace-break-spaces text-center">
                     {{ i18n.clients.customServer[type].community.comment.list.loading }}
                 </span>
             </div>
 
-            <div
-                v-else-if="info.topComments.length && show && list"
-                class="flex flex-col gap-10 sm:gap-12"
-            >
+            <div v-else-if="show && list" class="flex flex-col gap-10 sm:gap-12">
                 <CommunityComment
                     v-for="(comment, j) in list.comments"
                     :key="j"
@@ -224,7 +218,7 @@ const navigateCommentsToPage = (page: number) => {
                 <PaginationControls v-model="param" :count="list.pageCount" :cursor="list.cursor" />
             </div>
 
-            <div v-else-if="info.topComments.length && show" class="flex justify-center">
+            <div v-else-if="show" class="flex justify-center">
                 <IconXMark class="size-50 fill-text-disabled sm:size-60" />
             </div>
 

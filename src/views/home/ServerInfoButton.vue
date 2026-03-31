@@ -25,7 +25,7 @@ const webAuth = !!import.meta.env.VITE_WEB_AUTH
             inert
         >
             <IconLogin class="size-60 fill-current sm:size-72" />
-            <span>{{ i18n.routes.server.home.login }}</span>
+            <span class="text-center">{{ i18n.routes.server.home.login }}</span>
         </div>
         <AppLink
             v-else
@@ -36,7 +36,9 @@ const webAuth = !!import.meta.env.VITE_WEB_AUTH
                 :is="auth ? IconLogout : IconLogin"
                 class="size-60 fill-current sm:size-72"
             />
-            <span>{{ auth ? i18n.routes.server.home.logout : i18n.routes.server.home.login }}</span>
+            <span class="text-center">{{
+                auth ? i18n.routes.server.home.logout : i18n.routes.server.home.login
+            }}</span>
         </AppLink>
     </template>
     <AppLink
@@ -45,7 +47,7 @@ const webAuth = !!import.meta.env.VITE_WEB_AUTH
         :to="{ name: 'configuration', data }"
     >
         <IconConfiguration class="size-60 fill-current sm:size-72" />
-        <span>{{ i18n.routes.server.home.configuration }}</span>
+        <span class="text-center">{{ i18n.routes.server.home.configuration }}</span>
     </AppLink>
     <AppLink
         v-else
@@ -60,7 +62,7 @@ const webAuth = !!import.meta.env.VITE_WEB_AUTH
             :is="dynamicIcons[button.icon ?? ''] ?? icons[button.type]"
             class="size-60 fill-current sm:size-72"
         />
-        <span>{{
+        <span class="text-center">{{
             button.title ? i18nText(button.title) : i18n.routes.server.home[button.type]
         }}</span>
         <div

@@ -61,9 +61,11 @@ const normalized = computed(() => normalizes[props.type](props.item as never))
             <span v-else class="text-right">{{ normalized.author }}</span>
         </div>
         <slot />
-        <span class="wrap-anywhere text-center text-30 font-bold sm:text-36">{{
-            normalized.title
-        }}</span>
+        <span
+            class="wrap-anywhere text-30 font-bold sm:text-36"
+            :class="alignLeft ? 'text-left' : 'text-center'"
+            >{{ normalized.title }}</span
+        >
         <span class="text-center">{{ normalized.subtitle }}</span>
     </div>
 </template>

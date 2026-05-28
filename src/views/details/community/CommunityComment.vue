@@ -3,7 +3,7 @@ import { sonolusPost, sonolusUpload } from '@/client'
 import AppButton from '@/components/AppButton.vue'
 import RichText from '@/components/RichText.vue'
 import { dynamicIcons } from '@/dynamicIcons'
-import { i18n, i18nText } from '@/i18n'
+import { i18n, i18nMultilineText, i18nText } from '@/i18n'
 import { icons } from '@/icons'
 import { paths } from '@/utils/item'
 import type { ViewEmit } from '@/views/BaseView'
@@ -147,7 +147,7 @@ const submit = async (result: FormResult) => {
 
             <span class="text-right">{{ new Date(comment.time).toLocaleString() }}</span>
         </div>
-        <RichText class="mt-5 sm:mt-6" :text="comment.content" />
+        <RichText class="mt-5 sm:mt-6" :text="i18nMultilineText(comment.content)" />
 
         <div
             v-if="comment.actions.length"

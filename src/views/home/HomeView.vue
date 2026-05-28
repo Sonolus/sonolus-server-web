@@ -4,6 +4,7 @@ import RichText from '@/components/RichText.vue'
 import ServerInfoButton from '@/views/home/ServerInfoButton.vue'
 import { viewOptions } from '@/views/viewOptions'
 import type { ServerInfo } from '@sonolus/core'
+import { i18nMultilineText } from '../../i18n'
 
 defineOptions(
     viewOptions<typeof props>({
@@ -29,7 +30,11 @@ const props = defineProps<{
     <div class="flex justify-center">
         <OpenInSonolus />
     </div>
-    <RichText v-if="data.description" class="mt-30 text-center sm:mt-36" :text="data.description" />
+    <RichText
+        v-if="data.description"
+        class="mt-30 text-center sm:mt-36"
+        :text="i18nMultilineText(data.description)"
+    />
 
     <div class="mt-30 flex flex-wrap justify-center gap-10 sm:mt-36 sm:gap-12">
         <template v-for="button in data.buttons" :key="button.type">

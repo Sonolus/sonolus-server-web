@@ -16,6 +16,8 @@ export const locales = Object.values(modules).map(({ i18n }) => i18n.meta)
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 export const i18n = computed(() => modules[`./generated-${locale.value}.ts`]!.i18n)
 
+export const i18nMultilineText = (text: string) => text.split('\n').map(i18nText).join('\n')
+
 export const i18nText = (key: string): string => {
     const index = key.indexOf(':')
     if (index < 0) return i18n.value.texts[key] ?? key

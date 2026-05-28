@@ -2,6 +2,7 @@
 import { sonolusGet } from '@/client'
 import AppButton from '@/components/AppButton.vue'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
+import RichText from '@/components/RichText.vue'
 import ViewSection from '@/components/ViewSection.vue'
 import { i18n, i18nText } from '@/i18n'
 import IconAngleDown from '@/icons/IconAngleDown.vue'
@@ -66,16 +67,23 @@ watchEffect(async () => {
                     :inert="!isExpanded"
                 >
                     <div class="overflow-hidden">
-                        <div class="flex flex-wrap gap-10 p-30 sm:gap-12 sm:p-36">
-                            <AppButton
-                                v-for="(leaderboard, i) in leaderboards"
-                                :key="leaderboard.name"
-                                :icon="index === i ? IconRadioOn : IconRadioOff"
-                                auto-width
-                                @click="index = i"
-                            >
-                                {{ i18nText(leaderboard.title) }}
-                            </AppButton>
+                        <div class="p-30 sm:p-36">
+                            <div class="flex flex-wrap gap-10 sm:gap-12">
+                                <AppButton
+                                    v-for="(leaderboard, i) in leaderboards"
+                                    :key="leaderboard.name"
+                                    :icon="index === i ? IconRadioOn : IconRadioOff"
+                                    auto-width
+                                    @click="index = i"
+                                >
+                                    {{ i18nText(leaderboard.title) }}
+                                </AppButton>
+                            </div>
+                            <RichText
+                                v-if="leaderboards[index]?.description"
+                                class="mt-30 sm:mt-36"
+                                :text="leaderboards[index]?.description!"
+                            />
                         </div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ import AppButton from '@/components/AppButton.vue'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import RichText from '@/components/RichText.vue'
 import ViewSection from '@/components/ViewSection.vue'
-import { i18n, i18nText } from '@/i18n'
+import { i18n, i18nMultilineText, i18nText } from '@/i18n'
 import IconAngleDown from '@/icons/IconAngleDown.vue'
 import IconAngleUp from '@/icons/IconAngleUp.vue'
 import IconRadioOff from '@/icons/IconRadioOff.vue'
@@ -82,7 +82,7 @@ watchEffect(async () => {
                             <RichText
                                 v-if="leaderboards[index]?.description"
                                 class="mt-30 sm:mt-36"
-                                :text="leaderboards[index]?.description!"
+                                :text="i18nMultilineText(leaderboards[index]?.description!)"
                             />
                         </div>
                     </div>

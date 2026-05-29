@@ -7,7 +7,6 @@ const i18n = {
         title: '',
     },
     common: {
-        separator: '',
         more: '',
         on: '',
         off: '',
@@ -320,7 +319,6 @@ const i18n = {
                 user: { title: '' },
             },
             lists: {
-                searchOption: '',
                 room: { title: '' },
                 post: { title: '' },
                 playlist: { title: '' },

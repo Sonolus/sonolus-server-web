@@ -4,7 +4,7 @@ import { computed } from 'vue'
 import AppButton from '../../components/AppButton.vue'
 import ItemCard from '../../components/cards/ItemCard.vue'
 import RichText from '../../components/RichText.vue'
-import { i18n, i18nText } from '../../i18n'
+import { i18n, i18nMultilineText, i18nText } from '../../i18n'
 import IconMore from '../../icons/IconMore.vue'
 import IconSearch from '../../icons/IconSearch.vue'
 
@@ -45,7 +45,7 @@ const searchQuery = computed(() => {
             />
         </div>
 
-        <RichText v-if="section.description" :text="section.description" />
+        <RichText v-if="section.description" :text="i18nMultilineText(section.description)" />
 
         <ItemCard v-for="(item, key) in section.items" :key :type="section.itemType" :item />
 

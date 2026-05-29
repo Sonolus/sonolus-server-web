@@ -11,7 +11,7 @@ import IconSearch from '@/icons/IconSearch.vue'
 import IconXMark from '@/icons/IconXMark.vue'
 import { paths, type Item } from '@/utils/item'
 import { viewOptions } from '@/views/viewOptions'
-import type { ItemType, ServerItemList } from '@sonolus/core'
+import { Text, type ItemType, type ServerItemList } from '@sonolus/core'
 import { computed } from 'vue'
 
 defineOptions(
@@ -44,7 +44,7 @@ const text = computed(() => {
         const keywords = props.query.keywords
         if (!keywords) return
 
-        return i18n.value.routes.server.lists.searchOption(i18nText('#KEYWORDS'), keywords)
+        return `${i18nText(Text.Keywords)}${i18nText(Text.SeparatorColon)}${keywords}`
     }
 
     const search = props.data.searches.find((search) => search.type === type)
@@ -59,10 +59,8 @@ const text = computed(() => {
         if (!value) continue
 
         const add = (value: string) =>
-            (texts[option.query] = i18n.value.routes.server.lists.searchOption(
-                i18nText(option.name),
-                value,
-            ))
+            (texts[option.query] =
+                `${i18nText(option.name)}${i18nText(Text.SeparatorColon)}${value}`)
 
         switch (option.type) {
             case 'text':
@@ -126,7 +124,7 @@ const text = computed(() => {
         }
     }
 
-    return Object.values(texts).join(i18n.value.common.separator)
+    return Object.values(texts).join(i18nText(Text.SeparatorComma))
 })
 
 const page = computed(() => +(props.query.page ?? '') || 0)

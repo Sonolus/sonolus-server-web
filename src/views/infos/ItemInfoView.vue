@@ -12,11 +12,12 @@ import { paths } from '@/utils/item'
 import { type ViewEmit } from '@/views/BaseView'
 import type { FormResult } from '@/views/form'
 import { viewOptions } from '@/views/viewOptions'
-import type {
-    ItemType,
-    ServerCreateItemResponse,
-    ServerItemInfo,
-    ServerUploadItemResponse,
+import {
+    Text,
+    type ItemType,
+    type ServerCreateItemResponse,
+    type ServerItemInfo,
+    type ServerUploadItemResponse,
 } from '@sonolus/core'
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
@@ -43,6 +44,8 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<ViewEmit>()
+
+const placeholder = computed(() => i18nText(Text.KeywordsPlaceholder))
 
 const router = useRouter()
 
@@ -107,12 +110,7 @@ const onCreate = async (result: FormResult) => {
 
 <template>
     <AppForm>
-        <TextInput
-            v-if="data.searches"
-            v-model="search"
-            :icon="IconSearch"
-            :placeholder="i18nText('#KEYWORDS_PLACEHOLDER')"
-        />
+        <TextInput v-if="data.searches" v-model="search" :icon="IconSearch" :placeholder />
         <div class="mt-10 flex flex-wrap justify-center gap-10 sm:mt-12 sm:gap-12">
             <AppButton
                 v-if="data.creates?.length"

@@ -3,7 +3,7 @@ import OpenInSonolus from '@/components/OpenInSonolus.vue'
 import RichText from '@/components/RichText.vue'
 import ItemHeader from '@/components/headers/ItemHeader.vue'
 import { dynamicIcons } from '@/dynamicIcons'
-import { i18n, i18nText } from '@/i18n'
+import { i18n, i18nMultilineText, i18nText } from '@/i18n'
 import type { ViewEmit } from '@/views/BaseView'
 import ItemActions from '@/views/details/ItemActions.vue'
 import type { ItemDetailsViewProps } from '@/views/details/ItemDetailsView'
@@ -51,7 +51,7 @@ defineEmits<ViewEmit>()
         </div>
     </div>
 
-    <RichText v-if="data.description" :text="data.description" />
+    <RichText v-if="data.description" :text="i18nMultilineText(data.description)" />
     <div
         v-else
         class="flex h-30 items-center justify-center text-center text-text-disabled sm:h-36"

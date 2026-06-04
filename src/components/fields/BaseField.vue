@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import RichText from '@/components/RichText.vue'
-import { i18n, i18nText } from '@/i18n'
+import { i18n, i18nMultilineText, i18nText } from '@/i18n'
 import IconAngleDown from '@/icons/IconAngleDown.vue'
 import IconAngleUp from '@/icons/IconAngleUp.vue'
 import IconRequired from '@/icons/IconRequired.vue'
@@ -60,7 +60,7 @@ const isExpanded = ref(false)
                     <RichText
                         v-if="option.description"
                         class="mt-30 sm:mt-36"
-                        :text="option.description"
+                        :text="i18nMultilineText(option.description)"
                     />
                     <div
                         v-if="option.required"

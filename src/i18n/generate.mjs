@@ -417,6 +417,7 @@ for (const locale of locales) {
     writeFileSync(
         `./src/i18n/generated-${locale}.ts`,
         [
+            locale === 'en' ? '' : "import { i18n as i18nEn } from './generated-en'",
             `const web = ${JSON.stringify({ ...webs.en, ...webs[locale] }, null, 4)} as const`,
             'const app = {',
             ...walk(localization),
@@ -426,7 +427,7 @@ for (const locale of locales) {
             'export const i18n = {',
             '    ...web,',
             '    ...app,',
-            '    texts,',
+            locale === 'en' ? '    texts,' : '    texts: { ...i18nEn.texts, ...texts },',
             '}',
             'export type I18n = typeof i18n',
         ].join('\n'),

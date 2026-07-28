@@ -33,6 +33,8 @@ export const i18nText = (key: string): string => {
                 return timeFullFormatter(key.slice(index + 1))
             case TextFunction.TimeRelative:
                 return timeRelativeFormatter(key.slice(index + 1))
+            case TextFunction.Localize:
+                return localizeFormatter(key.slice(index + 1))
             default:
                 return key
         }
@@ -78,6 +80,23 @@ const timeRelativeFormatter = (value: string) => {
     if (d < 365) return format(Text.MonthFuture, Text.MonthPast, d / 30)
 
     return format(Text.YearFuture, Text.YearPast, d / 365)
+}
+
+const localizeFormatter = (value: string) => {
+    try {
+        const arg: unknown = JSON.parse(value)
+        if (
+            !arg ||
+            typeof arg !== 'object' ||
+            !Object.values(arg).every((value) => typeof value === 'string')
+        )
+            return value
+
+        const texts = arg as Record<string, string>
+        return texts[locale.value] ?? Object.values(texts)[0] ?? ''
+    } catch {
+        return value
+    }
 }
 
 watchEffect(() => (document.documentElement.lang = i18n.value.lang))

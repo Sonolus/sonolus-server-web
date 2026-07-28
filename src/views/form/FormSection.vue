@@ -4,7 +4,7 @@ import AppForm from '@/components/AppForm.vue'
 import type { OptionValue } from '@/components/fields/value'
 import RichText from '@/components/RichText.vue'
 import ViewSection from '@/components/ViewSection.vue'
-import { i18n, i18nText } from '@/i18n'
+import { i18n, i18nMultilineText, i18nText } from '@/i18n'
 import type { OverlayEmit } from '@/views/BaseView'
 import type { FormResult } from '@/views/form'
 import type { ServerForm } from '@sonolus/core'
@@ -76,7 +76,7 @@ const submit = () => {
 <template>
     <AppForm>
         <ViewSection :title="i18nText(form.title)">
-            <RichText v-if="form.description" :text="form.description" />
+            <RichText v-if="form.description" :text="i18nMultilineText(form.description)" />
 
             <OptionField
                 v-for="(option, key) in form.options"

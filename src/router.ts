@@ -23,22 +23,20 @@ const defineRoutes = (
         props?: object
     }[]
 ) =>
-    routes.map(
-        ({ name, path, component, props }): RouteRecordRaw => ({
-            name,
-            path,
-            component: BaseView,
-            props: ({ params, query }) => ({
-                url: (component as { url: never }).url,
-                loading: (component as { loading: never }).loading,
-                error: (component as { error: never }).error,
-                title: (component as { title: never }).title,
-                banner: (component as { banner: never }).banner,
-                component,
-                componentProps: { ...params, query, ...props },
-            }),
+    routes.map(({ name, path, component, props }): RouteRecordRaw => ({
+        name,
+        path,
+        component: BaseView,
+        props: ({ params, query }) => ({
+            url: (component as { url: never }).url,
+            loading: (component as { loading: never }).loading,
+            error: (component as { error: never }).error,
+            title: (component as { title: never }).title,
+            banner: (component as { banner: never }).banner,
+            component,
+            componentProps: { ...params, query, ...props },
         }),
-    )
+    }))
 
 export const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),

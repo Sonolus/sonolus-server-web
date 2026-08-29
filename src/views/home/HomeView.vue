@@ -4,7 +4,7 @@ import RichText from '@/components/RichText.vue'
 import ServerInfoButton from '@/views/home/ServerInfoButton.vue'
 import { viewOptions } from '@/views/viewOptions'
 import type { ServerInfo } from '@sonolus/core'
-import { i18nMultilineText } from '../../i18n'
+import { i18nMultilineText, i18nText } from '../../i18n'
 
 defineOptions(
     viewOptions<typeof props>({
@@ -25,7 +25,7 @@ const props = defineProps<{
 
 <template>
     <h1 class="text-center text-30 font-bold sm:text-36">
-        {{ data.title }}
+        {{ i18nText(data.title) }}
     </h1>
     <div class="flex justify-center">
         <OpenInSonolus />

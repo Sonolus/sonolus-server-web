@@ -29,6 +29,7 @@ import type { Item, ItemMap } from '@/utils/item'
 import type { ItemType, UserItem } from '@sonolus/core'
 import { computed } from 'vue'
 import AppButton from '../AppButton.vue'
+import { i18nText } from '../../i18n/index.ts'
 
 const props = defineProps<{
     type: ItemType
@@ -64,8 +65,8 @@ const normalized = computed(() => normalizes[props.type](props.item as never))
         <span
             class="wrap-anywhere text-30 font-bold sm:text-36"
             :class="alignLeft ? 'text-left' : 'text-center'"
-            >{{ normalized.title }}</span
+            >{{ i18nText(normalized.title) }}</span
         >
-        <span class="text-center">{{ normalized.subtitle }}</span>
+        <span class="text-center">{{ i18nText(normalized.subtitle) }}</span>
     </div>
 </template>

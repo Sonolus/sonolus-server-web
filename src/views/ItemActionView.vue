@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { i18n } from '@/i18n'
+import { i18n, i18nText } from '@/i18n'
 import IconCheck from '@/icons/IconCheck.vue'
 import type { OverlayEmit } from '@/views/BaseView'
 import type { FormResult } from '@/views/form'
@@ -9,7 +9,7 @@ import type { ItemType, ServerForm } from '@sonolus/core'
 
 defineOptions(
     viewOptions<typeof props>({
-        title: ({ props: { name, data } }) => data?.title ?? name,
+        title: ({ props: { name, data } }) => (data ? i18nText(data.title) : name),
     }),
 )
 

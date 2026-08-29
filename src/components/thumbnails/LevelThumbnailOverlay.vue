@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { LevelItem } from '@sonolus/core'
+import { i18nText } from '../../i18n'
 
 defineProps<{
     level: LevelItem
@@ -25,7 +26,7 @@ defineProps<{
                     : 'px-5 py-2.5 text-15 sm:px-6 sm:py-3 sm:text-18',
             ]"
         >
-            {{ level.engine.title }}
+            {{ i18nText(level.engine.title) }}
         </span>
     </div>
 </template>

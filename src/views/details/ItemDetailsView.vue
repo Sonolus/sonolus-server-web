@@ -13,6 +13,7 @@ import PostDetailsView from './PostDetailsView.vue'
 import ReplayDetailsView from './ReplayDetailsView.vue'
 import SimpleItemDetailsView from './SimpleItemDetailsView.vue'
 import UserDetailsView from './UserDetailsView.vue'
+import { i18nText } from '../../i18n/index.ts'
 
 const views: Partial<Record<ItemType, Component>> = {
     post: PostDetailsView,
@@ -32,7 +33,7 @@ defineOptions(
         error: ({ i18n, props: { type, name } }) =>
             i18n.clients.customServer[type].details.error(name),
 
-        title: ({ props: { name, data } }) => data?.item.title ?? name,
+        title: ({ props: { name, data } }) => (data ? i18nText(data.item.title) : name),
         banner: ({ type, data }) => data && thumbnailUrls[type](data.item as never),
     }),
 )

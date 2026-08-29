@@ -31,9 +31,7 @@ defineOptions(
             i18n.clients.customServer[type].info.error(import.meta.env.VITE_TITLE),
 
         title: ({ i18n, props: { type, data } }) =>
-            data?.title
-                ? (i18n.texts[data.title] ?? data.title)
-                : i18n.routes.server.infos[type].title,
+            data?.title ? i18nText(data.title) : i18n.routes.server.infos[type].title,
         banner: ({ data }) => data?.banner?.url ?? undefined,
     }),
 )

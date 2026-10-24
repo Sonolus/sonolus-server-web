@@ -54,7 +54,7 @@ watchEffect(async () => {
             </div>
             <div class="flex flex-grow flex-wrap">
                 <div class="flex flex-grow gap-5 sm:gap-6">
-                    <span class="text-left">{{ record.player }}</span>
+                    <span class="text-left">{{ i18nText(record.player) }}</span>
                     <div
                         v-for="(tag, key) in record.playerUser?.tags"
                         :key

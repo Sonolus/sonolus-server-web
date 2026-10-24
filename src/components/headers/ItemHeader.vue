@@ -57,9 +57,9 @@ const normalized = computed(() => normalizes[props.type](props.item as never))
                 :to="{ name: 'user-details', params: { name: normalized.authorUser.name } }"
                 auto-width
             >
-                <span class="text-right">{{ normalized.author }}</span>
+                <span class="text-right">{{ i18nText(normalized.author) }}</span>
             </AppButton>
-            <span v-else class="text-right">{{ normalized.author }}</span>
+            <span v-else class="text-right">{{ i18nText(normalized.author) }}</span>
         </div>
         <slot />
         <span

@@ -16,7 +16,7 @@ defineProps<{
         :to="{ name: 'user-details', params: { name: item.name } }"
     >
         <IconUser class="size-20 flex-shrink-0 fill-text-disabled sm:size-24" />
-        <span class="flex-grow">{{ item.title }}</span>
+        <span class="flex-grow">{{ i18nText(item.title) }}</span>
         <div
             v-for="(tag, key) in item.tags"
             :key

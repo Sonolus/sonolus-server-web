@@ -25,8 +25,21 @@ const props = defineProps<{
 const options = computed<ServerOption[]>(() => [
     {
         query: 'localization',
-        name: i18n.value.routes.settings.ui.contentLocalization.title,
-        description: i18n.value.routes.settings.ui.contentLocalization.description,
+        name: i18n.value.routes.server.configuration.options.localization.title,
+        description: i18n.value.routes.server.configuration.options.localization.description,
+        required: false,
+        type: 'select',
+        def: defaultLocale,
+        values: locales.map((locale) => ({
+            name: locale.name,
+            title: locale.title,
+        })),
+    },
+    {
+        query: 'fallbackLocalization',
+        name: i18n.value.routes.server.configuration.options.fallbackLocalization.title,
+        description:
+            i18n.value.routes.server.configuration.options.fallbackLocalization.description,
         required: false,
         type: 'select',
         def: defaultLocale,

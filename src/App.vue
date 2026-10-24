@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BackgroundGlow from '@/components/BackgroundGlow.vue'
-import { locale } from '@/i18n'
+import { fallbackLocale, locale } from '@/i18n'
 
 const getRouteId = () => (history.state as { routeId: string }).routeId
 </script>
@@ -13,7 +13,7 @@ const getRouteId = () => (history.state as { routeId: string }).routeId
             <KeepAlive>
                 <component
                     :is="Component"
-                    :key="`${getRouteId()}:${locale}:${String(route.name)}:${route.fullPath}`"
+                    :key="`${getRouteId()}:${locale}:${fallbackLocale}:${String(route.name)}:${route.fullPath}`"
                     :route-id="getRouteId()"
                 />
             </KeepAlive>

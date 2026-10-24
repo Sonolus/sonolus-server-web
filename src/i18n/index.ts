@@ -3,10 +3,8 @@ import type { I18n } from '@/i18n/generated-en'
 import { Text, TextFunction } from '@sonolus/core'
 import { computed, watchEffect } from 'vue'
 
-export const locale = computed({
-    get: () => configuration.value.localization,
-    set: (locale) => (configuration.value = { ...configuration.value, localization: locale }),
-})
+export const locale = computed(() => configuration.value.localization)
+export const fallbackLocale = computed(() => configuration.value.fallbackLocalization)
 
 const modules: Record<string, { i18n: I18n }> = import.meta.glob('./generated-*.ts', {
     eager: true,
@@ -93,7 +91,7 @@ const localizeFormatter = (value: string) => {
             return value
 
         const texts = arg as Record<string, string>
-        return texts[locale.value] ?? Object.values(texts)[0] ?? ''
+        return texts[locale.value] ?? texts[fallbackLocale.value] ?? Object.values(texts)[0] ?? ''
     } catch {
         return value
     }

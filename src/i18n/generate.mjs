@@ -365,6 +365,18 @@ const i18n = {
                     level: { title: '' },
                 },
             },
+            configuration: {
+                options: {
+                    localization: {
+                        title: '',
+                        description: '',
+                    },
+                    fallbackLocalization: {
+                        title: '',
+                        description: '',
+                    },
+                },
+            },
         },
         jumpToPage: {
             title: '',
@@ -372,14 +384,6 @@ const i18n = {
                 placeholder: '',
             },
             jump: '',
-        },
-        settings: {
-            ui: {
-                contentLocalization: {
-                    title: '',
-                    description: '',
-                },
-            },
         },
     },
 }

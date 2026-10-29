@@ -126,9 +126,9 @@ const submit = async (result: FormResult) => {
                 :to="{ name: 'user-details', params: { name: comment.authorUser.name } }"
                 auto-width
             >
-                <span class="text-left">{{ comment.author }}</span>
+                <span class="text-left">{{ i18nText(comment.author) }}</span>
             </AppButton>
-            <span v-else class="text-left">{{ comment.author }}</span>
+            <span v-else class="text-left">{{ i18nText(comment.author) }}</span>
             <div
                 v-for="(tag, key) in comment.authorUser?.tags"
                 :key

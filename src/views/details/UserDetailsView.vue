@@ -20,7 +20,7 @@ defineEmits<ViewEmit>()
     <div class="flex flex-col items-center gap-30 sm:flex-row-reverse sm:items-start sm:gap-36">
         <div class="w-full flex-grow">
             <div class="wrap-anywhere text-center text-30 font-bold sm:text-left sm:text-36">
-                {{ data.item.title }}
+                {{ i18nText(data.item.title) }}
             </div>
             <div
                 v-if="data.item.tags.length"
